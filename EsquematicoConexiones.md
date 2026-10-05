@@ -6,7 +6,7 @@ Guía técnica detallada para el conexionado de todos los componentes comprados 
 
 ## 🗺️ 1. Diagrama General de Conexiones (Esquema Visual)
 
-![Esquema Visual Preciso de Componentes y Cableado V2](/C:/Users/erqadmin/.gemini/antigravity-ide/brain/229ab9cb-d4eb-44f8-9e6d-8f1a98a9ff0f/ktm_wiring_diagram_v2_1791206687955.jpg)
+![Esquema Visual Preciso de Componentes y Cableado V2](./hardware/ktm_wiring_diagram_v2.jpg)
 
 > 📐 **Diagrama Vectorial SVG**: También tienes disponible el plano técnico vectorial de alta precisión en [hardware/ktm_wiring_schematic.svg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_schematic.svg).
 
