@@ -119,7 +119,11 @@ La placa **LILYGO T-CAN485** ya integra el microcontrolador ESP32, el transcepto
 
 ---
 
-## 5. Cableado hacia los Accesorios (Conectores Estancos)
+## 5. Cableado hacia los Accesorios (Conectores Estancos Comprados)
 Para igualar la calidad del DENALI CANsmart:
-* Utilizar conectores automotrices **Superseal 1.5** de 2 y 3 pines con juntas de silicona impermeables (IP67).
-* Cableado siliconado AWG 16 (para canales de luces hasta 10A) y AWG 14 (para alimentación principal y masa general).
+* Utilizar los conectores comprados **Superseal 1.5**:
+  * **2 Conectores de 2 Pines**: Para los focos auxiliares izquierdo y derecho (Set 1).
+  * **2 Conectores de 3 Pines**: Para los faros de niebla (Set 2 con DRL) y bocina/freno.
+* Cableado siliconado AWG 16 (para canales de luces hasta 5A-10A) y AWG 14 (para alimentación principal y masa general).
+* 👉 **Plano de Conexión Completo**: Consulta [EsquematicoConexiones.md](file:///c:/APPS-DEV/zzz/KTM-Bus/EsquematicoConexiones.md) y la imagen técnica verificada [ktm_wiring_diagram_v2.jpg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.jpg).
+
