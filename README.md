@@ -26,7 +26,11 @@ c:\APPS-DEV\zzz\KTM-Bus\
 │   ├── style.css               # Diseño CSS moderno, glassmorphism, micro-animaciones y resplandores
 │   └── app.js                  # Lógica reactiva, simulador de luces y cliente REST API
 ├── hardware/                   # Diseño electrónico, esquemáticos y pinouts
-│   └── schematic_notes.md      # Pinout Euro 5 (ISO 19689), BOM de componentes y esquemas
+│   ├── schematic_notes.md      # Pinout Euro 5 (ISO 19689), BOM de componentes y notas de cableado
+│   ├── generate_diagrams.py    # Genera las 4 hojas de cableado (SVG + PNG)
+│   └── diagramas/              # Hojas 1-4: alimentación, bus CAN, señales PWM, salidas (SVG + PNG)
+├── EsquematicoConexiones.md    # Guía de cableado paso a paso (cables W1-W26)
+├── ListaCompras.md             # Lista de compras con enlaces
 └── README.md                   # Documentación general del proyecto
 ```
 
@@ -57,7 +61,7 @@ El sistema replica fielmente la lógica de control desde la piña izquierda orig
   * Pin 4: `GND` (Masa)
 * **Alimentación de Potencia**: Directa a los bornes de la batería (+12V permanente) con **fusible aéreo de 30A**.
 * **Protección del Microcontrolador**: El driver TWAI del ESP32 opera en **`TWAI_MODE_LISTEN_ONLY`** (escucha pasiva). Nunca transmite pulsos de ACK ni inyecta datos al bus, garantizando cero interferencias con la ECU o el ABS Bosch de la moto.
-* 👉 **Esquema Completo de Cableado**: Consulta el diagrama paso a paso en [EsquematicoConexiones.md](file:///c:/APPS-DEV/zzz/KTM-Bus/EsquematicoConexiones.md).
+* 👉 **Esquema Completo de Cableado**: 4 hojas con cada cable numerado (W1–W26) en [EsquematicoConexiones.md](EsquematicoConexiones.md); imágenes en [hardware/diagramas/](hardware/diagramas/).
 
 ---
 

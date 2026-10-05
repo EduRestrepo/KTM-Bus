@@ -126,32 +126,44 @@ La placa **LILYGO T-CAN485** ya integra el microcontrolador ESP32, el transcepto
 
 ## 5. Cableado hacia los Accesorios (Conectores Estancos Comprados)
 
-Para igualar la robustez y calidad del DENALI CANsmart, la distribución en los 4 conectores **Superseal 1.5** comprados se realiza de forma estricta:
+Distribución en los 4 conectores **Superseal 1.5** comprados. Los IDs (W16…W26) son los de la Hoja 4 del esquema.
 
-### A. Conectores de 2 Pines (Juego 1 de Focos Auxiliares)
-* **Conector 1 (Foco Auxiliar Izquierdo - Set 1)**:
-  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 1` (+12V conmutado por PWM, LEDC Canal 0). Dimmer día/noche, ráfagas y apagado al activar intermitente izquierdo.
-  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` directa al borne negativo de la batería.
-* **Conector 2 (Foco Auxiliar Derecho - Set 1)**:
-  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 2` (+12V conmutado por PWM, LEDC Canal 1). Dimmer día/noche, ráfagas y apagado al activar intermitente derecho.
-  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` directa al borne negativo de la batería.
+### A. Conectores de 2 Pines (Set 1 de focos auxiliares)
+* **Conector 1 (Foco izquierdo)**:
+  * **Pin 1 (rojo AWG 16, W16)**: `OUT 1` (+12 V conmutado por PWM, LEDC canal 0). Dimmer día/noche, ráfagas y apagado con intermitente izquierdo.
+  * **Pin 2 (negro AWG 16, W23)**: GND desde la regleta de masa.
+* **Conector 2 (Foco derecho)**:
+  * **Pin 1 (rojo AWG 16, W17)**: `OUT 2` (+12 V conmutado por PWM, LEDC canal 1). Dimmer día/noche, ráfagas y apagado con intermitente derecho.
+  * **Pin 2 (negro AWG 16, W24)**: GND desde la regleta de masa.
 
-### B. Conectores de 3 Pines (Nieblas con DRL y Freno/Accesorio)
-* **Conector 3 (Faros de Niebla Set 2 + Aro DRL)**:
-  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 3` (+12V conmutado por PWM, LEDC Canal 2). Encendido con triple clic en botón cancelar intermitente o dimmer dedicado.
-  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` de retorno.
-  * **Pin 3 (Cable Amarillo AWG 18)**: **Luz Diurna / Aro DRL (Halo)**. Conectado directamente a la **Línea DRL / Posición (+12V bajo contacto protegido)** para que el halo ámbar o blanco permanezca encendido con la moto en marcha.
-* **Conector 4 (Luz de Freno Estroboscópica / Bocina / Accesorio)**:
-  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 4` (+12V conmutado por PWM, LEDC Canal 3). Destello estroboscópico de alerta al frenar o activar la bocina.
-  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` de retorno.
-  * **Pin 3 (Cable Amarillo AWG 18)**: **Luz de Posición Trasera (Running Light)**. Conectado a la **Línea DRL / Posición (+12V bajo contacto protegido)** para iluminación tenue fija de posición.
+### B. Conectores de 3 Pines (Nieblas y Bocina/Freno)
+* **Conector 3 (Faros de niebla Set 2 + aro DRL)**:
+  * **Pin 1 (rojo AWG 16, W18)**: `OUT 3` (+12 V conmutado por PWM, LEDC canal 2).
+  * **Pin 2 (negro AWG 16, W25)**: GND desde la regleta de masa.
+  * **Pin 3 (amarillo AWG 18, W20)**: aro DRL del foco, **en paralelo con el Pin 1** (mismo canal `OUT 3`).
+* **Conector 4 (Bocina / luz de freno estroboscópica / accesorio)**:
+  * **Pin 1 (rojo AWG 16, W19)**: `OUT 4` (+12 V conmutado por PWM, LEDC canal 3).
+  * **Pin 2 (negro AWG 16, W26)**: GND desde la regleta de masa.
+  * **Pin 3 (amarillo AWG 18, W21)**: luz de posición/aux, **en paralelo con el Pin 1** (mismo canal `OUT 4`).
+
+> ⚠️ **El Pin 3 no se alimenta de +12 V permanente.** Se puentea al Pin 1 del mismo conector para que se apague con la moto y respete el dimmer. Conectarlo a +12 V directo de batería lo dejaría siempre encendido y descargaría la batería. Pin 1 + Pin 3 comparten el límite de 5 A del canal. Para un DRL independiente haría falta un quinto canal.
+
+* La **regleta de masa** es un conector de palanca tipo Wago 221-415 (5 vías): 1 entrada desde el borne (−) de la batería (W22) y 4 salidas, una por conector (W23–W26).
 
 ---
 
 ## 6. Documentación Gráfica y Planos de Conexión
 
-* 📊 **Plano de Conexionado Detallado**: Consulta [EsquematicoConexiones.md](file:///c:/APPS-DEV/zzz/KTM-Bus/EsquematicoConexiones.md) para el pinout paso a paso.
-* 🖼️ **Esquema Visual de Componentes y Cableado (Alta Resolución)**: [hardware/ktm_wiring_diagram_v2.jpg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.jpg) y [hardware/ktm_wiring_diagram_v2.png](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.png).
-* 📐 **Diagrama Técnico Vectorial SVG**: [hardware/ktm_wiring_schematic.svg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_schematic.svg).
+Los esquemas están en 4 hojas (cada una en PNG y en SVG, el mismo dibujo) dentro de [`hardware/diagramas/`](diagramas/):
+
+| Hoja | Contenido | PNG | SVG |
+| :---: | :--- | :--- | :--- |
+| 1 | Alimentación y masas (W1–W7) | [01_alimentacion.png](diagramas/01_alimentacion.png) | [01_alimentacion.svg](diagramas/01_alimentacion.svg) |
+| 2 | Bus CAN (W8–W10) | [02_bus_can.png](diagramas/02_bus_can.png) | [02_bus_can.svg](diagramas/02_bus_can.svg) |
+| 3 | Señales PWM (W11–W15) | [03_senales_pwm.png](diagramas/03_senales_pwm.png) | [03_senales_pwm.svg](diagramas/03_senales_pwm.svg) |
+| 4 | Salidas a conectores (W16–W26) | [04_salidas_conectores.png](diagramas/04_salidas_conectores.png) | [04_salidas_conectores.svg](diagramas/04_salidas_conectores.svg) |
+
+* 📊 Tablas de cables y pinout completo: [EsquematicoConexiones.md](../EsquematicoConexiones.md).
+* 🔁 Para regenerar las imágenes tras cambiar algo: `python hardware/generate_diagrams.py` (requiere `playwright` con Chromium para los PNG).
 
 

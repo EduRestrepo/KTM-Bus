@@ -17,6 +17,7 @@ Guía completa y estado actualizado de compras para la construcción del clon DI
 | **Caja Estanca de Montaje** | ⏳ *Pendiente* | Caja ABS impermeable IP65 (aprox. 100 x 68 x 50 mm para bajo el asiento) | [Comprar Caja Estanca IP65](https://es.aliexpress.com/w/wholesale-waterproof-junction-box-ip65.html) |
 | **Cable Siliconado** | ⏳ *Pendiente* | Cable de silicona flexible resistente al calor: **AWG 14** (batería) y **AWG 16** (focos) | [Comprar Cable Siliconado](https://es.aliexpress.com/w/wholesale-silicone-wire-awg14-awg16.html) |
 | **Terminales de Anilla M6** | ⏳ *Pendiente* | Terminales de anilla M6 para bornes de la batería | [Comprar Terminales M6](https://es.aliexpress.com/w/wholesale-ring-terminals-m6.html) |
+| **Regleta de masa (GND)** | ⏳ *Pendiente* | Conectores de palanca **Wago 221-415** (5 vías) o equivalente, para repartir la masa a los 4 conectores | [Buscar Wago 221-415](https://es.aliexpress.com/w/wholesale-wago-221-415.html) |
 
 ---
 
@@ -88,3 +89,7 @@ Caja de plástico ABS con junta de estanqueidad para proteger las dos placas y e
   * 👉 **Enlace:** [Cable de Silicona AWG 14 y AWG 16](https://es.aliexpress.com/w/wholesale-silicone-wire-awg14-awg16.html)
 * **Terminales de anilla M6:** Para atornillar firmemente al borne de la batería.
   * 👉 **Enlace:** [Terminales de anilla M6](https://es.aliexpress.com/w/wholesale-ring-terminals-m6.html)
+
+### 4. Regleta de Masa (Wago 221-415)
+La Hoja 4 del esquema reparte la masa del borne (−) de la batería a los 4 conectores de luces (cables W22–W26). Se hace con un conector de palanca de 5 vías (1 entrada + 4 salidas):
+* 👉 **Enlace:** [Wago 221-415 (5 vías)](https://es.aliexpress.com/w/wholesale-wago-221-415.html)

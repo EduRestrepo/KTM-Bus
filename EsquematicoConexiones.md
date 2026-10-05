@@ -1,237 +1,121 @@
 # ⚡ Esquema Eléctrico y Diagrama de Conexiones: KTM 1290 CANsmart
 
-Guía técnica detallada para el conexionado de todos los componentes comprados en la **KTM 1290 Super Adventure S (2024 Euro 5)**.
+Guía de cableado de la **KTM 1290 Super Adventure S (2024 Euro 5)** con los materiales de [`ListaCompras.md`](ListaCompras.md).
+
+El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **cada cable tiene un ID (W1…W26)** que es el mismo en la imagen y en las tablas de este documento, y ningún cable se cruza ni se solapa con otro.
+
+> 🖼️ Cada hoja existe en **PNG** (para ver/imprimir) y en **SVG** (el mismo dibujo en vectorial, ampliable sin perder calidad) dentro de [`hardware/diagramas/`](hardware/diagramas/). Son idénticos: usa el que prefieras. Se regeneran con `python hardware/generate_diagrams.py`.
+
+| Hoja | Qué conectas | Cables |
+| :---: | :--- | :---: |
+| [1 · Alimentación](#hoja-1--alimentación-y-masas) | Batería → fusible → convertidor 5 V → LILYGO y placa MOSFET | W1–W7 |
+| [2 · Bus CAN](#hoja-2--bus-can-solo-escucha) | Conector rojo Euro 5 → LILYGO | W8–W10 |
+| [3 · Señales PWM](#hoja-3--señales-pwm-lilygo--placa-mosfet) | LILYGO → entradas de la placa MOSFET | W11–W15 |
+| [4 · Salidas](#hoja-4--salidas-a-los-conectores-superseal) | Placa MOSFET → 4 conectores Superseal + regleta GND | W16–W26 |
+
+> ⚠️ **Compra pendiente:** la regleta de masa de la Hoja 4 se hace con un conector de palanca tipo **Wago 221-415 (5 vías)**. Está añadida a [`ListaCompras.md`](ListaCompras.md).
 
 ---
 
-## 🗺️ 1. Diagrama General de Conexiones (Esquema Visual)
+## Hoja 1 · Alimentación y masas
 
-![Esquema Visual Preciso de Componentes y Cableado V2](./hardware/ktm_wiring_diagram_v2.jpg)
+![Hoja 1: alimentación y masas](hardware/diagramas/01_alimentacion.png)
 
-> 📐 **Diagrama Vectorial SVG**: También tienes disponible el plano técnico vectorial de alta precisión en [hardware/ktm_wiring_schematic.svg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_schematic.svg).
-
-```
-                            ┌──────────────────────────────────────────────┐
-                            │      BATERÍA MOTO (12V BORNES DIRECTOS)      │
-                            └──────┬────────────────────────────────┬──────┘
-                   Positivo (+12V) │                                │ Negativo (GND / Masa)
-                   Cable Rojo 14AWG│                                │ Cable Negro 14AWG
-                                   ▼                                │
-                        ┌─────────────────────┐                     │
-                        │ PORTAFUSIBLE AÉREO  │                     │
-                        │    FUSIBLE 30A      │                     │
-                        └──────────┬──────────┘                     │
-                                   │ +12V Protegido                 │
-                                   ├────────────────────────────────┼────────────────────────┐
-                                   │                                │                        │
-                                   ▼                                ▼                        │
-                 ┌──────────────────────────────────┐   ┌───────────────────────────┐        │
-                 │   CONVERTIDOR DC-DC 12V A 5V     │   │   PLACA MOSFET POTENCIA   │        │
-                 │  (Carcasa Sellada Impermeable)   │   │  (4CH PNP Input / Output) │        │
-                 │                                  │   │                           │        │
-                 │ IN (+): Cable Rojo 12V           │   │ DC+ (+12V): Cable 14AWG   │        │
-                 │ IN (-): Cable Negro GND          │   │ DC- (GND) : Cable 14AWG   │        │
-                 └─────────────────┬────────────────┘   └───────▲───────────┬───────┘        │
-                                   │ 5V Estable                 │           │                │
-                        ┌──────────┴──────────┐                 │ Señales   │ Salidas +12V   │
-                   +5V  │ Cable Rojo          │ GND             │ PWM 3.3V  │ Hacia Luces    │
-                        ▼                     ▼                 │           │                │
-            ┌──────────────────────────────────────────────┐    │           │                │
-            │           LILYGO T-CAN485 (ESP32)            │    │           │                │
-            │                                              │    │           │                │
-            │  [ALIMENTACIÓN]                              │    │           │                │
-            │  VIN (Borna de tornillo) ◄── +5V Reducido    │    │           │                │
-            │  GND (Borna de tornillo) ◄── Masa Convertidor│    │           │                │
-            │                                              │    │           │                │
-            │  [SEÑALES PWM - HEADER 12 PINES]             │    │           │                │
-            │  GPIO 25 (Blanco)   ─────────────────────────┼────┘ 01 (Ch 1) │                │
-            │  GPIO 32 (Amarillo) ─────────────────────────┼────┘ 02 (Ch 2) │                │
-            │  GPIO 33 (Azul)     ─────────────────────────┼────┘ 03 (Ch 3) │                │
-            │  GPIO 14 (Rojo)     ─────────────────────────┼────┘ 04 (Ch 4) │                │
-            │  GND                ─────────────────────────┼────┘ GND Común │                │
-            │                                              │                │                │
-            │  [BORNERA CAN-BUS (LECTURA PASIVA 500k)]     │                │                │
-            │  CAN_H (Borna) ◄── Pin 1 Euro 5 (Naranja/Neg)│                │                │
-            │  CAN_L (Borna) ◄── Pin 2 Euro 5 (Naranja/Mar)│                │                │
-            │  GND   (Borna) ◄── Pin 4 Euro 5 (Masa Chasis)│                │                │
-            └──────────────────────────────────────────────┘                │                │
-                                                                            │                │
-                                       ┌────────────────────────────────────┘                │
-                                       │                                                     │
-                                       │    SALIDAS DE POTENCIA A CONECTORES SUPERSEAL       │
-                                       │                                                     │
-                                       ├─► OUT 1 (+12V PWM) ─┐                               │
-                                       │   Conector 1 (2 pin) ├─► FOCO IZQUIERDO (SET 1)     │
-                                       │   GND (Masa Común) ──┴──────────────────────────────┤
-                                       │                                                     │
-                                       ├─► OUT 2 (+12V PWM) ─┐                               │
-                                       │   Conector 2 (2 pin) ├─► FOCO DERECHO (SET 1)       │
-                                       │   GND (Masa Común) ──┴──────────────────────────────┤
-                                       │                                                     │
-                                       ├─► OUT 3 (+12V PWM) ─┐                               │
-                                       │   Conector 3 (3 pin) ├─► FOCOS DE NIEBLA (SET 2)    │
-                                       │   GND (Masa Común) ──┴──────────────────────────────┤
-                                       │   (Pin 3 opcional: DRL o posición)                  │
-                                       │                                                     │
-                                       └─► OUT 4 (+12V PWM) ─┐                               │
-                                           Conector 4 (3 pin) ├─► BOCINA / ACCESORIO / FRENO │
-                                           GND (Masa Común) ──┴──────────────────────────────┘
-                                           (Pin 3 opcional: luz de freno estrobo)
-```
+| ID | De → A | Cable |
+| :---: | :--- | :--- |
+| **W1** | Batería (+) → Portafusible ENTRADA | AWG 14 rojo · anilla M6 |
+| **W2** | Portafusible SALIDA → Convertidor IN (+) | AWG 18 rojo |
+| **W3** | Portafusible SALIDA → Placa MOSFET DC+ | AWG 14 rojo |
+| **W4** | Batería (−) → Convertidor IN (−) | AWG 18 negro · anilla M6 |
+| **W5** | Batería (−) → Placa MOSFET DC− | AWG 14 negro · anilla M6 |
+| **W6** | Convertidor OUT (+) 5 V → LILYGO VIN | AWG 20 rojo |
+| **W7** | Convertidor OUT (−) → LILYGO GND | AWG 20 negro |
 
 ---
 
-## 🔍 2. Diagrama de Flujo Lógico y Conexiones (Mermaid)
+## Hoja 2 · Bus CAN (solo escucha)
+
+![Hoja 2: bus CAN](hardware/diagramas/02_bus_can.png)
+
+| ID | De → A | Cable |
+| :---: | :--- | :--- |
+| **W8** | Euro 5 Pin 1 (CAN-H, naranja/negro) → LILYGO `CAN_H` | AWG 22 |
+| **W9** | Euro 5 Pin 2 (CAN-L, naranja/marrón) → LILYGO `CAN_L` | AWG 22 |
+| **W10** | Euro 5 Pin 4 (GND) → LILYGO `GND` (bornera CAN) | AWG 22 |
+
+Pin 3 (+12 V contacto) y pines 5/6 (K-Line/aux) del conector Euro 5: **no se conectan**.
+
+---
+
+## Hoja 3 · Señales PWM (LILYGO → placa MOSFET)
+
+![Hoja 3: señales PWM](hardware/diagramas/03_senales_pwm.png)
+
+| ID | De → A | Canal / función |
+| :---: | :--- | :--- |
+| **W11** | LILYGO `GPIO 25` → MOSFET `IN 01` | Canal 1 · foco izquierdo |
+| **W12** | LILYGO `GPIO 32` → MOSFET `IN 02` | Canal 2 · foco derecho |
+| **W13** | LILYGO `GPIO 33` → MOSFET `IN 03` | Canal 3 · faros de niebla |
+| **W14** | LILYGO `GPIO 14` → MOSFET `IN 04` | Canal 4 · bocina / freno / aux |
+| **W15** | LILYGO `GND` → MOSFET `GND` de entrada | Masa lógica (obligatoria) |
+
+---
+
+## Hoja 4 · Salidas a los conectores Superseal
+
+![Hoja 4: salidas a los conectores](hardware/diagramas/04_salidas_conectores.png)
+
+| ID | De → A | Cable |
+| :---: | :--- | :--- |
+| **W16** | MOSFET `OUT 1` → Conector 1 (2 pines) · Pin 1 | AWG 16 rojo |
+| **W17** | MOSFET `OUT 2` → Conector 2 (2 pines) · Pin 1 | AWG 16 rojo |
+| **W18** | MOSFET `OUT 3` → Conector 3 (3 pines) · Pin 1 | AWG 16 rojo |
+| **W19** | MOSFET `OUT 4` → Conector 4 (3 pines) · Pin 1 | AWG 16 rojo |
+| **W20** | Conector 3 · Pin 1 → Conector 3 · Pin 3 (puente, mismo canal) | AWG 18 amarillo |
+| **W21** | Conector 4 · Pin 1 → Conector 4 · Pin 3 (puente, mismo canal) | AWG 18 amarillo |
+| **W22** | Batería (−) → Regleta GND | AWG 14 negro · anilla M6 |
+| **W23** | Regleta GND → Conector 1 · Pin 2 | AWG 16 negro |
+| **W24** | Regleta GND → Conector 2 · Pin 2 | AWG 16 negro |
+| **W25** | Regleta GND → Conector 3 · Pin 2 | AWG 16 negro |
+| **W26** | Regleta GND → Conector 4 · Pin 2 | AWG 16 negro |
+
+### Qué lleva cada conector (ningún pin queda al aire)
+
+| Conector | Pines | Pin 1 | Pin 2 | Pin 3 |
+| :--- | :---: | :--- | :--- | :--- |
+| **1** · Foco izquierdo (Set 1) | 2 | +12 V PWM (`OUT 1`) | GND | — |
+| **2** · Foco derecho (Set 1) | 2 | +12 V PWM (`OUT 2`) | GND | — |
+| **3** · Faros de niebla (Set 2) | 3 | +12 V PWM (`OUT 3`) | GND | +12 V PWM (puente con Pin 1) · aro DRL |
+| **4** · Bocina / freno / aux | 3 | +12 V PWM (`OUT 4`) | GND | +12 V PWM (puente con Pin 1) · luz de posición |
+
+> 💡 **Sobre el Pin 3:** va en **paralelo con el Pin 1** (mismo canal conmutado). Así se apaga con la moto y respeta el dimmer. **Nunca** lo conectes a +12 V permanente de la batería: el aro quedaría siempre encendido y descargaría la batería. Pin 1 + Pin 3 comparten el límite de 5 A del canal. Si algún día quieres un DRL independiente, hará falta un quinto canal.
+
+---
+
+## 🗺️ Vista general (resumen en bloques)
 
 ```mermaid
-graph TD
-    subgraph Moto["Alimentación de la KTM 1290"]
-        BAT_POS["Batería Borne (+12V)"]
-        BAT_NEG["Batería Borne (- / GND)"]
-        EURO5["Conector Rojo Euro 5 (ISO 19689)"]
-    end
-
-    subgraph Proteccion["Protección Principal"]
-        FUSE["Portafusible Aéreo 30A"]
-    end
-
-    subgraph Fuente["Alimentación Electrónica"]
-        DCDC["Convertidor 12V a 5V 3A (Impermeable)"]
-    end
-
-    subgraph Cerebro["Controlador LILYGO T-CAN485"]
-        ESP_VIN["VIN (+5V)"]
-        ESP_GND["GND"]
-        ESP_CAN_H["CAN_H"]
-        ESP_CAN_L["CAN_L"]
-        ESP_CAN_GND["GND (CAN)"]
-        GPIO25["GPIO 25 (Ch 1)"]
-        GPIO32["GPIO 32 (Ch 2)"]
-        GPIO33["GPIO 33 (Ch 3)"]
-        GPIO14["GPIO 14 (Ch 4)"]
-        ESP_SIG_GND["GND Señal"]
-    end
-
-    subgraph Potencia["Placa 4CH MOSFETs (PNP 3.3V-5V)"]
-        MOS_DC_POS["DC+ (+12V Potencia)"]
-        MOS_DC_NEG["DC- (Masa Potencia)"]
-        IN1["Entrada 01"]
-        IN2["Entrada 02"]
-        IN3["Entrada 03"]
-        IN4["Entrada 04"]
-        IN_GND["GND Lógico"]
-        OUT1["OUT 1 (+12V PWM)"]
-        OUT2["OUT 2 (+12V PWM)"]
-        OUT3["OUT 3 (+12V PWM)"]
-        OUT4["OUT 4 (+12V PWM)"]
-    end
-
-    subgraph Salidas["Conectores Estancos Superseal 1.5"]
-        CON1["Conector 1 (2 Pines) -> Foco Izquierdo Set 1"]
-        CON2["Conector 2 (2 Pines) -> Foco Derecho Set 1"]
-        CON3["Conector 3 (3 Pines) -> Faros de Niebla Set 2"]
-        CON4["Conector 4 (3 Pines) -> Bocina / Accesorio"]
-    end
-
-    BAT_POS -->|Cable 14AWG Rojo| FUSE
-    FUSE -->|12V Protegido| DCDC
-    FUSE -->|12V Protegido| MOS_DC_POS
-    BAT_NEG -->|Cable 14AWG Negro| DCDC
-    BAT_NEG -->|Cable 14AWG Negro| MOS_DC_NEG
-    BAT_NEG -.->|Masa común a focos| Salidas
-
-    DCDC -->|Cable +5V Rojo| ESP_VIN
-    DCDC -->|Cable GND Negro| ESP_GND
-
-    EURO5 -->|Pin 1 Naranja/Negro| ESP_CAN_H
-    EURO5 -->|Pin 2 Naranja/Marrón| ESP_CAN_L
-    EURO5 -->|Pin 4 Marrón/Negro| ESP_CAN_GND
-
-    GPIO25 --> IN1
-    GPIO32 --> IN2
-    GPIO33 --> IN3
-    GPIO14 --> IN4
-    ESP_SIG_GND --> IN_GND
-
-    OUT1 -->|Pin 1 +12V PWM| CON1
-    OUT2 -->|Pin 1 +12V PWM| CON2
-    OUT3 -->|Pin 1 +12V PWM| CON3
-    OUT4 -->|Pin 1 +12V PWM| CON4
-    FUSE -->|12V Protegido| DRL_BUS["Línea DRL / Posición (+12V AWG 18)"]
-    DRL_BUS -->|Pin 3 DRL / Posición| CON3
-    DRL_BUS -->|Pin 3 DRL / Posición| CON4
+graph LR
+    BAT["Batería 12 V"] -->|W1| FUSE["Portafusible 30 A"]
+    FUSE -->|W2| DCDC["Convertidor 12V→5V"]
+    FUSE -->|W3| MOS["Placa MOSFET 4CH"]
+    BAT -->|"W4, W5 (GND)"| DCDC
+    BAT -->|"W5 (GND)"| MOS
+    DCDC -->|"W6, W7 (5 V)"| LILY["LILYGO T-CAN485"]
+    EURO5["Euro 5 (CAN)"] -->|"W8, W9, W10"| LILY
+    LILY -->|"W11–W15 (PWM)"| MOS
+    MOS -->|"W16–W19 (+12 V PWM)"| CON["Conectores 1–4"]
+    MOS -->|"W20, W21 (Pin 3)"| CON
+    BAT -->|"W22 → regleta → W23–W26 (GND)"| CON
 ```
 
 ---
 
-## 📋 3. Tabla de Conexionado Punto a Punto (Pinout Completo)
+## ⚠️ Reglas críticas de seguridad durante el montaje
 
-### Bloque A: Conector Rojo Euro 5 de la Moto (ISO 19689) ➔ LILYGO T-CAN485
-El enchufe rojo bajo el asiento del pasajero:
-
-| Pin Euro 5 Moto | Color Cable Original KTM | Destino en Placa LILYGO | Función |
-| :---: | :---: | :---: | :--- |
-| **Pin 1** | Naranja / Negro | **Borne CAN_H** | Línea de datos CAN High (500 kbps) |
-| **Pin 2** | Naranja / Marrón | **Borne CAN_L** | Línea de datos CAN Low (500 kbps) |
-| **Pin 4** | Marrón o Negro | **Borne GND** | Masa de referencia del bus CAN |
-| *Pin 3* | *Rojo/Azul (+12V contacto)* | *(No conectar)* | *No se usa para evitar sobrecargar la instalación* |
-| *Pin 5/6*| *Línea K-Line* | *(No conectar)* | *Diagnóstico antiguo no utilizado* |
-
----
-
-### Bloque B: Alimentación de Batería y Convertidor 12V ➔ 5V
-
-| Origen | Destino | Cable / Calibre | Descripción |
-| :--- | :--- | :---: | :--- |
-| **Batería Borne (+)** | Portafusible aéreo (Entrada) | AWG 14 Rojo (con anilla M6) | +12V directo permanente (KL30) |
-| **Portafusible (Salida 30A)** | Placa MOSFET borna `DC+` | AWG 14 Rojo | Alimentación de potencia para focos |
-| **Portafusible (Salida 30A)** | Convertidor DC-DC cable `IN (+)` | AWG 18-20 Rojo | Alimentación del reductor a 5V |
-| **Batería Borne (-)** | Placa MOSFET borna `DC-` | AWG 14 Negro (con anilla M6) | Masa de potencia principal |
-| **Batería Borne (-)** | Convertidor DC-DC cable `IN (-)` | AWG 18-20 Negro | Masa del reductor |
-| **Convertidor Salida (+5V)** | Placa LILYGO borna `VIN` | AWG 20 Rojo (o USB-C) | 5V de alimentación limpia para ESP32 |
-| **Convertidor Salida (GND)** | Placa LILYGO borna `GND` | AWG 20 Negro (o USB-C) | Masa común del ESP32 |
-
----
-
-### Bloque C: Señales Lógicas ESP32 ➔ Placa de Potencia MOSFETs
-Conexión desde el header de pines de la LILYGO hacia el lado de entrada de la placa amplificadora:
-
-| Pin Header LILYGO | Borna Entrada Placa MOSFET | Canal de Software | Función Asignada en KTM |
-| :---: | :---: | :---: | :--- |
-| **GPIO 25** | Borna **01** | Canal 1 (Blanco) | Foco Izquierdo Set 1 (LEDC PWM 1 kHz) |
-| **GPIO 32** | Borna **02** | Canal 2 (Amarillo) | Foco Derecho Set 1 (LEDC PWM 1 kHz) |
-| **GPIO 33** | Borna **03** | Canal 3 (Azul) | Focos de Niebla Set 2 (LEDC PWM 1 kHz) |
-| **GPIO 14** | Borna **04** | Canal 4 (Rojo) | Bocina / Accesorio conmutado |
-| **GND** | Borna **GND / -** | Masa lógica | Referencia común de los optoacopladores |
-
----
-
-### Bloque D: Placa MOSFETs (Salidas) ➔ Conectores Estancos de Luces
-
-| Borna Salida MOSFET | Conector Superseal | Cable | Función en el Faro |
-| :---: | :---: | :---: | :--- |
-| **OUT 1** (+12V PWM) | **Conector 1** - Pin 1 | AWG 16 Rojo | Positivo Foco Izquierdo (Set 1) |
-| **DC-** (Masa Batería) | **Conector 1** - Pin 2 | AWG 16 Negro | Masa Foco Izquierdo |
-| **OUT 2** (+12V PWM) | **Conector 2** - Pin 1 | AWG 16 Rojo | Positivo Foco Derecho (Set 1) |
-| **DC-** (Masa Batería) | **Conector 2** - Pin 2 | AWG 16 Negro | Masa Foco Derecho |
-| **OUT 3** (+12V PWM) | **Conector 3** - Pin 1 | AWG 16 Rojo | Positivo Focos de Niebla (Set 2) |
-| **DC-** (Masa Batería) | **Conector 3** - Pin 2 | AWG 16 Negro | Masa Focos de Niebla |
-| **Línea DRL / Posición** | **Conector 3** - Pin 3 | AWG 18 Amarillo | Tercer hilo: Luz Diurna / Aro DRL (+12V protegido) |
-| **OUT 4** (+12V PWM) | **Conector 4** - Pin 1 | AWG 16 Rojo | Positivo Bocina / Accesorio / Freno Estrobo |
-| **DC-** (Masa Batería) | **Conector 4** - Pin 2 | AWG 16 Negro | Masa Bocina / Accesorio |
-| **Línea DRL / Posición** | **Conector 4** - Pin 3 | AWG 18 Amarillo | Tercer hilo: Luz de Posición Trasera / Running Light |
-
----
-
-## ⚠️ 4. Reglas Críticas de Seguridad durante el Montaje
-
-1. **Desconectar la Batería Primero:**
-   * Quita siempre el borne **NEGATIVO (-)** de la batería de la moto antes de empezar a conectar cualquier cable.
-2. **El Fusible de 30A se coloca al FINAL:**
-   * Deja el portafusibles **abierto sin el fusible puesto** durante todo el montaje y soldadura. Solo inserta el fusible de 30A cuando todo el cableado esté revisado y verificado con multímetro.
-3. **Escucha Pasiva del Bus CAN (Listen-Only):**
-   * El firmware utiliza `TWAI_MODE_LISTEN_ONLY`. Tu placa solo "escucha" las tramas de la moto; no envía pulsos de ACK ni inyecta paquetes, protegiendo al 100% la ECU y el ABS de la 1290.
-4. **Resistencia de 120Ω en la LILYGO:**
-   * El bus CAN de la KTM ya tiene sus dos resistencias de terminación de 120Ω activas en la moto. Si la placa LILYGO trae un interruptor o puente etiquetado como `120R` o `R2`, **déjalo en OFF / Abierto** para no alterar la resistencia global del bus (que debe medir ~60Ω en reposo).
-5. **Aislamiento en Caja IP65:**
-   * Fija la placa LILYGO y la placa MOSFET dentro de la caja con separadores de plástico o cinta de espuma de doble cara para evitar que las soldaduras toquen entre sí con las vibraciones.
+1. **Desconecta primero el borne NEGATIVO (−)** de la batería antes de tocar ningún cable.
+2. **El fusible de 30 A se coloca al FINAL.** Deja el portafusible abierto durante todo el montaje y solo inserta el fusible cuando todo esté revisado con multímetro (sin continuidad entre +12 V y GND).
+3. **Escucha pasiva del bus CAN (Listen-Only):** el firmware usa `TWAI_MODE_LISTEN_ONLY`. Tu placa solo escucha; no envía ACK ni inyecta tramas, así que no afecta a la ECU ni al ABS.
+4. **Resistencia de 120 Ω de la LILYGO:** el bus CAN de la KTM ya tiene sus dos terminaciones. Si la placa trae un puente/interruptor `120R`/`R2`, **déjalo en OFF**. Entre CAN_H y CAN_L debes medir ≈ 60 Ω.
+5. **Conmutación High-Side obligatoria:** la placa MOSFET debe ser de salida **PNP (High-Side)**. Una de salida NPN (Low-Side) deja las luces encendidas siempre, porque la masa del chasis cierra el circuito.
+6. **Aislamiento en la caja IP65:** fija la LILYGO y la placa MOSFET con separadores o cinta de espuma para que las soldaduras no se toquen con las vibraciones.

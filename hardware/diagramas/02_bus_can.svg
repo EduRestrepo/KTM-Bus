@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 900" width="1800" height="900" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<rect width="1800" height="900" fill="#0e1117"/>
+<rect width="1800" height="70" fill="#121722"/>
+<rect width="8" height="70" fill="#ff6a13"/>
+<text x="30" y="32" font-size="24" font-weight="bold" fill="#ff6a13">KTM 1290 CANsmart · HOJA 2/4 — BUS CAN (SOLO ESCUCHA)</text>
+<text x="30" y="56" font-size="14" fill="#9ca3af">Conector rojo Euro 5 de la moto → bornera CAN de la LILYGO · 500 kbps · modo LISTEN-ONLY</text>
+<rect x="60" y="150" width="1000" height="220" rx="10" fill="#161b26" stroke="#ef4444" stroke-width="2.5"/>
+<rect x="60" y="150" width="1000" height="34" rx="10" fill="#ef4444"/>
+<rect x="60" y="174" width="1000" height="10" fill="#ef4444"/>
+<text x="74" y="173.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">CLAVIJA ROJA EURO 5 (ISO 19689) · 6 pines · bajo el asiento del pasajero</text>
+<rect x="60" y="560" width="1000" height="240" rx="10" fill="#161b26" stroke="#10b981" stroke-width="2.5"/>
+<rect x="60" y="560" width="1000" height="34" rx="10" fill="#10b981"/>
+<rect x="60" y="584" width="1000" height="10" fill="#10b981"/>
+<text x="74" y="583.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start"></text>
+<text x="1046" y="584" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">LILYGO T-CAN485 · bornera de tornillo</text>
+<rect x="90" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#f97316" stroke-width="2"/>
+<circle cx="114" cy="241" r="13" fill="#f97316"/>
+<text x="114" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="136" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">CAN-H</text>
+<text x="104" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">Naranja / Negro</text>
+<text x="104" y="301" font-size="13" fill="#86efac" font-weight="bold" text-anchor="start">→ W8</text>
+<rect x="250" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#eab308" stroke-width="2"/>
+<circle cx="274" cy="241" r="13" fill="#eab308"/>
+<text x="274" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="296" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">CAN-L</text>
+<text x="264" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">Naranja / Marrón</text>
+<text x="264" y="301" font-size="13" fill="#86efac" font-weight="bold" text-anchor="start">→ W9</text>
+<rect x="410" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="434" cy="241" r="13" fill="#4b5563"/>
+<text x="434" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="456" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">+12 V</text>
+<text x="424" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">contacto (KL15)</text>
+<text x="424" y="301" font-size="13" fill="#f87171" font-weight="bold" text-anchor="start">NO CONECTAR</text>
+<rect x="570" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#94a3b8" stroke-width="2"/>
+<circle cx="594" cy="241" r="13" fill="#94a3b8"/>
+<text x="594" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="616" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">GND</text>
+<text x="584" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">masa</text>
+<text x="584" y="301" font-size="13" fill="#86efac" font-weight="bold" text-anchor="start">→ W10</text>
+<rect x="730" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="754" cy="241" r="13" fill="#4b5563"/>
+<text x="754" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">5</text>
+<text x="776" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">K-Line</text>
+<text x="744" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">diagnóstico</text>
+<text x="744" y="301" font-size="13" fill="#f87171" font-weight="bold" text-anchor="start">NO CONECTAR</text>
+<rect x="890" y="215" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="914" cy="241" r="13" fill="#4b5563"/>
+<text x="914" y="246" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">6</text>
+<text x="936" y="247" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">Aux</text>
+<text x="904" y="276" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">diagnóstico</text>
+<text x="904" y="301" font-size="13" fill="#f87171" font-weight="bold" text-anchor="start">NO CONECTAR</text>
+<rect x="90" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#f97316" stroke-width="2"/>
+<text x="160" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">CAN_H</text>
+<text x="160" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">recibe W8</text>
+<rect x="250" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#eab308" stroke-width="2"/>
+<text x="320" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">CAN_L</text>
+<text x="320" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">recibe W9</text>
+<rect x="410" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="480" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">120 Ω</text>
+<text x="480" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">jumper: dejar OFF</text>
+<rect x="570" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#94a3b8" stroke-width="2"/>
+<text x="640" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">GND</text>
+<text x="640" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">recibe W10</text>
+<rect x="730" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="800" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">VIN</text>
+<text x="800" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">ver Hoja 1</text>
+<rect x="890" y="606" width="140" height="100" rx="6" fill="#0c1018" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="960" y="644" font-size="17" fill="#ffffff" font-weight="bold" text-anchor="middle">GND</text>
+<text x="960" y="672" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">ver Hoja 1</text>
+<text x="80" y="735" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">Transceptor SN65HVD231 interno · TWAI a 500 kbps · RX = GPIO 26, TX = GPIO 27 (ya cableados en la placa)</text>
+<text x="80" y="760" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">El firmware activa GPIO 16 = HIGH al arrancar (alimenta el transceptor).</text>
+<text x="1090" y="171" font-size="17" fill="#facc15" font-weight="bold" text-anchor="start">LISTA DE CABLES · HOJA 2</text>
+<rect x="1090" y="185" width="670" height="36" fill="#222a3a"/>
+<text x="1106" y="208.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">ID</text>
+<text x="1176" y="208.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">DE  →  A</text>
+<text x="1566" y="208.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">CABLE</text>
+<rect x="1090" y="221" width="670" height="36" fill="#121722"/>
+<rect x="1090" y="221" width="6" height="36" fill="#f97316"/>
+<text x="1108" y="244.0" font-size="15" fill="#f97316" font-weight="bold" text-anchor="start">W8</text>
+<text x="1176" y="244.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Euro 5 Pin 1 (CAN-H)  →  LILYGO CAN_H</text>
+<text x="1566" y="244.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 · naranja/negro</text>
+<rect x="1090" y="257" width="670" height="36" fill="#171d2b"/>
+<rect x="1090" y="257" width="6" height="36" fill="#eab308"/>
+<text x="1108" y="280.0" font-size="15" fill="#eab308" font-weight="bold" text-anchor="start">W9</text>
+<text x="1176" y="280.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Euro 5 Pin 2 (CAN-L)  →  LILYGO CAN_L</text>
+<text x="1566" y="280.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 · naranja/marrón</text>
+<rect x="1090" y="293" width="670" height="36" fill="#121722"/>
+<rect x="1090" y="293" width="6" height="36" fill="#94a3b8"/>
+<text x="1108" y="316.0" font-size="15" fill="#94a3b8" font-weight="bold" text-anchor="start">W10</text>
+<text x="1176" y="316.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Euro 5 Pin 4 (GND)  →  LILYGO GND (bornera CAN)</text>
+<text x="1566" y="316.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 · negro</text>
+<rect x="1090" y="350" width="660" height="216" rx="8" fill="#1a1710" stroke="#ef4444" stroke-width="1.8"/>
+<text x="1106" y="378" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">IMPORTANTE</text>
+<text x="1106" y="402" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• NO conectes el Pin 3 (+12 V): la potencia sale de la batería.</text>
+<text x="1106" y="426" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Pines 5 y 6 (K-Line/aux): sin conectar.</text>
+<text x="1106" y="450" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Jumper/interruptor de 120 Ω de la LILYGO en OFF:</text>
+<text x="1106" y="474" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  la moto ya trae sus dos resistencias de terminación.</text>
+<text x="1106" y="498" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Con la batería desconectada, entre CAN_H y CAN_L</text>
+<text x="1106" y="522" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  debes medir ≈ 60 Ω.</text>
+<text x="1106" y="546" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Solo escucha: el firmware nunca transmite al bus.</text>
+<rect x="60" y="850" width="34" height="8" rx="4" fill="#f97316"/>
+<text x="104" y="860" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">CAN-H</text>
+<rect x="178" y="850" width="34" height="8" rx="4" fill="#eab308"/>
+<text x="222" y="860" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">CAN-L</text>
+<rect x="296" y="850" width="34" height="8" rx="4" fill="#94a3b8"/>
+<text x="340" y="860" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">GND</text>
+<rect x="398" y="850" width="34" height="8" rx="4" fill="#6b7280"/>
+<text x="442" y="860" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">no conectar</text>
+<path d="M 160 315 L 160 606" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 320 315 L 320 606" fill="none" stroke="#eab308" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 640 315 L 640 606" fill="none" stroke="#94a3b8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="160" cy="315" r="8" fill="#0b0f16" stroke="#f97316" stroke-width="3.5"/><circle cx="160" cy="315" r="2.5" fill="#f97316"/>
+<circle cx="160" cy="606" r="8" fill="#0b0f16" stroke="#f97316" stroke-width="3.5"/><circle cx="160" cy="606" r="2.5" fill="#f97316"/>
+<circle cx="320" cy="315" r="8" fill="#0b0f16" stroke="#eab308" stroke-width="3.5"/><circle cx="320" cy="315" r="2.5" fill="#eab308"/>
+<circle cx="320" cy="606" r="8" fill="#0b0f16" stroke="#eab308" stroke-width="3.5"/><circle cx="320" cy="606" r="2.5" fill="#eab308"/>
+<circle cx="640" cy="315" r="8" fill="#0b0f16" stroke="#94a3b8" stroke-width="3.5"/><circle cx="640" cy="315" r="2.5" fill="#94a3b8"/>
+<circle cx="640" cy="606" r="8" fill="#0b0f16" stroke="#94a3b8" stroke-width="3.5"/><circle cx="640" cy="606" r="2.5" fill="#94a3b8"/>
+<rect x="141.0" y="440" width="38" height="24" rx="6" fill="#0b0f16" stroke="#f97316" stroke-width="2"/>
+<text x="160" y="457" font-size="14" font-weight="bold" fill="#f97316" text-anchor="middle">W8</text>
+<rect x="301.0" y="440" width="38" height="24" rx="6" fill="#0b0f16" stroke="#eab308" stroke-width="2"/>
+<text x="320" y="457" font-size="14" font-weight="bold" fill="#eab308" text-anchor="middle">W9</text>
+<rect x="616.5" y="440" width="47" height="24" rx="6" fill="#0b0f16" stroke="#94a3b8" stroke-width="2"/>
+<text x="640" y="457" font-size="14" font-weight="bold" fill="#94a3b8" text-anchor="middle">W10</text>
+</svg>

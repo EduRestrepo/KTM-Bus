@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 990" width="1800" height="990" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<rect width="1800" height="990" fill="#0e1117"/>
+<rect width="1800" height="70" fill="#121722"/>
+<rect width="8" height="70" fill="#ff6a13"/>
+<text x="30" y="32" font-size="24" font-weight="bold" fill="#ff6a13">KTM 1290 CANsmart · HOJA 1/4 — ALIMENTACIÓN Y MASAS</text>
+<text x="30" y="56" font-size="14" fill="#9ca3af">Batería → portafusible → convertidor 5 V → LILYGO · y alimentación de potencia de la placa MOSFET</text>
+<rect x="60" y="150" width="280" height="230" rx="10" fill="#161b26" stroke="#ef4444" stroke-width="2.5"/>
+<rect x="60" y="150" width="280" height="34" rx="10" fill="#ef4444"/>
+<rect x="60" y="174" width="280" height="10" fill="#ef4444"/>
+<text x="74" y="173.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">BATERÍA MOTO 12 V</text>
+<text x="322" y="275" font-size="14" fill="#fca5a5" font-weight="bold" text-anchor="end">(+) 12 V</text>
+<text x="78" y="195" font-size="14" fill="#93c5fd" font-weight="bold" text-anchor="start">(−) GND  → W4</text>
+<text x="78" y="255" font-size="14" fill="#93c5fd" font-weight="bold" text-anchor="start">(−) GND  → W5</text>
+<text x="200" y="335" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">W4 y W5 van al MISMO borne (−)</text>
+<text x="200" y="355" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">(anilla M6 doble)</text>
+<rect x="470" y="230" width="220" height="80" rx="10" fill="#161b26" stroke="#10b981" stroke-width="2.5"/>
+<rect x="470" y="230" width="220" height="28" rx="10" fill="#10b981"/>
+<rect x="470" y="248" width="220" height="10" fill="#10b981"/>
+<text x="484" y="250.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">PORTAFUSIBLE AÉREO</text>
+<text x="484" y="280" font-size="13" fill="#6ee7b7" font-weight="bold" text-anchor="start">IN</text>
+<text x="676" y="280" font-size="13" fill="#6ee7b7" font-weight="bold" text-anchor="end">OUT</text>
+<text x="580" y="298" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">fusible 30 A (poner al FINAL)</text>
+<rect x="1000" y="150" width="300" height="230" rx="10" fill="#161b26" stroke="#2563eb" stroke-width="2.5"/>
+<rect x="1000" y="150" width="300" height="34" rx="10" fill="#2563eb"/>
+<rect x="1000" y="174" width="300" height="10" fill="#2563eb"/>
+<text x="1014" y="173.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">CONVERTIDOR 12 V → 5 V</text>
+<text x="1090" y="210" font-size="13" fill="#93c5fd" font-weight="bold" text-anchor="middle">IN (−)</text>
+<text x="1014" y="275" font-size="13" fill="#fca5a5" font-weight="bold" text-anchor="start">IN (+)</text>
+<text x="1285" y="235" font-size="13" fill="#67e8f9" font-weight="bold" text-anchor="end">OUT (+) 5 V</text>
+<text x="1285" y="325" font-size="13" fill="#cbd5e1" font-weight="bold" text-anchor="end">OUT (−) GND</text>
+<text x="1150" y="365" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">3 A · sellado IP67</text>
+<rect x="1450" y="150" width="300" height="230" rx="10" fill="#161b26" stroke="#10b981" stroke-width="2.5"/>
+<rect x="1450" y="150" width="300" height="34" rx="10" fill="#10b981"/>
+<rect x="1450" y="174" width="300" height="10" fill="#10b981"/>
+<text x="1464" y="173.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">LILYGO T-CAN485</text>
+<text x="1466" y="235" font-size="13" fill="#67e8f9" font-weight="bold" text-anchor="start">VIN (+5 V)</text>
+<text x="1466" y="325" font-size="13" fill="#cbd5e1" font-weight="bold" text-anchor="start">GND</text>
+<text x="1600" y="365" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">CAN → Hoja 2 · GPIO → Hoja 3</text>
+<rect x="60" y="560" width="700" height="250" rx="10" fill="#161b26" stroke="#1d4ed8" stroke-width="2.5"/>
+<rect x="60" y="560" width="700" height="34" rx="10" fill="#1d4ed8"/>
+<rect x="60" y="584" width="700" height="10" fill="#1d4ed8"/>
+<text x="74" y="583.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">PLACA MOSFET 4 CANALES (entrada PNP 3,3–5 V · salida High-Side)</text>
+<text x="610" y="625" font-size="14" fill="#fca5a5" font-weight="bold" text-anchor="middle">DC+ (+12 V)</text>
+<text x="78" y="645" font-size="14" fill="#93c5fd" font-weight="bold" text-anchor="start">DC− (GND)</text>
+<text x="410" y="720" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="middle">Entradas 01–04: Hoja 3   ·   Salidas OUT 1–4: Hoja 4</text>
+<text x="410" y="750" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="middle">Máx. 5 A por canal</text>
+<text x="860" y="466" font-size="17" fill="#facc15" font-weight="bold" text-anchor="start">LISTA DE CABLES · HOJA 1</text>
+<rect x="860" y="480" width="840" height="36" fill="#222a3a"/>
+<text x="876" y="503.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">ID</text>
+<text x="946" y="503.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">DE  →  A</text>
+<text x="1446" y="503.0" font-size="13" fill="#9ca3af" font-weight="bold" text-anchor="start">CABLE</text>
+<rect x="860" y="516" width="840" height="36" fill="#121722"/>
+<rect x="860" y="516" width="6" height="36" fill="#ef4444"/>
+<text x="878" y="539.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W1</text>
+<text x="946" y="539.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (+)  →  Portafusible ENTRADA</text>
+<text x="1446" y="539.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 rojo · anilla M6</text>
+<rect x="860" y="552" width="840" height="36" fill="#171d2b"/>
+<rect x="860" y="552" width="6" height="36" fill="#ef4444"/>
+<text x="878" y="575.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W2</text>
+<text x="946" y="575.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Portafusible SALIDA  →  Convertidor IN (+)</text>
+<text x="1446" y="575.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 rojo</text>
+<rect x="860" y="588" width="840" height="36" fill="#121722"/>
+<rect x="860" y="588" width="6" height="36" fill="#ef4444"/>
+<text x="878" y="611.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W3</text>
+<text x="946" y="611.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Portafusible SALIDA  →  Placa MOSFET DC+</text>
+<text x="1446" y="611.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 rojo</text>
+<rect x="860" y="624" width="840" height="36" fill="#171d2b"/>
+<rect x="860" y="624" width="6" height="36" fill="#3b82f6"/>
+<text x="878" y="647.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W4</text>
+<text x="946" y="647.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Convertidor IN (−)</text>
+<text x="1446" y="647.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 negro · anilla M6</text>
+<rect x="860" y="660" width="840" height="36" fill="#121722"/>
+<rect x="860" y="660" width="6" height="36" fill="#3b82f6"/>
+<text x="878" y="683.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W5</text>
+<text x="946" y="683.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Placa MOSFET DC−</text>
+<text x="1446" y="683.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 negro · anilla M6</text>
+<rect x="860" y="696" width="840" height="36" fill="#171d2b"/>
+<rect x="860" y="696" width="6" height="36" fill="#22d3ee"/>
+<text x="878" y="719.0" font-size="15" fill="#22d3ee" font-weight="bold" text-anchor="start">W6</text>
+<text x="946" y="719.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (+) 5 V  →  LILYGO VIN</text>
+<text x="1446" y="719.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 rojo</text>
+<rect x="860" y="732" width="840" height="36" fill="#121722"/>
+<rect x="860" y="732" width="6" height="36" fill="#6b7280"/>
+<text x="878" y="755.0" font-size="15" fill="#6b7280" font-weight="bold" text-anchor="start">W7</text>
+<text x="946" y="755.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (−)  →  LILYGO GND</text>
+<text x="1446" y="755.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 negro</text>
+<rect x="860" y="810" width="840" height="96" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
+<text x="876" y="838" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">ORDEN DE MONTAJE</text>
+<text x="876" y="862" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">1. Desconecta el borne (−) de la batería antes de empezar.</text>
+<text x="876" y="886" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">2. Deja el portafusible SIN el fusible de 30 A hasta terminar y revisar con multímetro.</text>
+<rect x="60" y="920" width="34" height="8" rx="4" fill="#ef4444"/>
+<text x="104" y="930" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">+12 V protegido</text>
+<rect x="258" y="920" width="34" height="8" rx="4" fill="#3b82f6"/>
+<text x="302" y="930" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">GND / masa batería</text>
+<rect x="480" y="920" width="34" height="8" rx="4" fill="#22d3ee"/>
+<text x="524" y="930" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">+5 V</text>
+<rect x="590" y="920" width="34" height="8" rx="4" fill="#6b7280"/>
+<text x="634" y="930" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">GND lógico</text>
+<path d="M 340 270 L 470 270" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 690 270 L 1000 270" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 610 310 L 610 560" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 60 190 L 30 190 L 30 105 L 1090 105 L 1090 150" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 60 250 L 30 250 L 30 645 L 60 645" fill="none" stroke="#3b82f6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1300 230 L 1450 230" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1300 320 L 1450 320" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="340" cy="270" r="8" fill="#0b0f16" stroke="#ef4444" stroke-width="3.5"/><circle cx="340" cy="270" r="2.5" fill="#ef4444"/>
+<circle cx="60" cy="190" r="8" fill="#0b0f16" stroke="#3b82f6" stroke-width="3.5"/><circle cx="60" cy="190" r="2.5" fill="#3b82f6"/>
+<circle cx="60" cy="250" r="8" fill="#0b0f16" stroke="#3b82f6" stroke-width="3.5"/><circle cx="60" cy="250" r="2.5" fill="#3b82f6"/>
+<circle cx="470" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="470" cy="270" r="2.5" fill="#10b981"/>
+<circle cx="690" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="690" cy="270" r="2.5" fill="#10b981"/>
+<circle cx="610" cy="310" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="610" cy="310" r="2.5" fill="#10b981"/>
+<circle cx="1000" cy="270" r="8" fill="#0b0f16" stroke="#ef4444" stroke-width="3.5"/><circle cx="1000" cy="270" r="2.5" fill="#ef4444"/>
+<circle cx="1090" cy="150" r="8" fill="#0b0f16" stroke="#3b82f6" stroke-width="3.5"/><circle cx="1090" cy="150" r="2.5" fill="#3b82f6"/>
+<circle cx="1300" cy="230" r="8" fill="#0b0f16" stroke="#22d3ee" stroke-width="3.5"/><circle cx="1300" cy="230" r="2.5" fill="#22d3ee"/>
+<circle cx="1300" cy="320" r="8" fill="#0b0f16" stroke="#6b7280" stroke-width="3.5"/><circle cx="1300" cy="320" r="2.5" fill="#6b7280"/>
+<circle cx="1450" cy="230" r="8" fill="#0b0f16" stroke="#22d3ee" stroke-width="3.5"/><circle cx="1450" cy="230" r="2.5" fill="#22d3ee"/>
+<circle cx="1450" cy="320" r="8" fill="#0b0f16" stroke="#6b7280" stroke-width="3.5"/><circle cx="1450" cy="320" r="2.5" fill="#6b7280"/>
+<circle cx="610" cy="560" r="8" fill="#0b0f16" stroke="#ef4444" stroke-width="3.5"/><circle cx="610" cy="560" r="2.5" fill="#ef4444"/>
+<circle cx="60" cy="645" r="8" fill="#0b0f16" stroke="#3b82f6" stroke-width="3.5"/><circle cx="60" cy="645" r="2.5" fill="#3b82f6"/>
+<circle cx="690" cy="270" r="7" fill="#ef4444" stroke="#0b0f16" stroke-width="2.5"/>
+<rect x="386.0" y="258" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
+<text x="405" y="275" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W1</text>
+<rect x="831.0" y="258" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
+<text x="850" y="275" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W2</text>
+<rect x="591.0" y="428" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
+<text x="610" y="445" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W3</text>
+<rect x="541.0" y="93" width="38" height="24" rx="6" fill="#0b0f16" stroke="#3b82f6" stroke-width="2"/>
+<text x="560" y="110" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">W4</text>
+<rect x="11.0" y="438" width="38" height="24" rx="6" fill="#0b0f16" stroke="#3b82f6" stroke-width="2"/>
+<text x="30" y="455" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">W5</text>
+<rect x="1356.0" y="218" width="38" height="24" rx="6" fill="#0b0f16" stroke="#22d3ee" stroke-width="2"/>
+<text x="1375" y="235" font-size="14" font-weight="bold" fill="#22d3ee" text-anchor="middle">W6</text>
+<rect x="1356.0" y="308" width="38" height="24" rx="6" fill="#0b0f16" stroke="#6b7280" stroke-width="2"/>
+<text x="1375" y="325" font-size="14" font-weight="bold" fill="#6b7280" text-anchor="middle">W7</text>
+</svg>
