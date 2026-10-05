@@ -118,7 +118,7 @@ La placa **LILYGO T-CAN485** ya integra el microcontrolador ESP32, el transcepto
 | **PWM Canal 1 (Blanco)** | `GPIO 25` | Foco Izquierdo Set 1 (LEDC Channel 0, 1 kHz) |
 | **PWM Canal 2 (Amarillo)**| `GPIO 32` | Foco Derecho Set 1 (LEDC Channel 1, 1 kHz) |
 | **PWM Canal 3 (Azul)** | `GPIO 33` | Focos de Niebla Set 2 (LEDC Channel 2, 1 kHz) |
-| **PWM Canal 4 (Rojo)** | `GPIO 14` | Bocina / Accesorio (LEDC Channel 3, 1 kHz) |
+| **PWM Canal 4 (Rojo)** | `GPIO 18` | Bocina / Accesorio (LEDC Channel 3, 1 kHz) |
 | **Alimentación LILYGO** | Bornera `VIN` (5V-12V) y `GND` | Alimentación de la placa (vía regulador o batería protegida) |
 | **LED RGB WS2812** | `GPIO 4` (Interno) | Indicador visual de estado CAN (Verde = Escuchando) |
 

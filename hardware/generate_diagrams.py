@@ -299,7 +299,7 @@ def sheet3():
     s.box(1100, 140, 640, 480, "PLACA MOSFET 4 CANALES · entradas de señal", "#1d4ed8")
 
     left = [("GPIO 25", "Canal 1 · foco izquierdo"), ("GPIO 32", "Canal 2 · foco derecho"),
-            ("GPIO 33", "Canal 3 · faros de niebla"), ("GPIO 14", "Canal 4 · bocina / freno / aux"),
+            ("GPIO 33", "Canal 3 · faros de niebla"), ("GPIO 18", "Canal 4 · bocina / freno / aux"),
             ("GND", "masa lógica")]
     right = [("IN 01", "→ OUT 1"), ("IN 02", "→ OUT 2"), ("IN 03", "→ OUT 3"), ("IN 04", "→ OUT 4"), ("GND", "masa de entrada")]
     cols = [TXT, YELLOW, "#60a5fa", "#f87171", GREY]
@@ -320,7 +320,7 @@ def sheet3():
         ("W11", "LILYGO GPIO 25  →  Placa MOSFET IN 01", "AWG 24 · blanco", TXT),
         ("W12", "LILYGO GPIO 32  →  Placa MOSFET IN 02", "AWG 24 · amarillo", YELLOW),
         ("W13", "LILYGO GPIO 33  →  Placa MOSFET IN 03", "AWG 24 · azul", "#60a5fa"),
-        ("W14", "LILYGO GPIO 14  →  Placa MOSFET IN 04", "AWG 24 · rojo", "#f87171"),
+        ("W14", "LILYGO GPIO 18  →  Placa MOSFET IN 04", "AWG 24 · rojo", "#f87171"),
         ("W15", "LILYGO GND (header)  →  Placa MOSFET GND de entrada", "AWG 24 · negro", GREY),
     ]
     s.table(60, 680, [("ID", 70), ("DE  →  A", 640), ("CABLE", 300)], rows, "LISTA DE CABLES · HOJA 3")

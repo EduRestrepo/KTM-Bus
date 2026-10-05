@@ -56,7 +56,7 @@ Pin 3 (+12 V contacto) y pines 5/6 (K-Line/aux) del conector Euro 5: **no se con
 | **W11** | LILYGO `GPIO 25` → MOSFET `IN 01` | Canal 1 · foco izquierdo |
 | **W12** | LILYGO `GPIO 32` → MOSFET `IN 02` | Canal 2 · foco derecho |
 | **W13** | LILYGO `GPIO 33` → MOSFET `IN 03` | Canal 3 · faros de niebla |
-| **W14** | LILYGO `GPIO 14` → MOSFET `IN 04` | Canal 4 · bocina / freno / aux |
+| **W14** | LILYGO `GPIO 18` → MOSFET `IN 04` | Canal 4 · bocina / freno / aux |
 | **W15** | LILYGO `GND` → MOSFET `GND` de entrada | Masa lógica (obligatoria) |
 
 ---

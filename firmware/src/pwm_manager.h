@@ -6,7 +6,7 @@
 #define PIN_CHANNEL_WHITE     25  // Canal 1: Foco Izquierdo Set 1 (Pin Header GPIO 25)
 #define PIN_CHANNEL_YELLOW    32  // Canal 2: Foco Derecho Set 1   (Pin Header GPIO 32)
 #define PIN_CHANNEL_BLUE      33  // Canal 3: Focos de Niebla Set 2 (Pin Header GPIO 33)
-#define PIN_CHANNEL_RED       14  // Canal 4: Bocina / Accesorio   (Pin Header GPIO 14)
+#define PIN_CHANNEL_RED       18  // Canal 4: Bocina / Accesorio   (Pin Header GPIO 18)
 
 #define PWM_FREQ_HZ           1000 // 1 kHz para evitar zumbido en bobinas/LEDs
 #define PWM_RESOLUTION_BITS   8    // 8 bits (0 a 255)

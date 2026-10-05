@@ -24,7 +24,7 @@
 <text x="684" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 3 · faros de niebla</text>
 <text x="1118" y="415" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 03</text>
 <text x="1118" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 3</text>
-<text x="684" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 14</text>
+<text x="684" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 18</text>
 <text x="684" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 4 · bocina / freno / aux</text>
 <text x="1118" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 04</text>
 <text x="1118" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 4</text>
@@ -57,7 +57,7 @@
 <rect x="60" y="824" width="1010" height="36" fill="#171d2b"/>
 <rect x="60" y="824" width="6" height="36" fill="#f87171"/>
 <text x="78" y="847.0" font-size="15" fill="#f87171" font-weight="bold" text-anchor="start">W14</text>
-<text x="146" y="847.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 14  →  Placa MOSFET IN 04</text>
+<text x="146" y="847.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 18  →  Placa MOSFET IN 04</text>
 <text x="786" y="847.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · rojo</text>
 <rect x="60" y="860" width="1010" height="36" fill="#121722"/>
 <rect x="60" y="860" width="6" height="36" fill="#6b7280"/>

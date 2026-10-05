@@ -10,6 +10,7 @@
 // Pines TWAI / CAN Bus para LILYGO T-CAN485
 #define TWAI_RX_PIN       GPIO_NUM_26
 #define TWAI_TX_PIN       GPIO_NUM_27
+#define PIN_CAN_SE        23  // CAN_SE del transceptor: LOW = modo alta velocidad (T-CAN485 IO23)
 #define PIN_5V_ENABLE     16  // Habilita el regulador ME2107 en LILYGO T-CAN485 para energizar el transceptor CAN
 
 SystemConfig sysConfig;
@@ -62,6 +63,8 @@ void setup() {
     // 0. Habilitar alimentación del transceptor CAN en la placa LILYGO T-CAN485 (GPIO 16 HIGH)
     pinMode(PIN_5V_ENABLE, OUTPUT);
     digitalWrite(PIN_5V_ENABLE, HIGH);
+    pinMode(PIN_CAN_SE, OUTPUT);
+    digitalWrite(PIN_CAN_SE, LOW);
     delay(50);
     Serial.println("[HW] Regulador ME2107 (GPIO 16) activo -> Transceptor CAN energizado.");
 
