@@ -18,7 +18,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
                              Pin 5 / 6: K-Line / Diagnóstico Auxiliar
 ```
 
-> **IMPORTANTE DE SEGURIDAD**: Para máxima fiabilidad y evitar caídas de tensión en accesorios de alta potencia (luces de 60W-120W), la alimentación de potencia **NO** debe tomarse del pin 3 del conector Euro 5. La potencia se toma **directamente de los bornes de la batería (+12V permanente KL30) con un fusible aéreo de 30A**. El conector Euro 5 solo se utiliza para leer las líneas **CAN-H**, **CAN-L** y masa **GND**.
+> **IMPORTANTE DE SEGURIDAD**: Para máxima fiabilidad y evitar caídas de tensión en accesorios de alta potencia (luces de 60W-120W), la alimentación de potencia **NO** debe tomarse del pin 3 del conector Euro 5. La potencia se toma **de los bornes de la batería (+12V permanente KL30) con un fusible aéreo de 15A** y pasa por un **relé de contacto** que solo cierra con la moto encendida (así el consumo en reposo es ≈ 0 y no se descarga la batería). El pin 3 del Euro 5 (KL15) se usa **solo como señal** de mando de ese relé (a través de un transistor), nunca como potencia; **mídelo antes** (0 V con contacto OFF, ≈ 12 V con ON). El resto del conector Euro 5 se usa para leer **CAN-H**, **CAN-L** y masa **GND**.
 
 ---
 
@@ -28,7 +28,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
                               ┌───────────────────────────────────────────────┐
                               │                 KTM-BUS V1.0                  │
                               │                                               │
-   Batería Moto (+12V) ──────►│ Fusible 30A ──┬──► Regulador DC-DC (Automotriz)
+   Batería Moto (+12V) ──────►│ Fusible 15A + Relé contacto ──┬──► Regulador DC-DC (Automotriz)
    (Borne Directo)            │               │    (12V a 5V / 3.3V con TVS)  │
                               │               │         │                     │
                               │               │         ▼                     │
@@ -63,7 +63,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
      * Pin 1 (Naranja/Negro): `CAN_H` ➔ Borna CAN_H de la LILYGO.
      * Pin 2 (Naranja/Marrón): `CAN_L` ➔ Borna CAN_L de la LILYGO.
      * Pin 4 (Marrón/Negro): `GND` ➔ Borna GND de la LILYGO.
-     * Pin 3 (+12V de moto): **Aislado / Desconectado** (la potencia se toma de la batería).
+     * Pin 3 (+12V contacto, KL15): **solo señal** hacia el driver NPN del relé de contacto (W32). Nunca como potencia.
 
 2. **Convertidor Reductor DC-DC Automotriz (12V a 5V 3A)**:
    * **Modelo**: Carcasa sellada en resina epoxi impermeable (IP67).
@@ -71,10 +71,10 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
    * **Entrada**: Cable Rojo a +12V protegido (post-fusible), Cable Negro a Borne (-) batería.
    * **Salida**: 5V estables (hasta 3A) hacia bornas `VIN` y `GND` de la LILYGO T-CAN485.
 
-3. **Portafusible Aéreo Estanco con Fusible de 30A**:
-   * **Modelo**: Portafusible aéreo de goma impermeable para automoción con fusible Maxi/Mini de 30A.
+3. **Portafusible Aéreo Estanco (con fusible de 15A)**:
+   * **Modelo**: Portafusible aéreo de goma impermeable para automoción con fusible de **15A** (si trae uno de 30A, cámbialo: no protegería los cables AWG 14/16/18).
    * **Enlace AliExpress**: [Item 32813530925](https://es.aliexpress.com/item/32813530925.html)
-   * **Ubicación**: Intercalado en el cable positivo AWG 14 directo del borne (+) de la batería antes de alimentar la placa MOSFET y el convertidor.
+   * **Ubicación**: Intercalado en el cable positivo AWG 14 directo del borne (+) de la batería antes del relé de contacto que alimenta la placa MOSFET y el convertidor (este último con un fusible en línea de 3A).
 
 4. **Conectores Estancos para Luces y Accesorios**:
    * **Modelo**: Conectores automotrices impermeables Superseal 1.5 (IP67).
@@ -89,7 +89,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
      * Formato: `4CH Only Board` (compacto para caja bajo asiento).
      * Control de entrada: `PNP Input 3.3-5V` (compatible con 3.3V nativo de los GPIOs del ESP32). Placa eletechsup OPMSA04_PNP: bornes de potencia VCC, GND, Y1-Y4; bornes de entrada X1-X4 y COM. Puentes de soldadura: Input Level = PNP y Trigger Voltage = 5V. Con nivel PNP, COM va a GND.
      * Salida conmutada: `PNP Output` (**High-Side**: conmuta +12V con masa común al chasis).
-     * Capacidad: Hasta 5A continuos por canal (60W por foco).
+     * Capacidad: el anuncio indica hasta 5A por canal, pero el serigrafiado de la placa menciona "<2A". **Confirma la corriente real en la ficha** y protege cada salida con un fusible en línea de 3–5A. Para cargas inductivas o de más de 3A (bocina de aire) usa un relé excitado por la salida.
 
 ### B. Componentes Restantes de la Instalación ⏳
 1. **Controlador ESP32**: **LILYGO T-CAN485** ([Item 1005003624034092](https://www.aliexpress.com/item/1005003624034092.html)) con transceptor CAN SN65HVD231 y borneras a tornillo.

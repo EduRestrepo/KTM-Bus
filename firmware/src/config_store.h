@@ -9,6 +9,7 @@ public:
     void loadConfig(SystemConfig& cfg);
     void saveConfig(const SystemConfig& cfg);
     void setDefaults(SystemConfig& cfg);
+    void sanitize(SystemConfig& cfg);
 
 private:
     Preferences prefs;

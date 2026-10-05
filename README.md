@@ -59,7 +59,7 @@ El sistema replica fielmente la lógica de control desde la piña izquierda orig
   * Pin 1: `CAN-High` (Cable Naranja/Negro)
   * Pin 2: `CAN-Low` (Cable Naranja/Marrón)
   * Pin 4: `GND` (Masa)
-* **Alimentación de Potencia**: Directa a los bornes de la batería (+12V permanente) con **fusible aéreo de 30A**.
+* **Alimentación de Potencia**: Desde los bornes de la batería con **fusible de 15A** y a través de un **relé de contacto** (mandado por el pin 3 del Euro 5 como señal) para que no haya consumo con la moto parada.
 * **Protección del Microcontrolador**: El driver TWAI del ESP32 opera en **`TWAI_MODE_LISTEN_ONLY`** (escucha pasiva). Nunca transmite pulsos de ACK ni inyecta datos al bus, garantizando cero interferencias con la ECU o el ABS Bosch de la moto.
 * 👉 **Esquema Completo de Cableado**: 4 hojas con cada cable numerado (W1–W26) en [EsquematicoConexiones.md](EsquematicoConexiones.md); imágenes en [hardware/diagramas/](hardware/diagramas/).
 
@@ -113,7 +113,7 @@ El firmware de este proyecto viene **preconfigurado de fábrica para la placa [L
 2. **Transceptor CAN (3.3V)**: Módulo **SN65HVD230** *(Evitar el TJA1050 de 5V para no dañar los pines del ESP32)*.
 3. **Etapa de Potencia 12V**: Módulo de **4 MOSFETs High-Side** (Canal P tipo IRF4905) o placa **PROFET Infineon (BTS724G o BTS7008)** con protección térmica y cortocircuito automática.
 4. **Fuente de Alimentación**: Convertidor reductor automotriz **LM2596HV** (High Voltage) o impermeable 12V a 5V con TVS **SMAJ24A**.
-5. **Portafusible Aéreo y Fusible**: Fusible Maxi/Mini de **30A** directo a borne de batería.
+5. **Portafusible Aéreo y Fusible**: Fusible de **15A** directo a borne de batería, seguido de relé de contacto de 12 V 30 A.
 6. **Conector KTM**: Clavija macho estanca **Euro 5 de 6 pines (ISO 19689)**.
 7. **Conectores a Luces**: Conectores estancos **Superseal 1.5** de 2 y 3 pines (IP67).
 

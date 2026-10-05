@@ -93,6 +93,13 @@ void ControllerFsm::handlePassTrigger(SystemConfig& cfg, KtmTelemetry& telem, Li
 }
 
 void ControllerFsm::handleDimmerAdjustment(SystemConfig& cfg, KtmTelemetry& telem, LiveDimmerState& dimmer, bool& need_save) {
+    // Los flancos de la cruceta se siguen siempre, para no disparar una pulsación "fantasma"
+    // si el modo dimmer se activa con la tecla ya pulsada
+    bool up_edge = telem.nav_up_pressed && !nav_up_prev_state;
+    bool down_edge = telem.nav_down_pressed && !nav_down_prev_state;
+    nav_up_prev_state = telem.nav_up_pressed;
+    nav_down_prev_state = telem.nav_down_pressed;
+
     if (!dimmer.is_active) return;
 
     uint32_t now = millis();
@@ -107,7 +114,7 @@ void ControllerFsm::handleDimmerAdjustment(SystemConfig& cfg, KtmTelemetry& tele
     }
 
     // Tecla '+' de la cruceta (Aumentar brillo en 10%)
-    if (telem.nav_up_pressed && !nav_up_prev_state) {
+    if (up_edge) {
         dimmer.expires_at_ms = now + 5000; // Reiniciar temporizador
         if (dimmer.target == DIM_TARGET_SET_1) {
             cfg.set_1_custom_dim = (uint8_t)min((int)cfg.set_1_custom_dim + 10, 100);
@@ -119,7 +126,7 @@ void ControllerFsm::handleDimmerAdjustment(SystemConfig& cfg, KtmTelemetry& tele
     }
 
     // Tecla '-' de la cruceta (Disminuir brillo en 10%)
-    if (telem.nav_down_pressed && !nav_down_prev_state) {
+    if (down_edge) {
         dimmer.expires_at_ms = now + 5000; // Reiniciar temporizador
         if (dimmer.target == DIM_TARGET_SET_1) {
             cfg.set_1_custom_dim = (uint8_t)max((int)cfg.set_1_custom_dim - 10, 10);
@@ -129,9 +136,6 @@ void ControllerFsm::handleDimmerAdjustment(SystemConfig& cfg, KtmTelemetry& tele
             Serial.printf("[FSM] Set 2 Brillo -> %d%%\n", cfg.set_2_custom_dim);
         }
     }
-
-    nav_up_prev_state = telem.nav_up_pressed;
-    nav_down_prev_state = telem.nav_down_pressed;
 }
 
 void ControllerFsm::update(SystemConfig& cfg, KtmTelemetry& telem, LiveDimmerState& dimmer, bool& need_config_save) {

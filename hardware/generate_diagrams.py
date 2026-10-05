@@ -148,8 +148,9 @@ COLS = [("ID", 70), ("DE  →  A", 500), ("CABLE", 270)]
 # HOJA 1 - ALIMENTACIÓN
 # =====================================================================
 def sheet1():
-    s = Sheet("01_alimentacion", 1, "ALIMENTACIÓN Y MASAS",
-              "Batería → portafusible → convertidor 5 V → LILYGO · y alimentación de potencia de la placa MOSFET", 1800, 990)
+    PURPLE = "#8b5cf6"
+    s = Sheet("01_alimentacion", 1, "ALIMENTACIÓN, RELÉ DE CONTACTO Y MASAS",
+              "Batería → fusible 15 A → relé (solo con contacto) → placa MOSFET y convertidor 5 V → LILYGO", 1800, 1500)
 
     # Batería
     s.box(60, 150, 280, 230, "BATERÍA MOTO 12 V", RED)
@@ -159,64 +160,114 @@ def sheet1():
     s.text(200, 335, "W4 y W5 van al MISMO borne (−)", 12, MUTED, "normal", "middle")
     s.text(200, 355, "(anilla M6 doble)", 12, MUTED, "normal", "middle")
 
-    # Portafusible
-    s.box(470, 230, 220, 80, "PORTAFUSIBLE AÉREO", GREEN, hh=28)
-    s.text(484, 280, "IN", 13, "#6ee7b7", "bold")
-    s.text(676, 280, "OUT", 13, "#6ee7b7", "bold", "end")
-    s.text(580, 298, "fusible 30 A (poner al FINAL)", 12, MUTED, "normal", "middle")
+    # Portafusible principal 15 A
+    s.box(390, 230, 160, 80, "PORTAFUSIBLE", GREEN, hh=28)
+    s.text(402, 280, "IN", 13, "#6ee7b7", "bold")
+    s.text(538, 280, "OUT", 13, "#6ee7b7", "bold", "end")
+    s.text(470, 298, "fusible 15 A (al FINAL)", 12, MUTED, "normal", "middle")
+
+    # Relé de contacto
+    s.box(660, 150, 220, 230, "RELÉ 12 V · 30 A", PURPLE)
+    s.text(674, 275, "30", 14, "#ddd6fe", "bold")
+    s.text(674, 205, "86 (+ bobina)", 13, "#ddd6fe", "bold")
+    s.text(868, 275, "87", 14, "#ddd6fe", "bold", "end")
+    s.text(770, 362, "85 (− bobina)", 13, "#ddd6fe", "bold", "middle")
+    s.text(770, 318, "Diodo D1 1N4007 en la bobina", 12, MUTED, "normal", "middle")
+    s.text(770, 336, "(cátodo a 86, ánodo a 85)", 12, MUTED, "normal", "middle")
+
+    # Fusible convertidor 3 A
+    s.box(990, 230, 140, 80, "FUSIBLE 3 A", GREEN, hh=28)
+    s.text(1002, 280, "IN", 13, "#6ee7b7", "bold")
+    s.text(1118, 280, "OUT", 13, "#6ee7b7", "bold", "end")
+    s.text(1060, 298, "portafusible en línea", 12, MUTED, "normal", "middle")
 
     # Convertidor
-    s.box(1000, 150, 300, 230, "CONVERTIDOR 12 V → 5 V", "#2563eb")
-    s.text(1090, 210, "IN (−)", 13, "#93c5fd", "bold", "middle")
-    s.text(1014, 275, "IN (+)", 13, "#fca5a5", "bold")
-    s.text(1285, 235, "OUT (+) 5 V", 13, "#67e8f9", "bold", "end")
-    s.text(1285, 325, "OUT (−) GND", 13, "#cbd5e1", "bold", "end")
-    s.text(1150, 365, "3 A · sellado IP67", 12, MUTED, "normal", "middle")
+    s.box(1200, 150, 250, 230, "CONVERTIDOR 12 V → 5 V", "#2563eb")
+    s.text(1325, 210, "IN (−)", 13, "#93c5fd", "bold", "middle")
+    s.text(1214, 275, "IN (+)", 13, "#fca5a5", "bold")
+    s.text(1435, 235, "OUT (+) 5 V", 13, "#67e8f9", "bold", "end")
+    s.text(1435, 325, "OUT (−) GND", 13, "#cbd5e1", "bold", "end")
+    s.text(1325, 365, "3 A · sellado IP67", 12, MUTED, "normal", "middle")
 
     # LILYGO
-    s.box(1450, 150, 300, 230, "LILYGO T-CAN485", GREEN)
-    s.text(1466, 235, "VIN (+5 V)", 13, "#67e8f9", "bold")
-    s.text(1466, 325, "GND", 13, "#cbd5e1", "bold")
-    s.text(1600, 365, "CAN → Hoja 2 · GPIO → Hoja 3", 12, MUTED, "normal", "middle")
+    s.box(1520, 150, 250, 230, "LILYGO T-CAN485", GREEN)
+    s.text(1536, 235, "VIN (+5 V)", 13, "#67e8f9", "bold")
+    s.text(1536, 325, "GND", 13, "#cbd5e1", "bold")
+    s.text(1645, 365, "CAN → Hoja 2 · GPIO → Hoja 3", 12, MUTED, "normal", "middle")
+
+    # Driver de contacto
+    s.box(100, 470, 240, 220, "DRIVER DE CONTACTO", AMBER)
+    s.text(220, 530, "C → relé 85", 13, "#fde68a", "bold", "middle")
+    s.text(330, 565, "IN ← KL15", 13, "#fde68a", "bold", "end")
+    s.text(112, 665, "E → GND", 13, "#93c5fd", "bold")
+    s.text(220, 590, "NPN BC337", 13, "#ffffff", "bold", "middle")
+    s.text(220, 612, "R1 10 kΩ en la base", 12, MUTED, "normal", "middle")
+    s.text(220, 632, "R2 100 kΩ base–GND", 12, MUTED, "normal", "middle")
+    s.text(350, 540, "← Euro 5 pin 3 (Hoja 2)", 12, "#fde68a")
 
     # Placa MOSFET
-    s.box(60, 560, 700, 250, "PLACA MOSFET 4 CANALES (entrada PNP 3,3–5 V · salida High-Side)", "#1d4ed8")
-    s.text(610, 625, "VCC (+12 V)", 14, "#fca5a5", "bold", "middle")
-    s.text(78, 645, "GND (−)", 14, "#93c5fd", "bold")
-    s.text(410, 720, "Entradas X1–X4: Hoja 3   ·   Salidas Y1–Y4: Hoja 4", 14, MUTED, "normal", "middle")
-    s.text(410, 750, "Máx. 5 A por canal", 14, MUTED, "normal", "middle")
+    s.box(500, 560, 640, 240, "PLACA MOSFET 4 CANALES (entrada PNP 3,3–5 V · salida High-Side)", "#1d4ed8")
+    s.text(925, 625, "VCC (+12 V)", 14, "#fca5a5", "bold", "middle")
+    s.text(518, 750, "GND (−)", 14, "#93c5fd", "bold")
+    s.text(820, 690, "Entradas X1–X4: Hoja 3   ·   Salidas Y1–Y4: Hoja 4", 14, MUTED, "normal", "middle")
+    s.text(820, 720, "Fusible en línea 3–5 A por salida (ver Hoja 4)", 14, MUTED, "normal", "middle")
 
     # Cables
-    s.wire([(340, 270), (470, 270)], RED, 6, "W1", (405, 270))
-    s.wire([(690, 270), (1000, 270)], RED, 4, "W2", (850, 270))
-    s.wire([(610, 310), (610, 560)], RED, 6, "W3", (610, 440))
-    s.wire([(60, 190), (30, 190), (30, 105), (1090, 105), (1090, 150)], BLUE, 4, "W4", (560, 105))
-    s.wire([(60, 250), (30, 250), (30, 645), (60, 645)], BLUE, 6, "W5", (30, 450))
-    s.wire([(1300, 230), (1450, 230)], CYAN, 4, "W6", (1375, 230))
-    s.wire([(1300, 320), (1450, 320)], GREY, 4, "W7", (1375, 320))
+    s.wire([(340, 270), (390, 270)], RED, 6, "W1", (365, 270))
+    s.wire([(550, 270), (660, 270)], RED, 6, "W2", (625, 270))
+    s.wire([(590, 270), (590, 200), (660, 200)], RED, 3, "W27", (625, 200))
+    s.wire([(925, 270), (925, 560)], RED, 6, "W3", (925, 420))
+    s.wire([(880, 270), (990, 270)], RED, 4, "W28", (958, 270))
+    s.wire([(1130, 270), (1200, 270)], RED, 4, "W29", (1165, 270))
+    s.wire([(60, 190), (20, 190), (20, 105), (1325, 105), (1325, 150)], BLUE, 4, "W4", (700, 105))
+    s.wire([(60, 250), (20, 250), (20, 745), (500, 745)], BLUE, 6, "W5", (20, 450))
+    s.wire([(1450, 230), (1520, 230)], CYAN, 4, "W6", (1485, 230))
+    s.wire([(1450, 320), (1520, 320)], GREY, 4, "W7", (1485, 320))
+    s.wire([(100, 660), (20, 660)], BLUE, 3, "W30", (60, 660))
+    s.wire([(770, 380), (770, 430), (220, 430), (220, 470)], AMBER, 3, "W31", (500, 430))
+    s.wire([(340, 560), (440, 560)], AMBER, 3, "W32", (390, 560))
 
     # Terminales
-    for x, y, c in [(340, 270, RED), (60, 190, BLUE), (60, 250, BLUE), (470, 270, GREEN), (690, 270, GREEN),
-                    (610, 310, GREEN), (1000, 270, RED), (1090, 150, BLUE), (1300, 230, CYAN), (1300, 320, GREY),
-                    (1450, 230, CYAN), (1450, 320, GREY), (610, 560, RED), (60, 645, BLUE)]:
+    for x, y, c in [(340, 270, RED), (390, 270, GREEN), (550, 270, GREEN), (660, 270, PURPLE), (660, 200, PURPLE),
+                    (880, 270, PURPLE), (770, 380, PURPLE), (990, 270, GREEN), (1130, 270, GREEN),
+                    (1200, 270, RED), (925, 560, RED), (60, 190, BLUE), (60, 250, BLUE), (1325, 150, BLUE),
+                    (1450, 230, CYAN), (1450, 320, GREY), (1520, 230, CYAN), (1520, 320, GREY),
+                    (500, 745, BLUE), (100, 660, AMBER), (220, 470, AMBER), (340, 560, AMBER), (440, 560, AMBER)]:
         s.term(x, y, c)
-    s.junction(690, 270, RED)
+    s.junction(590, 270, RED)
+    s.junction(925, 270, RED)
+    s.junction(20, 660, BLUE)
 
     rows = [
         ("W1", "Batería (+)  →  Portafusible ENTRADA", "AWG 14 rojo · anilla M6", RED),
-        ("W2", "Portafusible SALIDA  →  Convertidor IN (+)", "AWG 18 rojo", RED),
-        ("W3", "Portafusible SALIDA  →  Placa MOSFET VCC", "AWG 14 rojo", RED),
+        ("W2", "Portafusible SALIDA  →  Relé pin 30", "AWG 14 rojo", RED),
+        ("W27", "Portafusible SALIDA  →  Relé pin 86 (+ bobina)", "AWG 20 rojo", RED),
+        ("W3", "Relé pin 87  →  Placa MOSFET VCC", "AWG 14 rojo", RED),
+        ("W28", "Relé pin 87  →  Fusible 3 A ENTRADA", "AWG 18 rojo", RED),
+        ("W29", "Fusible 3 A SALIDA  →  Convertidor IN (+)", "AWG 18 rojo", RED),
         ("W4", "Batería (−)  →  Convertidor IN (−)", "AWG 18 negro · anilla M6", BLUE),
         ("W5", "Batería (−)  →  Placa MOSFET GND", "AWG 14 negro · anilla M6", BLUE),
         ("W6", "Convertidor OUT (+) 5 V  →  LILYGO VIN", "AWG 20 rojo", CYAN),
         ("W7", "Convertidor OUT (−)  →  LILYGO GND", "AWG 20 negro", GREY),
+        ("W30", "Driver emisor (E)  →  GND (empalme en W5)", "AWG 22 negro", BLUE),
+        ("W31", "Relé pin 85 (− bobina)  →  Driver colector (C)", "AWG 22 amarillo", AMBER),
+        ("W32", "Euro 5 pin 3 (KL15)  →  Driver IN (R1 a la base)", "AWG 22 amarillo", AMBER),
     ]
-    s.table(860, 480, COLS, rows, "LISTA DE CABLES · HOJA 1")
-    s.note(860, 810, 840, [
+    s.table(60, 950, COLS, rows, "LISTA DE CABLES · HOJA 1")
+    s.note(1180, 560, 590, [
         "1. Desconecta el borne (−) de la batería antes de empezar.",
-        "2. Deja el portafusible SIN el fusible de 30 A hasta terminar y revisar con multímetro.",
+        "2. Portafusible SIN fusible hasta terminar y revisar.",
+        "3. Mide el pin 3 del Euro 5: 0 V con contacto OFF y",
+        "   ≈ 12 V con contacto ON (si no, no es KL15).",
+        "4. Sin contacto el relé corta todo: consumo en reposo ≈ 0.",
     ], AMBER, "ORDEN DE MONTAJE")
-    s.legend(60, 925, [(RED, "+12 V protegido"), (BLUE, "GND / masa batería"), (CYAN, "+5 V"), (GREY, "GND lógico")])
+    s.note(1180, 740, 590, [
+        "• Fusible 15 A: protege el AWG 14 hasta el relé y la placa.",
+        "• Fusible 3 A: protege el AWG 18 del convertidor.",
+        "• Fusibles de 3–5 A por salida Y1–Y4 (Hoja 4).",
+        "• Recomendado: TVS SMBJ24A en IN del convertidor.",
+    ], RED, "PROTECCIONES")
+    s.legend(60, 860, [(RED, "+12 V protegido"), (BLUE, "GND / masa batería"), (CYAN, "+5 V"), (GREY, "GND lógico"), (AMBER, "señal contacto / bobina")])
     return s
 
 
@@ -233,7 +284,7 @@ def sheet2():
     pins = [
         ("1", "CAN-H", "Naranja / Negro", CAN_H, "→ W8"),
         ("2", "CAN-L", "Naranja / Marrón", CAN_L, "→ W9"),
-        ("3", "+12 V", "contacto (KL15)", GREY, "NO CONECTAR"),
+        ("3", "+12 V", "contacto (KL15)", AMBER, "→ W32 (solo señal)"),
         ("4", "GND", "masa", "#94a3b8", "→ W10"),
         ("5", "K-Line", "diagnóstico", GREY, "NO CONECTAR"),
         ("6", "Aux", "diagnóstico", GREY, "NO CONECTAR"),
@@ -260,6 +311,12 @@ def sheet2():
         s.text(x0 + 70, 644, name, 17, "#ffffff", "bold", "middle")
         s.text(x0 + 70, 672, sub, 12, MUTED, "normal", "middle")
 
+    s.cell(410, 440, 140, 70, AMBER)
+    s.text(480, 470, "DRIVER CONTACTO", 13, "#ffffff", "bold", "middle")
+    s.text(480, 492, "Hoja 1 · R1 10 kΩ", 12, MUTED, "normal", "middle")
+    s.wire([(480, 315), (480, 440)], AMBER, 4, "W32", (480, 380))
+    s.term(480, 315, AMBER)
+    s.term(480, 440, AMBER)
     s.text(80, 735, "Transceptor SN65HVD231 interno · TWAI a 500 kbps · RX = GPIO 26, TX = GPIO 27 (ya cableados en la placa)", 13, MUTED)
     s.text(80, 760, "El firmware activa GPIO 16 = HIGH al arrancar (alimenta el transceptor).", 13, MUTED)
 
@@ -273,10 +330,12 @@ def sheet2():
         ("W8", "Euro 5 Pin 1 (CAN-H)  →  LILYGO CAN_H", "AWG 22 · naranja/negro", CAN_H),
         ("W9", "Euro 5 Pin 2 (CAN-L)  →  LILYGO CAN_L", "AWG 22 · naranja/marrón", CAN_L),
         ("W10", "Euro 5 Pin 4 (GND)  →  LILYGO GND (bornera CAN)", "AWG 22 · negro", "#94a3b8"),
+        ("W32", "Euro 5 Pin 3 (KL15)  →  Driver de contacto (Hoja 1)", "AWG 22 · amarillo", AMBER),
     ]
     s.table(1090, 185, [("ID", 70), ("DE  →  A", 390), ("CABLE", 210)], rows, "LISTA DE CABLES · HOJA 2")
-    s.note(1090, 350, 660, [
-        "• NO conectes el Pin 3 (+12 V): la potencia sale de la batería.",
+    s.note(1090, 400, 660, [
+        "• Pin 3 (KL15): SOLO como señal hacia el driver (W32), NUNCA potencia.",
+        "  Verifica: 0 V con contacto OFF y ≈ 12 V con ON.",
         "• Pines 5 y 6 (K-Line/aux): sin conectar.",
         "• Jumper/interruptor de 120 Ω de la LILYGO en OFF:",
         "  la moto ya trae sus dos resistencias de terminación.",
@@ -330,6 +389,8 @@ def sheet3():
         "  y Trigger Voltage = 5V (señal 3,3 V del ESP32).",
         "• Con nivel PNP: COM a GND (W15, obligatorio) y",
         "  señal ALTA en X1–X4 activa el canal.",
+        "• Recomendado: resistencia 10 kΩ de cada X1–X4 a COM",
+        "  (evita parpadeos mientras la LILYGO arranca).",
     ], AMBER, "NOTAS")
     return s
 
@@ -346,7 +407,7 @@ def sheet4():
     outs = [(175, "Y1", "Canal 1"), (355, "Y2", "Canal 2"), (535, "Y3", "Canal 3"), (777, "Y4", "Canal 4")]
     for y, a, b in outs:
         s.text(462, y + 5, a + " · +12 V PWM", 16, "#ffffff", "bold", "end")
-        s.text(462, y + 25, b + " · máx. 5 A", 12, MUTED, "normal", "end")
+        s.text(462, y + 25, b + " · fusible 3–5 A", 12, MUTED, "normal", "end")
     s.text(270, 640, "Alimentación VCC / GND: Hoja 1", 13, MUTED, "normal", "middle")
     s.text(270, 665, "Entradas X1–X4: Hoja 3", 13, MUTED, "normal", "middle")
 
@@ -359,8 +420,8 @@ def sheet4():
         (470, 212, "CONECTOR 3 · 3 PINES · FAROS DE NIEBLA (SET 2)", CYAN, [535, 591, 647],
          [("1", "+12 V PWM · Y3", "Faro de niebla · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Aro DRL del foco · amarillo AWG 18", AMBER)]),
-        (712, 212, "CONECTOR 4 · 3 PINES · BOCINA / FRENO / AUX", "#ec4899", [777, 833, 889],
-         [("1", "+12 V PWM · Y4", "Bocina / luz freno estrobo · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
+        (712, 212, "CONECTOR 4 · 3 PINES · AUX / LUZ DE FRENO", "#ec4899", [777, 833, 889],
+         [("1", "+12 V PWM · Y4", "Aux / luz freno · rojo AWG 16 (bocina: ver nota)", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Luz de posición / aux · amarillo AWG 18", AMBER)]),
     ]
     pin_y = {}
@@ -408,10 +469,10 @@ def sheet4():
     s.junction(1450, 540, "#93c5fd")
 
     rows = [
-        ("W16", "Placa MOSFET Y1  →  Conector 1 · Pin 1", "AWG 16 rojo", RED),
-        ("W17", "Placa MOSFET Y2  →  Conector 2 · Pin 1", "AWG 16 rojo", RED),
-        ("W18", "Placa MOSFET Y3  →  Conector 3 · Pin 1", "AWG 16 rojo", RED),
-        ("W19", "Placa MOSFET Y4  →  Conector 4 · Pin 1", "AWG 16 rojo", RED),
+        ("W16", "Placa MOSFET Y1  →  Conector 1 · Pin 1", "AWG 16 rojo · fusible 3–5 A", RED),
+        ("W17", "Placa MOSFET Y2  →  Conector 2 · Pin 1", "AWG 16 rojo · fusible 3–5 A", RED),
+        ("W18", "Placa MOSFET Y3  →  Conector 3 · Pin 1", "AWG 16 rojo · fusible 3–5 A", RED),
+        ("W19", "Placa MOSFET Y4  →  Conector 4 · Pin 1", "AWG 16 rojo · fusible 3–5 A", RED),
         ("W20", "Conector 3 · Pin 1  →  Conector 3 · Pin 3 (puente, mismo canal)", "AWG 18 amarillo", AMBER),
         ("W21", "Conector 4 · Pin 1  →  Conector 4 · Pin 3 (puente, mismo canal)", "AWG 18 amarillo", AMBER),
         ("W22", "Batería (−)  →  Regleta GND", "AWG 14 negro · anilla M6", BLUE),
@@ -427,7 +488,10 @@ def sheet4():
         "• NUNCA lo conectes a +12 V permanente: dejaría el",
         "  aro encendido y descargaría la batería.",
         "• Pin 1 + Pin 3 comparten el límite de 5 A del canal.",
-    ], AMBER, "SOBRE EL PIN 3")
+        "• Fusible en línea de 3–5 A en cada cable rojo (W16–W19).",
+        "• Bocina de aire (> 5 A): Y4 solo excita la bobina de un relé",
+        "  (con diodo) y el contacto del relé lleva su propio fusible.",
+    ], AMBER, "NOTAS DE SALIDAS")
     s.legend(60, 950, [(RED, "+12 V PWM (salida MOSFET)"), (AMBER, "puente al Pin 3"), (BLUE, "GND / masa")])
     return s
 

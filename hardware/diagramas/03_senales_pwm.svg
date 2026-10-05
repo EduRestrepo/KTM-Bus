@@ -64,13 +64,15 @@
 <text x="78" y="883.0" font-size="15" fill="#6b7280" font-weight="bold" text-anchor="start">W15</text>
 <text x="146" y="883.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GND (header)  →  Placa MOSFET COM</text>
 <text x="786" y="883.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · negro</text>
-<rect x="1130" y="680" width="610" height="168" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
+<rect x="1130" y="680" width="610" height="216" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
 <text x="1146" y="708" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">NOTAS</text>
 <text x="1146" y="732" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Placa eletechsup OPMSA04_PNP: bornes X1–X4 + COM.</text>
 <text x="1146" y="756" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Puentes de la placa: Input Level = PNP</text>
 <text x="1146" y="780" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  y Trigger Voltage = 5V (señal 3,3 V del ESP32).</text>
 <text x="1146" y="804" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Con nivel PNP: COM a GND (W15, obligatorio) y</text>
 <text x="1146" y="828" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  señal ALTA en X1–X4 activa el canal.</text>
+<text x="1146" y="852" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Recomendado: resistencia 10 kΩ de cada X1–X4 a COM</text>
+<text x="1146" y="876" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  (evita parpadeos mientras la LILYGO arranca).</text>
 <path d="M 700 250 L 1100 250" fill="none" stroke="#e5e7eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 700 330 L 1100 330" fill="none" stroke="#facc15" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 700 410 L 1100 410" fill="none" stroke="#60a5fa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>

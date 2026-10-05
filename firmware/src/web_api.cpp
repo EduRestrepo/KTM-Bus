@@ -2,6 +2,7 @@
 #include "pwm_manager.h"
 #include "config_store.h"
 #include <WiFi.h>
+#include <ArduinoJson.h>
 
 WebApiServer webApiServer;
 
@@ -103,13 +104,76 @@ void WebApiServer::handlePostConfig() {
         server.send(400, "application/json", "{\"error\":\"Cuerpo vacio\"}");
         return;
     }
-    // Parseo básico de configuración enviada por la interfaz web
-    // Guardado en memoria no volátil
+    // No se admite configuración con la moto en marcha
+    if (p_telem->engine_running || p_telem->speed_kmh > 3.0f) {
+        server.send(409, "application/json", "{\"error\":\"Moto en marcha\"}");
+        return;
+    }
+
+    DynamicJsonDocument doc(3072);
+    DeserializationError err = deserializeJson(doc, server.arg("plain"));
+    if (err) {
+        server.send(400, "application/json", "{\"error\":\"JSON invalido\"}");
+        return;
+    }
+
+    // Se trabaja sobre una copia: solo se aplica si todo el documento es válido
+    SystemConfig newCfg = *p_cfg;
+
+    if (doc.containsKey("light_set_1_enabled")) newCfg.light_set_1_enabled = doc["light_set_1_enabled"].as<bool>();
+    if (doc.containsKey("light_set_2_enabled")) newCfg.light_set_2_enabled = doc["light_set_2_enabled"].as<bool>();
+
+    if (doc.containsKey("channels")) {
+        JsonArray arr = doc["channels"].as<JsonArray>();
+        if (arr.size() != 4) {
+            server.send(400, "application/json", "{\"error\":\"Se esperan 4 canales\"}");
+            return;
+        }
+        for (int i = 0; i < 4; i++) {
+            JsonObject c = arr[i];
+            ChannelSettings& ch = newCfg.channels[i];
+            if (c.containsKey("function")) {
+                int f = c["function"].as<int>();
+                if (f < 0 || f > (int)FUNC_RIGHT_TURN) {
+                    server.send(400, "application/json", "{\"error\":\"Funcion fuera de rango\"}");
+                    return;
+                }
+                ch.function = (CircuitFunction)f;
+            }
+            if (c.containsKey("fuse_amps"))      ch.current_limit_amps = c["fuse_amps"].as<float>();
+            if (c.containsKey("day_pct"))        ch.brightness_day = (uint8_t)constrain(c["day_pct"].as<int>(), 0, 100);
+            if (c.containsKey("night_pct"))      ch.brightness_night = (uint8_t)constrain(c["night_pct"].as<int>(), 0, 100);
+            if (c.containsKey("high_beam_pct"))  ch.brightness_high_beam = (uint8_t)constrain(c["high_beam_pct"].as<int>(), 0, 100);
+            if (c.containsKey("off_with_turn"))  ch.off_with_turn_signal = c["off_with_turn"].as<bool>();
+            if (c.containsKey("strobe_horn"))    ch.strobe_on_horn = c["strobe_horn"].as<bool>();
+            if (c.containsKey("strobe_pass"))    ch.strobe_on_pass = c["strobe_pass"].as<bool>();
+            if (c.containsKey("inverse_hazard")) ch.inverse_hazard = c["inverse_hazard"].as<bool>();
+            if (c.containsKey("off_delay_sec"))  ch.off_delay_seconds = (uint8_t)constrain(c["off_delay_sec"].as<int>(), 0, 120);
+        }
+    }
+
+    // Cambio opcional de credenciales WiFi (se aplican tras reiniciar)
+    if (doc.containsKey("wifi_password")) {
+        String pw = doc["wifi_password"].as<String>();
+        if (pw.length() < 8 || pw.length() >= sizeof(newCfg.wifi_password)) {
+            server.send(400, "application/json", "{\"error\":\"Contrasena WiFi 8-31 caracteres\"}");
+            return;
+        }
+        strncpy(newCfg.wifi_password, pw.c_str(), sizeof(newCfg.wifi_password));
+    }
+
+    configStore.sanitize(newCfg);
+    *p_cfg = newCfg;
     configStore.saveConfig(*p_cfg);
     server.send(200, "application/json", "{\"status\":\"ok\"}");
 }
 
 void WebApiServer::handlePostTest() {
+    // Prueba de canales solo con la moto parada (el modo prueba caduca solo a los 5 s)
+    if (p_telem->engine_running || p_telem->speed_kmh > 3.0f) {
+        server.send(409, "application/json", "{\"error\":\"Moto en marcha\"}");
+        return;
+    }
     if (server.hasArg("channel") && server.hasArg("duty")) {
         uint8_t ch = server.arg("channel").toInt();
         uint8_t duty = server.arg("duty").toInt();
@@ -121,6 +185,10 @@ void WebApiServer::handlePostTest() {
 }
 
 void WebApiServer::handlePostReset() {
+    if (p_telem->engine_running || p_telem->speed_kmh > 3.0f) {
+        server.send(409, "application/json", "{\"error\":\"Moto en marcha\"}");
+        return;
+    }
     configStore.setDefaults(*p_cfg);
     configStore.saveConfig(*p_cfg);
     server.send(200, "application/json", "{\"status\":\"reset_complete\"}");

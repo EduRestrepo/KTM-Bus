@@ -7,6 +7,11 @@
  * Identificadores CAN Bus estándar observados en KTM 1290 Super Adventure (2021-2024 Euro 5)
  * Velocidad de bus: 500 kbps (11-bit standard ID)
  * Modo de conexión: LISTEN_ONLY (Sólo escucha pasiva para 100% seguridad)
+ *
+ * ATENCIÓN: los IDs y máscaras de bits de este archivo son una HIPÓTESIS DE PARTIDA, NO están
+ * verificados contra una captura real de la moto. Antes de usarlos hay que activar el modo sniffer
+ * del firmware (enviar 's' por el monitor serie), pulsar cada mando de la moto y anotar qué ID,
+ * byte y bit cambia. Después corregir las constantes de este archivo.
  */
 
 #define KTM_CAN_SPEED_KBPS             500

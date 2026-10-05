@@ -77,6 +77,10 @@ struct KtmTelemetry {
     
     // Sensor de iluminación ambiental del cuadro TFT
     bool tft_night_mode;
+
+    // Vigilancia del bus CAN (si calla > 2 s = contacto OFF)
+    uint32_t last_can_ms;
+    bool can_seen;
 };
 
 // Estado de la máquina de estados del modo regulación rápida (On-The-Fly Dimming)
