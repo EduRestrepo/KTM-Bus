@@ -71,7 +71,7 @@ Pines 5/6 (K-Line/aux) del conector Euro 5: **no se conectan**. El Pin 3 se usa 
 | **W11** | LILYGO `GPIO 25` → MOSFET `X1` | Canal 1 · foco izquierdo |
 | **W12** | LILYGO `GPIO 32` → MOSFET `X2` | Canal 2 · foco derecho |
 | **W13** | LILYGO `GPIO 33` → MOSFET `X3` | Canal 3 · faros de niebla |
-| **W14** | LILYGO `GPIO 18` → MOSFET `X4` | Canal 4 · bocina / freno / aux |
+| **W14** | LILYGO `GPIO 18` → MOSFET `X4` | Canal 4 · luz de freno / aux |
 | **W15** | LILYGO `GND` → MOSFET `COM` | Masa lógica (obligatoria) |
 
 Recomendado: una resistencia de **10 kΩ** de cada entrada X1–X4 a COM, para que las luces no parpadeen mientras la LILYGO arranca (los GPIO quedan sin definir durante ~1 s).
@@ -107,8 +107,6 @@ Recomendado: una resistencia de **10 kΩ** de cada entrada X1–X4 a COM, para q
 
 > 💡 **Sobre el Pin 3:** va en **paralelo con el Pin 1** (mismo canal conmutado). Así se apaga con la moto y respeta el dimmer. **Nunca** lo conectes a +12 V permanente de la batería: el aro quedaría siempre encendido y descargaría la batería. Pin 1 + Pin 3 comparten el límite de 5 A del canal. Si algún día quieres un DRL independiente, hará falta un quinto canal.
 
-> 🔊 **Bocina de aire (SoundBomb o similar):** consume más de 5 A (a menudo 10–15 A), mucho más de lo que aguanta la placa MOSFET. **No la conectes a Y4.** Usa Y4 solo para excitar la bobina de un relé automotriz (con diodo antiparalelo) y alimenta la bocina por el contacto del relé, desde un fusible propio.
-
 ---
 
 ## 🗺️ Vista general (resumen en bloques)
@@ -141,5 +139,5 @@ graph LR
 4. **Resistencia de 120 Ω de la LILYGO:** el bus CAN de la KTM ya tiene sus dos terminaciones. Si la placa trae un puente/interruptor `120R`/`R2`, **déjalo en OFF**. Entre CAN_H y CAN_L debes medir ≈ 60 Ω.
 5. **Conmutación High-Side obligatoria:** la placa MOSFET debe ser de salida **PNP (High-Side)**. Una de salida NPN (Low-Side) deja las luces encendidas siempre, porque la masa del chasis cierra el circuito.
 6. **Pin 3 del Euro 5 solo como señal:** mídelo antes (0 V con contacto OFF, ≈ 12 V con contacto ON) y úsalo únicamente para el driver del relé (W32).
-7. **Bocina de aire:** nunca directa a Y4; siempre mediante relé con fusible propio.
+7. **Cargas de más de 3–5 A:** nunca directas a una salida Y; usa un relé excitado por la salida, con fusible propio.
 8. **Aislamiento en la caja IP65:** fija la LILYGO y la placa MOSFET con separadores o cinta de espuma para que las soldaduras no se toquen con las vibraciones.

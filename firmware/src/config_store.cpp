@@ -44,10 +44,9 @@ void ConfigStore::setDefaults(SystemConfig& cfg) {
     cfg.channels[2].inverse_hazard = false;
     cfg.channels[2].off_delay_seconds = 0;
 
-    // Canal 3 (Rojo): Bocina SoundBomb o Accesorio. IMPORTANTE: una bocina de aire consume > 5 A,
-    // este canal debe excitar la bobina de un RELÉ automotriz, nunca la bocina directamente.
+    // Canal 3 (Rojo): luz de freno / posición auxiliar (conector 4)
     // Estroboscopios desactivados por defecto (suelen estar prohibidos en vía pública).
-    cfg.channels[3].function = FUNC_HORN;
+    cfg.channels[3].function = FUNC_BRAKE_LIGHT;
     cfg.channels[3].current_limit_amps = 10.0f;
     cfg.channels[3].brightness_day = 100;
     cfg.channels[3].brightness_night = 100;

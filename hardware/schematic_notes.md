@@ -81,7 +81,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
    * **Enlace AliExpress**: [Item 1005008334229391](https://es.aliexpress.com/item/1005008334229391.html)
    * **Cantidad y Configuración**:
      * **2 Conectores de 2 Pines (2 holes)**: Set 1 de Focos Auxiliares (Foco Izquierdo y Foco Derecho).
-     * **2 Conectores de 3 Pines (3 holes)**: Set 2 de Focos de Niebla (con hilo DRL) y Conector 4 para Bocina / Luz de Freno estroboscópica.
+     * **2 Conectores de 3 Pines (3 holes)**: Set 2 de Focos de Niebla (con hilo DRL) y Conector 4 para Luz de Freno / Posición auxiliar.
 
 5. **Etapa de Potencia MOSFETs (4 Canales High-Side)**:
    * **Modelo**: Placa amplificadora PLC de 4 Canales con aislamiento optoacoplado.
@@ -89,7 +89,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
      * Formato: `4CH Only Board` (compacto para caja bajo asiento).
      * Control de entrada: `PNP Input 3.3-5V` (compatible con 3.3V nativo de los GPIOs del ESP32). Placa eletechsup OPMSA04_PNP: bornes de potencia VCC, GND, Y1-Y4; bornes de entrada X1-X4 y COM. Puentes de soldadura: Input Level = PNP y Trigger Voltage = 5V. Con nivel PNP, COM va a GND.
      * Salida conmutada: `PNP Output` (**High-Side**: conmuta +12V con masa común al chasis).
-     * Capacidad: el anuncio indica hasta 5A por canal, pero el serigrafiado de la placa menciona "<2A". **Confirma la corriente real en la ficha** y protege cada salida con un fusible en línea de 3–5A. Para cargas inductivas o de más de 3A (bocina de aire) usa un relé excitado por la salida.
+     * Capacidad: el anuncio indica hasta 5A por canal, pero el serigrafiado de la placa menciona "<2A". **Confirma la corriente real en la ficha** y protege cada salida con un fusible en línea de 3–5A. Para cargas de más de 3A usa un relé excitado por la salida.
 
 ### B. Componentes Restantes de la Instalación ⏳
 1. **Controlador ESP32**: **LILYGO T-CAN485** ([Item 1005003624034092](https://www.aliexpress.com/item/1005003624034092.html)) con transceptor CAN SN65HVD231 y borneras a tornillo.
@@ -118,7 +118,7 @@ La placa **LILYGO T-CAN485** ya integra el microcontrolador ESP32, el transcepto
 | **PWM Canal 1 (Blanco)** | `GPIO 25` | Foco Izquierdo Set 1 (LEDC Channel 0, 1 kHz) |
 | **PWM Canal 2 (Amarillo)**| `GPIO 32` | Foco Derecho Set 1 (LEDC Channel 1, 1 kHz) |
 | **PWM Canal 3 (Azul)** | `GPIO 33` | Focos de Niebla Set 2 (LEDC Channel 2, 1 kHz) |
-| **PWM Canal 4 (Rojo)** | `GPIO 18` | Bocina / Accesorio (LEDC Channel 3, 1 kHz) |
+| **PWM Canal 4 (Rojo)** | `GPIO 18` | Luz de freno / Aux (LEDC Channel 3, 1 kHz) |
 | **Alimentación LILYGO** | Bornera `VIN` (5V-12V) y `GND` | Alimentación de la placa (vía regulador o batería protegida) |
 | **LED RGB WS2812** | `GPIO 4` (Interno) | Indicador visual de estado CAN (Verde = Escuchando) |
 
@@ -136,12 +136,12 @@ Distribución en los 4 conectores **Superseal 1.5** comprados. Los IDs (W16…W2
   * **Pin 1 (rojo AWG 16, W17)**: `Y2` (+12 V conmutado por PWM, LEDC canal 1). Dimmer día/noche, ráfagas y apagado con intermitente derecho.
   * **Pin 2 (negro AWG 16, W24)**: GND desde la regleta de masa.
 
-### B. Conectores de 3 Pines (Nieblas y Bocina/Freno)
+### B. Conectores de 3 Pines (Nieblas y Freno/Aux)
 * **Conector 3 (Faros de niebla Set 2 + aro DRL)**:
   * **Pin 1 (rojo AWG 16, W18)**: `Y3` (+12 V conmutado por PWM, LEDC canal 2).
   * **Pin 2 (negro AWG 16, W25)**: GND desde la regleta de masa.
   * **Pin 3 (amarillo AWG 18, W20)**: aro DRL del foco, **en paralelo con el Pin 1** (mismo canal `Y3`).
-* **Conector 4 (Bocina / luz de freno estroboscópica / accesorio)**:
+* **Conector 4 (Luz de freno / posición auxiliar / accesorio)**:
   * **Pin 1 (rojo AWG 16, W19)**: `Y4` (+12 V conmutado por PWM, LEDC canal 3).
   * **Pin 2 (negro AWG 16, W26)**: GND desde la regleta de masa.
   * **Pin 3 (amarillo AWG 18, W21)**: luz de posición/aux, **en paralelo con el Pin 1** (mismo canal `Y4`).

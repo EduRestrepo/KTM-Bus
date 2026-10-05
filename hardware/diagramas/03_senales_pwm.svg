@@ -25,7 +25,7 @@
 <text x="1118" y="415" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X3</text>
 <text x="1118" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y3</text>
 <text x="684" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 18</text>
-<text x="684" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 4 · bocina / freno / aux</text>
+<text x="684" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 4 · luz de freno / aux</text>
 <text x="1118" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X4</text>
 <text x="1118" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y4</text>
 <text x="684" y="575" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GND</text>

@@ -94,7 +94,7 @@ El firmware de este proyecto viene **preconfigurado de fábrica para la placa [L
   * Canal Blanco (Foco Izq Set 1): **GPIO 25**
   * Canal Amarillo (Foco Der Set 1): **GPIO 32**
   * Canal Azul (Nieblas Set 2): **GPIO 33**
-  * Canal Rojo (Bocina / Accesorio): **GPIO 18**
+  * Canal Rojo (Luz de freno / Accesorio): **GPIO 18**
 
 ### Tabla Comparativa de Referencia:
 

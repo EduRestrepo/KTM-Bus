@@ -21,7 +21,6 @@ Guía completa y estado actualizado de compras para la construcción del clon DI
 | **Driver del relé** | ⏳ *Pendiente* | 1 transistor NPN `BC337`, 1 diodo `1N4007`, resistencias: 1×10 kΩ, 1×100 kΩ (+ 4×10 kΩ opcionales para las entradas X1–X4) | [Buscar kit resistencias y transistores](https://es.aliexpress.com/w/wholesale-bc337-1n4007-resistor-kit.html) |
 | **Fusibles en línea** | ⏳ *Pendiente* | 1 fusible de 15 A (principal), 1 portafusible mini ATO con fusible de 3 A (convertidor) y 4 portafusibles mini ATO con fusibles de 3–5 A (salidas) | [Buscar portafusibles ATO en línea](https://es.aliexpress.com/w/wholesale-inline-mini-blade-fuse-holder.html) |
 | **TVS (opcional)** | ⏳ *Pendiente* | Diodo TVS `SMBJ24A` en la entrada del convertidor (picos de alternador) | [Buscar SMBJ24A](https://es.aliexpress.com/w/wholesale-smbj24a.html) |
-| **Relé para bocina (si usas bocina de aire)** | ⏳ *Pendiente* | Relé 12 V 30 A + fusible propio. La bocina nunca va directa a la salida Y4 | [Buscar relé 12V 30A](https://es.aliexpress.com/w/wholesale-12v-30a-automotive-relay-socket.html) |
 | **Regleta de masa (GND)** | ⏳ *Pendiente* | Conectores de palanca **Wago 221-415** (5 vías) o equivalente, para repartir la masa a los 4 conectores | [Buscar Wago 221-415](https://es.aliexpress.com/w/wholesale-wago-221-415.html) |
 
 ---

@@ -358,7 +358,7 @@ def sheet3():
     s.box(1100, 140, 640, 480, "PLACA MOSFET 4 CANALES · entradas de señal", "#1d4ed8")
 
     left = [("GPIO 25", "Canal 1 · foco izquierdo"), ("GPIO 32", "Canal 2 · foco derecho"),
-            ("GPIO 33", "Canal 3 · faros de niebla"), ("GPIO 18", "Canal 4 · bocina / freno / aux"),
+            ("GPIO 33", "Canal 3 · faros de niebla"), ("GPIO 18", "Canal 4 · luz de freno / aux"),
             ("GND", "masa lógica")]
     right = [("X1", "→ Y1"), ("X2", "→ Y2"), ("X3", "→ Y3"), ("X4", "→ Y4"), ("COM", "común de entradas (a GND)")]
     cols = [TXT, YELLOW, "#60a5fa", "#f87171", GREY]
@@ -421,7 +421,7 @@ def sheet4():
          [("1", "+12 V PWM · Y3", "Faro de niebla · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Aro DRL del foco · amarillo AWG 18", AMBER)]),
         (712, 212, "CONECTOR 4 · 3 PINES · AUX / LUZ DE FRENO", "#ec4899", [777, 833, 889],
-         [("1", "+12 V PWM · Y4", "Aux / luz freno · rojo AWG 16 (bocina: ver nota)", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
+         [("1", "+12 V PWM · Y4", "Aux / luz freno · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Luz de posición / aux · amarillo AWG 18", AMBER)]),
     ]
     pin_y = {}
@@ -489,8 +489,7 @@ def sheet4():
         "  aro encendido y descargaría la batería.",
         "• Pin 1 + Pin 3 comparten el límite de 5 A del canal.",
         "• Fusible en línea de 3–5 A en cada cable rojo (W16–W19).",
-        "• Bocina de aire (> 5 A): Y4 solo excita la bobina de un relé",
-        "  (con diodo) y el contacto del relé lleva su propio fusible.",
+        "• Cargas de más de 3–5 A: usa un relé excitado por la salida.",
     ], AMBER, "NOTAS DE SALIDAS")
     s.legend(60, 950, [(RED, "+12 V PWM (salida MOSFET)"), (AMBER, "puente al Pin 3"), (BLUE, "GND / masa")])
     return s
