@@ -13,12 +13,12 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
        ┌───────────────┐
        │   [ 1 ] [ 2 ] │     Pin 1: CAN High (CAN-H)  -> Cable Naranja/Negro
    ┌───┤   [ 3 ] [ 4 ] ├───┐ Pin 2: CAN Low (CAN-L)   -> Cable Naranja/Marrón
-   │   │   [ 5 ] [ 6 ] │   │ Pin 3: +12V Positivo Contacto (KL15)
+   │   │   [ 5 ] [ 6 ] │   │ Pin 3: sin uso (no verificado)
    └───┴───────────────┴───┘ Pin 4: Tierra / Masa (GND)
                              Pin 5 / 6: K-Line / Diagnóstico Auxiliar
 ```
 
-> **IMPORTANTE DE SEGURIDAD**: Para máxima fiabilidad y evitar caídas de tensión en accesorios de alta potencia (luces de 60W-120W), la alimentación de potencia **NO** debe tomarse del pin 3 del conector Euro 5. La potencia se toma **de los bornes de la batería (+12V permanente KL30) con un fusible aéreo de 15A** y pasa por un **relé de contacto** que solo cierra con la moto encendida (así el consumo en reposo es ≈ 0 y no se descarga la batería). El pin 3 del Euro 5 (KL15) se usa **solo como señal** de mando de ese relé (a través de un transistor), nunca como potencia; **mídelo antes** (0 V con contacto OFF, ≈ 12 V con ON). El resto del conector Euro 5 se usa para leer **CAN-H**, **CAN-L** y masa **GND**.
+> **IMPORTANTE DE SEGURIDAD**: Para máxima fiabilidad y evitar caídas de tensión en accesorios de alta potencia (luces de 60W-120W), la alimentación de potencia **NO** debe tomarse del pin 3 del conector Euro 5. La potencia se toma **de los bornes de la batería (+12V permanente KL30) con un fusible aéreo de 15A** y pasa por un **relé de contacto** que solo cierra con la moto encendida (así el consumo en reposo es ≈ 0 y no se descarga la batería). La bobina del relé se alimenta con el cable **ACC1 o ACC2** de la moto (conmutado: 0 V al apagar, ≈ 12 V con contacto), **solo para la bobina** (≈ 100 mA); **mídelo antes**. El pin 3 del Euro 5 no se usa. El resto del conector Euro 5 se usa para leer **CAN-H**, **CAN-L** y masa **GND**.
 
 ---
 
@@ -63,7 +63,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
      * Pin 1 (Naranja/Negro): `CAN_H` ➔ Borna CAN_H de la LILYGO.
      * Pin 2 (Naranja/Marrón): `CAN_L` ➔ Borna CAN_L de la LILYGO.
      * Pin 4 (Marrón/Negro): `GND` ➔ Borna GND de la LILYGO.
-     * Pin 3 (+12V contacto, KL15): **solo señal** hacia el driver NPN del relé de contacto (W32). Nunca como potencia.
+     * Pin 3: no se conecta. El mando del relé sale del cable ACC1/ACC2 de la moto (W27).
 
 2. **Convertidor Reductor DC-DC Automotriz (12V a 5V 3A)**:
    * **Modelo**: Carcasa sellada en resina epoxi impermeable (IP67).

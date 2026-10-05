@@ -59,7 +59,7 @@ El sistema replica fielmente la lógica de control desde la piña izquierda orig
   * Pin 1: `CAN-High` (Cable Naranja/Negro)
   * Pin 2: `CAN-Low` (Cable Naranja/Marrón)
   * Pin 4: `GND` (Masa)
-* **Alimentación de Potencia**: Desde los bornes de la batería con **fusible de 15A** y a través de un **relé de contacto** (mandado por el pin 3 del Euro 5 como señal) para que no haya consumo con la moto parada.
+* **Alimentación de Potencia**: Desde los bornes de la batería con **fusible de 15A** y a través de un **relé de contacto** (bobina mandada por el cable ACC1/ACC2 conmutado de la moto) para que no haya consumo con la moto parada.
 * **Protección del Microcontrolador**: El driver TWAI del ESP32 opera en **`TWAI_MODE_LISTEN_ONLY`** (escucha pasiva). Nunca transmite pulsos de ACK ni inyecta datos al bus, garantizando cero interferencias con la ECU o el ABS Bosch de la moto.
 * 👉 **Esquema Completo de Cableado**: 4 hojas con cada cable numerado (W1–W26) en [EsquematicoConexiones.md](EsquematicoConexiones.md); imágenes en [hardware/diagramas/](hardware/diagramas/).
 

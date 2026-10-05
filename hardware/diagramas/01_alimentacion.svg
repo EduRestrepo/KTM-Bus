@@ -3,7 +3,7 @@
 <rect width="1800" height="70" fill="#121722"/>
 <rect width="8" height="70" fill="#ff6a13"/>
 <text x="30" y="32" font-size="24" font-weight="bold" fill="#ff6a13">KTM 1290 CANsmart · HOJA 1/4 — ALIMENTACIÓN, RELÉ DE CONTACTO Y MASAS</text>
-<text x="30" y="56" font-size="14" fill="#9ca3af">Batería → fusible 15 A → relé (solo con contacto) → placa MOSFET y convertidor 5 V → LILYGO</text>
+<text x="30" y="56" font-size="14" fill="#9ca3af">Batería → fusible 15 A → relé (mandado por ACC de la moto) → placa MOSFET y convertidor 5 V → LILYGO</text>
 <rect x="60" y="150" width="280" height="230" rx="10" fill="#161b26" stroke="#ef4444" stroke-width="2.5"/>
 <rect x="60" y="150" width="280" height="34" rx="10" fill="#ef4444"/>
 <rect x="60" y="174" width="280" height="10" fill="#ef4444"/>
@@ -25,9 +25,9 @@
 <rect x="660" y="174" width="220" height="10" fill="#8b5cf6"/>
 <text x="674" y="173.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">RELÉ 12 V · 30 A</text>
 <text x="674" y="275" font-size="14" fill="#ddd6fe" font-weight="bold" text-anchor="start">30</text>
-<text x="674" y="205" font-size="13" fill="#ddd6fe" font-weight="bold" text-anchor="start">86 (+ bobina)</text>
 <text x="868" y="275" font-size="14" fill="#ddd6fe" font-weight="bold" text-anchor="end">87</text>
-<text x="770" y="362" font-size="13" fill="#ddd6fe" font-weight="bold" text-anchor="middle">85 (− bobina)</text>
+<text x="720" y="362" font-size="13" fill="#ddd6fe" font-weight="bold" text-anchor="middle">85 (−)</text>
+<text x="820" y="362" font-size="13" fill="#ddd6fe" font-weight="bold" text-anchor="middle">86 (+)</text>
 <text x="770" y="318" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">Diodo D1 1N4007 en la bobina</text>
 <text x="770" y="336" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">(cátodo a 86, ánodo a 85)</text>
 <rect x="990" y="230" width="140" height="80" rx="10" fill="#161b26" stroke="#10b981" stroke-width="2.5"/>
@@ -56,14 +56,13 @@
 <rect x="100" y="470" width="240" height="220" rx="10" fill="#161b26" stroke="#f59e0b" stroke-width="2.5"/>
 <rect x="100" y="470" width="240" height="34" rx="10" fill="#f59e0b"/>
 <rect x="100" y="494" width="240" height="10" fill="#f59e0b"/>
-<text x="114" y="493.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">DRIVER DE CONTACTO</text>
-<text x="220" y="530" font-size="13" fill="#fde68a" font-weight="bold" text-anchor="middle">C → relé 85</text>
-<text x="330" y="565" font-size="13" fill="#fde68a" font-weight="bold" text-anchor="end">IN ← KL15</text>
-<text x="112" y="665" font-size="13" fill="#93c5fd" font-weight="bold" text-anchor="start">E → GND</text>
-<text x="220" y="590" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">NPN BC337</text>
-<text x="220" y="612" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">R1 10 kΩ en la base</text>
-<text x="220" y="632" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">R2 100 kΩ base–GND</text>
-<text x="350" y="540" font-size="12" fill="#fde68a" font-weight="normal" text-anchor="start">← Euro 5 pin 3 (Hoja 2)</text>
+<text x="114" y="493.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">CABLE ACC DE LA MOTO</text>
+<text x="330" y="525" font-size="13" fill="#fde68a" font-weight="bold" text-anchor="end">ACC +12 V</text>
+<text x="220" y="560" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">ACC1 o ACC2 (conmutado)</text>
+<text x="220" y="584" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">+12 V solo con contacto ON</text>
+<text x="220" y="604" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">0 V al apagar la moto</text>
+<text x="220" y="634" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">Solo alimenta la bobina</text>
+<text x="220" y="654" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="middle">(≈ 100 mA). Mide antes.</text>
 <rect x="500" y="560" width="640" height="240" rx="10" fill="#161b26" stroke="#1d4ed8" stroke-width="2.5"/>
 <rect x="500" y="560" width="640" height="34" rx="10" fill="#1d4ed8"/>
 <rect x="500" y="584" width="640" height="10" fill="#1d4ed8"/>
@@ -89,65 +88,55 @@
 <text x="646" y="1045.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 rojo</text>
 <rect x="60" y="1058" width="840" height="36" fill="#121722"/>
 <rect x="60" y="1058" width="6" height="36" fill="#ef4444"/>
-<text x="78" y="1081.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W27</text>
-<text x="146" y="1081.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Portafusible SALIDA  →  Relé pin 86 (+ bobina)</text>
-<text x="646" y="1081.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 rojo</text>
+<text x="78" y="1081.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W3</text>
+<text x="146" y="1081.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 87  →  Placa MOSFET VCC</text>
+<text x="646" y="1081.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 rojo</text>
 <rect x="60" y="1094" width="840" height="36" fill="#171d2b"/>
 <rect x="60" y="1094" width="6" height="36" fill="#ef4444"/>
-<text x="78" y="1117.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W3</text>
-<text x="146" y="1117.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 87  →  Placa MOSFET VCC</text>
-<text x="646" y="1117.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 rojo</text>
+<text x="78" y="1117.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W28</text>
+<text x="146" y="1117.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 87  →  Fusible 3 A ENTRADA</text>
+<text x="646" y="1117.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 rojo</text>
 <rect x="60" y="1130" width="840" height="36" fill="#121722"/>
 <rect x="60" y="1130" width="6" height="36" fill="#ef4444"/>
-<text x="78" y="1153.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W28</text>
-<text x="146" y="1153.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 87  →  Fusible 3 A ENTRADA</text>
+<text x="78" y="1153.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W29</text>
+<text x="146" y="1153.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Fusible 3 A SALIDA  →  Convertidor IN (+)</text>
 <text x="646" y="1153.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 rojo</text>
 <rect x="60" y="1166" width="840" height="36" fill="#171d2b"/>
-<rect x="60" y="1166" width="6" height="36" fill="#ef4444"/>
-<text x="78" y="1189.0" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">W29</text>
-<text x="146" y="1189.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Fusible 3 A SALIDA  →  Convertidor IN (+)</text>
-<text x="646" y="1189.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 rojo</text>
+<rect x="60" y="1166" width="6" height="36" fill="#3b82f6"/>
+<text x="78" y="1189.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W4</text>
+<text x="146" y="1189.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Convertidor IN (−)</text>
+<text x="646" y="1189.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 negro · anilla M6</text>
 <rect x="60" y="1202" width="840" height="36" fill="#121722"/>
 <rect x="60" y="1202" width="6" height="36" fill="#3b82f6"/>
-<text x="78" y="1225.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W4</text>
-<text x="146" y="1225.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Convertidor IN (−)</text>
-<text x="646" y="1225.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 18 negro · anilla M6</text>
+<text x="78" y="1225.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W5</text>
+<text x="146" y="1225.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Placa MOSFET GND</text>
+<text x="646" y="1225.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 negro · anilla M6</text>
 <rect x="60" y="1238" width="840" height="36" fill="#171d2b"/>
-<rect x="60" y="1238" width="6" height="36" fill="#3b82f6"/>
-<text x="78" y="1261.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W5</text>
-<text x="146" y="1261.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Batería (−)  →  Placa MOSFET GND</text>
-<text x="646" y="1261.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 14 negro · anilla M6</text>
+<rect x="60" y="1238" width="6" height="36" fill="#22d3ee"/>
+<text x="78" y="1261.0" font-size="15" fill="#22d3ee" font-weight="bold" text-anchor="start">W6</text>
+<text x="146" y="1261.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (+) 5 V  →  LILYGO VIN</text>
+<text x="646" y="1261.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 rojo</text>
 <rect x="60" y="1274" width="840" height="36" fill="#121722"/>
-<rect x="60" y="1274" width="6" height="36" fill="#22d3ee"/>
-<text x="78" y="1297.0" font-size="15" fill="#22d3ee" font-weight="bold" text-anchor="start">W6</text>
-<text x="146" y="1297.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (+) 5 V  →  LILYGO VIN</text>
-<text x="646" y="1297.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 rojo</text>
+<rect x="60" y="1274" width="6" height="36" fill="#6b7280"/>
+<text x="78" y="1297.0" font-size="15" fill="#6b7280" font-weight="bold" text-anchor="start">W7</text>
+<text x="146" y="1297.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (−)  →  LILYGO GND</text>
+<text x="646" y="1297.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 negro</text>
 <rect x="60" y="1310" width="840" height="36" fill="#171d2b"/>
-<rect x="60" y="1310" width="6" height="36" fill="#6b7280"/>
-<text x="78" y="1333.0" font-size="15" fill="#6b7280" font-weight="bold" text-anchor="start">W7</text>
-<text x="146" y="1333.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Convertidor OUT (−)  →  LILYGO GND</text>
-<text x="646" y="1333.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 negro</text>
+<rect x="60" y="1310" width="6" height="36" fill="#f59e0b"/>
+<text x="78" y="1333.0" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">W27</text>
+<text x="146" y="1333.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Cable ACC conmutado (ACC1 o ACC2)  →  Relé pin 86 (+ bobina)</text>
+<text x="646" y="1333.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 amarillo</text>
 <rect x="60" y="1346" width="840" height="36" fill="#121722"/>
 <rect x="60" y="1346" width="6" height="36" fill="#3b82f6"/>
 <text x="78" y="1369.0" font-size="15" fill="#3b82f6" font-weight="bold" text-anchor="start">W30</text>
-<text x="146" y="1369.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Driver emisor (E)  →  GND (empalme en W5)</text>
-<text x="646" y="1369.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 negro</text>
-<rect x="60" y="1382" width="840" height="36" fill="#171d2b"/>
-<rect x="60" y="1382" width="6" height="36" fill="#f59e0b"/>
-<text x="78" y="1405.0" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">W31</text>
-<text x="146" y="1405.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 85 (− bobina)  →  Driver colector (C)</text>
-<text x="646" y="1405.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 amarillo</text>
-<rect x="60" y="1418" width="840" height="36" fill="#121722"/>
-<rect x="60" y="1418" width="6" height="36" fill="#f59e0b"/>
-<text x="78" y="1441.0" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">W32</text>
-<text x="146" y="1441.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Euro 5 pin 3 (KL15)  →  Driver IN (R1 a la base)</text>
-<text x="646" y="1441.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 22 amarillo</text>
+<text x="146" y="1369.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">Relé pin 85 (− bobina)  →  GND (empalme en W5)</text>
+<text x="646" y="1369.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 20 negro</text>
 <rect x="1180" y="560" width="590" height="168" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
 <text x="1196" y="588" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">ORDEN DE MONTAJE</text>
 <text x="1196" y="612" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">1. Desconecta el borne (−) de la batería antes de empezar.</text>
 <text x="1196" y="636" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">2. Portafusible SIN fusible hasta terminar y revisar.</text>
-<text x="1196" y="660" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">3. Mide el pin 3 del Euro 5: 0 V con contacto OFF y</text>
-<text x="1196" y="684" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">   ≈ 12 V con contacto ON (si no, no es KL15).</text>
+<text x="1196" y="660" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">3. Mide el cable ACC elegido: 0 V con contacto OFF y</text>
+<text x="1196" y="684" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">   ≈ 12 V con contacto ON.</text>
 <text x="1196" y="708" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">4. Sin contacto el relé corta todo: consumo en reposo ≈ 0.</text>
 <rect x="1180" y="740" width="590" height="144" rx="8" fill="#1a1710" stroke="#ef4444" stroke-width="1.8"/>
 <text x="1196" y="768" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="start">PROTECCIONES</text>
@@ -167,7 +156,6 @@
 <text x="792" y="865" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">señal contacto / bobina</text>
 <path d="M 340 270 L 390 270" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 550 270 L 660 270" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 590 270 L 590 200 L 660 200" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 925 270 L 925 560" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 880 270 L 990 270" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 1130 270 L 1200 270" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -175,16 +163,15 @@
 <path d="M 60 250 L 20 250 L 20 745 L 500 745" fill="none" stroke="#3b82f6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 1450 230 L 1520 230" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 1450 320 L 1520 320" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 100 660 L 20 660" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 770 380 L 770 430 L 220 430 L 220 470" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 340 560 L 440 560" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 340 520 L 820 520 L 820 380" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 720 380 L 720 430 L 20 430" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="340" cy="270" r="8" fill="#0b0f16" stroke="#ef4444" stroke-width="3.5"/><circle cx="340" cy="270" r="2.5" fill="#ef4444"/>
 <circle cx="390" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="390" cy="270" r="2.5" fill="#10b981"/>
 <circle cx="550" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="550" cy="270" r="2.5" fill="#10b981"/>
 <circle cx="660" cy="270" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="660" cy="270" r="2.5" fill="#8b5cf6"/>
-<circle cx="660" cy="200" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="660" cy="200" r="2.5" fill="#8b5cf6"/>
 <circle cx="880" cy="270" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="880" cy="270" r="2.5" fill="#8b5cf6"/>
-<circle cx="770" cy="380" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="770" cy="380" r="2.5" fill="#8b5cf6"/>
+<circle cx="720" cy="380" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="720" cy="380" r="2.5" fill="#8b5cf6"/>
+<circle cx="820" cy="380" r="8" fill="#0b0f16" stroke="#8b5cf6" stroke-width="3.5"/><circle cx="820" cy="380" r="2.5" fill="#8b5cf6"/>
 <circle cx="990" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="990" cy="270" r="2.5" fill="#10b981"/>
 <circle cx="1130" cy="270" r="8" fill="#0b0f16" stroke="#10b981" stroke-width="3.5"/><circle cx="1130" cy="270" r="2.5" fill="#10b981"/>
 <circle cx="1200" cy="270" r="8" fill="#0b0f16" stroke="#ef4444" stroke-width="3.5"/><circle cx="1200" cy="270" r="2.5" fill="#ef4444"/>
@@ -197,19 +184,13 @@
 <circle cx="1520" cy="230" r="8" fill="#0b0f16" stroke="#22d3ee" stroke-width="3.5"/><circle cx="1520" cy="230" r="2.5" fill="#22d3ee"/>
 <circle cx="1520" cy="320" r="8" fill="#0b0f16" stroke="#6b7280" stroke-width="3.5"/><circle cx="1520" cy="320" r="2.5" fill="#6b7280"/>
 <circle cx="500" cy="745" r="8" fill="#0b0f16" stroke="#3b82f6" stroke-width="3.5"/><circle cx="500" cy="745" r="2.5" fill="#3b82f6"/>
-<circle cx="100" cy="660" r="8" fill="#0b0f16" stroke="#f59e0b" stroke-width="3.5"/><circle cx="100" cy="660" r="2.5" fill="#f59e0b"/>
-<circle cx="220" cy="470" r="8" fill="#0b0f16" stroke="#f59e0b" stroke-width="3.5"/><circle cx="220" cy="470" r="2.5" fill="#f59e0b"/>
-<circle cx="340" cy="560" r="8" fill="#0b0f16" stroke="#f59e0b" stroke-width="3.5"/><circle cx="340" cy="560" r="2.5" fill="#f59e0b"/>
-<circle cx="440" cy="560" r="8" fill="#0b0f16" stroke="#f59e0b" stroke-width="3.5"/><circle cx="440" cy="560" r="2.5" fill="#f59e0b"/>
-<circle cx="590" cy="270" r="7" fill="#ef4444" stroke="#0b0f16" stroke-width="2.5"/>
+<circle cx="340" cy="520" r="8" fill="#0b0f16" stroke="#f59e0b" stroke-width="3.5"/><circle cx="340" cy="520" r="2.5" fill="#f59e0b"/>
 <circle cx="925" cy="270" r="7" fill="#ef4444" stroke="#0b0f16" stroke-width="2.5"/>
-<circle cx="20" cy="660" r="7" fill="#3b82f6" stroke="#0b0f16" stroke-width="2.5"/>
+<circle cx="20" cy="430" r="7" fill="#3b82f6" stroke="#0b0f16" stroke-width="2.5"/>
 <rect x="346.0" y="258" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
 <text x="365" y="275" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W1</text>
 <rect x="606.0" y="258" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
 <text x="625" y="275" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W2</text>
-<rect x="601.5" y="188" width="47" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
-<text x="625" y="205" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W27</text>
 <rect x="906.0" y="408" width="38" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
 <text x="925" y="425" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">W3</text>
 <rect x="934.5" y="258" width="47" height="24" rx="6" fill="#0b0f16" stroke="#ef4444" stroke-width="2"/>
@@ -224,10 +205,8 @@
 <text x="1485" y="235" font-size="14" font-weight="bold" fill="#22d3ee" text-anchor="middle">W6</text>
 <rect x="1466.0" y="308" width="38" height="24" rx="6" fill="#0b0f16" stroke="#6b7280" stroke-width="2"/>
 <text x="1485" y="325" font-size="14" font-weight="bold" fill="#6b7280" text-anchor="middle">W7</text>
-<rect x="36.5" y="648" width="47" height="24" rx="6" fill="#0b0f16" stroke="#3b82f6" stroke-width="2"/>
-<text x="60" y="665" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">W30</text>
-<rect x="476.5" y="418" width="47" height="24" rx="6" fill="#0b0f16" stroke="#f59e0b" stroke-width="2"/>
-<text x="500" y="435" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">W31</text>
-<rect x="366.5" y="548" width="47" height="24" rx="6" fill="#0b0f16" stroke="#f59e0b" stroke-width="2"/>
-<text x="390" y="565" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">W32</text>
+<rect x="556.5" y="508" width="47" height="24" rx="6" fill="#0b0f16" stroke="#f59e0b" stroke-width="2"/>
+<text x="580" y="525" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">W27</text>
+<rect x="376.5" y="418" width="47" height="24" rx="6" fill="#0b0f16" stroke="#3b82f6" stroke-width="2"/>
+<text x="400" y="435" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">W30</text>
 </svg>

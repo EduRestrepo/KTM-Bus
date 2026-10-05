@@ -2,14 +2,14 @@
 
 Guía de cableado de la **KTM 1290 Super Adventure S (2024 Euro 5)** con los materiales de [`ListaCompras.md`](ListaCompras.md).
 
-El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **cada cable tiene un ID (W1…W32)** que es el mismo en la imagen y en las tablas de este documento, y ningún cable se cruza ni se solapa con otro.
+El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **cada cable tiene un ID (W1…W30)** que es el mismo en la imagen y en las tablas de este documento, y ningún cable se cruza ni se solapa con otro.
 
 > 🖼️ Cada hoja existe en **PNG** (para ver/imprimir) y en **SVG** (el mismo dibujo en vectorial, ampliable sin perder calidad) dentro de [`hardware/diagramas/`](hardware/diagramas/). Son idénticos: usa el que prefieras. Se regeneran con `python hardware/generate_diagrams.py`.
 
 | Hoja | Qué conectas | Cables |
 | :---: | :--- | :---: |
-| [1 · Alimentación](#hoja-1--alimentación-relé-de-contacto-y-masas) | Batería → fusible 15 A → relé de contacto → placa MOSFET y convertidor 5 V → LILYGO | W1–W7, W27–W32 |
-| [2 · Bus CAN](#hoja-2--bus-can-solo-escucha) | Conector rojo Euro 5 → LILYGO (y pin 3 → driver del relé) | W8–W10, W32 |
+| [1 · Alimentación](#hoja-1--alimentación-relé-de-contacto-y-masas) | Batería → fusible 15 A → relé de contacto (bobina por ACC de la moto) → placa MOSFET y convertidor 5 V → LILYGO | W1–W7, W27–W30 |
+| [2 · Bus CAN](#hoja-2--bus-can-solo-escucha) | Conector rojo Euro 5 → LILYGO (solo CAN-H, CAN-L y GND) | W8–W10 |
 | [3 · Señales PWM](#hoja-3--señales-pwm-lilygo--placa-mosfet) | LILYGO → entradas de la placa MOSFET | W11–W15 |
 | [4 · Salidas](#hoja-4--salidas-a-los-conectores-superseal) | Placa MOSFET → 4 conectores Superseal + regleta GND | W16–W26 |
 
@@ -25,7 +25,6 @@ El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **
 | :---: | :--- | :--- |
 | **W1** | Batería (+) → Portafusible ENTRADA | AWG 14 rojo · anilla M6 |
 | **W2** | Portafusible SALIDA → Relé pin 30 | AWG 14 rojo |
-| **W27** | Portafusible SALIDA → Relé pin 86 (+ bobina) | AWG 20 rojo |
 | **W3** | Relé pin 87 → Placa MOSFET VCC | AWG 14 rojo |
 | **W28** | Relé pin 87 → Fusible 3 A ENTRADA | AWG 18 rojo |
 | **W29** | Fusible 3 A SALIDA → Convertidor IN (+) | AWG 18 rojo |
@@ -33,15 +32,14 @@ El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **
 | **W5** | Batería (−) → Placa MOSFET GND | AWG 14 negro · anilla M6 |
 | **W6** | Convertidor OUT (+) 5 V → LILYGO VIN | AWG 20 rojo |
 | **W7** | Convertidor OUT (−) → LILYGO GND | AWG 20 negro |
-| **W30** | Driver emisor (E) → GND (empalme en W5) | AWG 22 negro |
-| **W31** | Relé pin 85 (− bobina) → Driver colector (C) | AWG 22 amarillo |
-| **W32** | Euro 5 pin 3 (KL15) → Driver IN (R1 10 kΩ a la base) | AWG 22 amarillo |
+| **W27** | Cable ACC conmutado (ACC1 o ACC2) → Relé pin 86 (+ bobina) | AWG 20 amarillo |
+| **W30** | Relé pin 85 (− bobina) → GND (empalme en W5) | AWG 20 negro |
 
 **Por qué hay un relé de contacto:** sin él, la LILYGO (con WiFi), el convertidor y la placa MOSFET quedan conectados al +12 V permanente y consumen unos 60–100 mA incluso con la moto parada (≈ 2 Ah/día: descarga la batería en pocos días). Con el relé, todo se corta cuando se quita el contacto y el consumo en reposo es ≈ 0.
 
-**Driver de contacto (módulo de 4 componentes):** transistor NPN `BC337`, resistencia `R1 10 kΩ` en serie con la base, resistencia `R2 100 kΩ` entre base y GND, y diodo `D1 1N4007` en antiparalelo con la bobina del relé (cátodo a pin 86, ánodo a pin 85). El pin 3 del Euro 5 solo entrega una señal de mando (unos 1 mA), nunca potencia.
+**Mando del relé por ACC:** la moto tiene los conectores **ACC1 y ACC2**, que según el propietario quedan a 0 V al apagar la moto. Uno de ellos (conmutado) alimenta **solo la bobina** del relé (pin 86, ≈ 100 mA) y el pin 85 va a masa. En paralelo con la bobina va el diodo `D1 1N4007` (cátodo a pin 86, ánodo a pin 85). Ya no hace falta transistor ni resistencias, y el pin 3 del Euro 5 no se usa. La potencia de las luces **no** sale del ACC, sino de la batería por el fusible de 15 A y el contacto del relé (pines 30/87).
 
-> ⚠️ **Antes de montar el driver, mide el pin 3 del Euro 5** con un multímetro respecto al pin 4 (GND): debe dar ≈ 0 V con el contacto OFF y ≈ 12 V con el contacto ON. Si no es así, no es KL15 y habrá que usar otra toma de contacto (p. ej. la salida switched del fusible del contacto de la moto).
+> ⚠️ **Antes de conectar, mide el cable ACC elegido** con un multímetro respecto a masa: debe dar ≈ 0 V con el contacto OFF y ≈ 12 V con el contacto ON. Comprueba también en el manual qué corriente y fusible tiene el circuito ACC (la bobina solo necesita ≈ 100 mA).
 
 **Fusibles:** 15 A en el portafusible principal (protege el AWG 14 y la placa), 3 A en línea para el convertidor (AWG 18) y 3–5 A en línea en cada salida Y1–Y4 (AWG 16).
 
@@ -56,9 +54,8 @@ El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **
 | **W8** | Euro 5 Pin 1 (CAN-H, naranja/negro) → LILYGO `CAN_H` | AWG 22 |
 | **W9** | Euro 5 Pin 2 (CAN-L, naranja/marrón) → LILYGO `CAN_L` | AWG 22 |
 | **W10** | Euro 5 Pin 4 (GND) → LILYGO `GND` (bornera CAN) | AWG 22 |
-| **W32** | Euro 5 Pin 3 (KL15) → Driver de contacto (Hoja 1), solo señal | AWG 22 amarillo |
 
-Pines 5/6 (K-Line/aux) del conector Euro 5: **no se conectan**. El Pin 3 se usa **solo como señal** hacia el driver del relé (W32), nunca como alimentación.
+Pines 3, 5 y 6 del conector Euro 5: **no se conectan**. El contacto lo da el cable ACC de la moto (Hoja 1, W27), no el Euro 5.
 
 ---
 
@@ -114,9 +111,9 @@ Recomendado: una resistencia de **10 kΩ** de cada entrada X1–X4 a COM, para q
 ```mermaid
 graph LR
     BAT["Batería 12 V"] -->|W1| FUSE["Portafusible 15 A"]
-    FUSE -->|"W2, W27"| REL["Relé de contacto"]
-    EURO3["Euro 5 pin 3 (KL15)"] -->|"W32 (señal)"| DRV["Driver NPN"]
-    DRV -->|W31| REL
+    FUSE -->|"W2"| REL["Relé de contacto"]
+    ACC["Cable ACC1/ACC2 (conmutado)"] -->|"W27 (bobina 86)"| REL
+    REL -->|"W30 (85 a GND)"| GNDB["GND batería"]
     REL -->|W3| MOS["Placa MOSFET 4CH"]
     REL -->|"W28, W29 (fusible 3 A)"| DCDC["Convertidor 12V→5V"]
     BAT -->|"W4, W5 (GND)"| DCDC
@@ -138,6 +135,6 @@ graph LR
 3. **Escucha pasiva del bus CAN (Listen-Only):** el firmware usa `TWAI_MODE_LISTEN_ONLY`. Tu placa solo escucha; no envía ACK ni inyecta tramas, así que no afecta a la ECU ni al ABS.
 4. **Resistencia de 120 Ω de la LILYGO:** el bus CAN de la KTM ya tiene sus dos terminaciones. Si la placa trae un puente/interruptor `120R`/`R2`, **déjalo en OFF**. Entre CAN_H y CAN_L debes medir ≈ 60 Ω.
 5. **Conmutación High-Side obligatoria:** la placa MOSFET debe ser de salida **PNP (High-Side)**. Una de salida NPN (Low-Side) deja las luces encendidas siempre, porque la masa del chasis cierra el circuito.
-6. **Pin 3 del Euro 5 solo como señal:** mídelo antes (0 V con contacto OFF, ≈ 12 V con contacto ON) y úsalo únicamente para el driver del relé (W32).
+6. **ACC solo para la bobina del relé:** mide el cable ACC antes (0 V con contacto OFF, ≈ 12 V con ON). Nunca cargues las luces ni la placa en el ACC.
 7. **Cargas de más de 3–5 A:** nunca directas a una salida Y; usa un relé excitado por la salida, con fusible propio.
 8. **Aislamiento en la caja IP65:** fija la LILYGO y la placa MOSFET con separadores o cinta de espuma para que las soldaduras no se toquen con las vibraciones.
