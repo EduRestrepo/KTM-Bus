@@ -239,7 +239,7 @@
 
     <rect x="20" y="121" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
     <circle cx="35" cy="134" r="5" fill="#ffcc00"/>
-    <text x="50" y="138" fill="#fff3bf" font-size="9" font-weight="bold">Pin 3: DRL / Luz Diurna (Opcional)</text>
+    <text x="50" y="138" fill="#fff3bf" font-size="9" font-weight="bold">Pin 3: DRL / Luz Diurna (+12V)</text>
   </g>
 
   <!-- Conector 4: 3 PINES (Bocina / Accesorio) -->
@@ -252,15 +252,15 @@
     <!-- Pines -->
     <rect x="20" y="55" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
     <circle cx="35" cy="68" r="5" fill="#ff3333"/>
-    <text x="50" y="72" fill="#ff9999" font-size="9" font-weight="bold">Pin 1: +12V (OUT 4 PWM Bocina)</text>
+    <text x="50" y="72" fill="#ff9999" font-size="9" font-weight="bold">Pin 1: +12V (OUT 4 PWM Bocina/Freno)</text>
 
     <rect x="20" y="88" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
     <circle cx="35" cy="101" r="5" fill="#1a73e8"/>
     <text x="50" y="105" fill="#90cdf4" font-size="9" font-weight="bold">Pin 2: Masa / GND Común</text>
 
     <rect x="20" y="121" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
-    <circle cx="35" cy="134" r="5" fill="#00ffcc"/>
-    <text x="50" y="138" fill="#cbf3f0" font-size="9" font-weight="bold">Pin 3: Luz Freno / Aux (Opcional)</text>
+    <circle cx="35" cy="134" r="5" fill="#ffcc00"/>
+    <text x="50" y="138" fill="#fff3bf" font-size="9" font-weight="bold">Pin 3: Luz Posición / Aux (+12V)</text>
   </g>
 
   <!-- LINEAS DE CABLEADO (RUTAS EXACTAS) -->
@@ -318,5 +318,14 @@
   <path d="M 660 555 L 660 670" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
   <circle cx="940" cy="555" r="3" fill="#1a73e8"/>
   <path d="M 940 555 L 940 670" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
+
+  <!-- Línea DRL / Posición (+12V Protegido) hacia Pin 3 de Conector 3 y Conector 4 -->
+  <path d="M 450 145 L 450 200 L 705 200 L 705 565 L 1120 565 L 1120 691" fill="none" stroke="#ffcc00" stroke-width="2.5"/>
+  <circle cx="450" cy="145" r="3" fill="#ffcc00"/>
+  <!-- Derivación a Conector 3 Pin 3 -->
+  <path d="M 840 565 L 840 691" fill="none" stroke="#ffcc00" stroke-width="2.5"/>
+  <circle cx="840" cy="565" r="3" fill="#ffcc00"/>
+  <circle cx="840" cy="691" r="3" fill="#ffcc00"/>
+  <circle cx="1120" cy="691" r="3" fill="#ffcc00"/>
 
 </svg>

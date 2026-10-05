@@ -125,10 +125,33 @@ La placa **LILYGO T-CAN485** ya integra el microcontrolador ESP32, el transcepto
 ---
 
 ## 5. Cableado hacia los Accesorios (Conectores Estancos Comprados)
-Para igualar la calidad del DENALI CANsmart:
-* Utilizar los conectores comprados **Superseal 1.5**:
-  * **2 Conectores de 2 Pines**: Para los focos auxiliares izquierdo y derecho (Set 1).
-  * **2 Conectores de 3 Pines**: Para los faros de niebla (Set 2 con DRL) y bocina/freno.
-* Cableado siliconado AWG 16 (para canales de luces hasta 5A-10A) y AWG 14 (para alimentación principal y masa general).
-* 👉 **Plano de Conexión Completo**: Consulta [EsquematicoConexiones.md](file:///c:/APPS-DEV/zzz/KTM-Bus/EsquematicoConexiones.md) y la imagen técnica verificada [ktm_wiring_diagram_v2.jpg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.jpg).
+
+Para igualar la robustez y calidad del DENALI CANsmart, la distribución en los 4 conectores **Superseal 1.5** comprados se realiza de forma estricta:
+
+### A. Conectores de 2 Pines (Juego 1 de Focos Auxiliares)
+* **Conector 1 (Foco Auxiliar Izquierdo - Set 1)**:
+  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 1` (+12V conmutado por PWM, LEDC Canal 0). Dimmer día/noche, ráfagas y apagado al activar intermitente izquierdo.
+  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` directa al borne negativo de la batería.
+* **Conector 2 (Foco Auxiliar Derecho - Set 1)**:
+  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 2` (+12V conmutado por PWM, LEDC Canal 1). Dimmer día/noche, ráfagas y apagado al activar intermitente derecho.
+  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` directa al borne negativo de la batería.
+
+### B. Conectores de 3 Pines (Nieblas con DRL y Freno/Accesorio)
+* **Conector 3 (Faros de Niebla Set 2 + Aro DRL)**:
+  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 3` (+12V conmutado por PWM, LEDC Canal 2). Encendido con triple clic en botón cancelar intermitente o dimmer dedicado.
+  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` de retorno.
+  * **Pin 3 (Cable Amarillo AWG 18)**: **Luz Diurna / Aro DRL (Halo)**. Conectado directamente a la **Línea DRL / Posición (+12V bajo contacto protegido)** para que el halo ámbar o blanco permanezca encendido con la moto en marcha.
+* **Conector 4 (Luz de Freno Estroboscópica / Bocina / Accesorio)**:
+  * **Pin 1 (Cable Rojo AWG 16)**: Salida `OUT 4` (+12V conmutado por PWM, LEDC Canal 3). Destello estroboscópico de alerta al frenar o activar la bocina.
+  * **Pin 2 (Cable Negro AWG 16)**: Masa común `GND` de retorno.
+  * **Pin 3 (Cable Amarillo AWG 18)**: **Luz de Posición Trasera (Running Light)**. Conectado a la **Línea DRL / Posición (+12V bajo contacto protegido)** para iluminación tenue fija de posición.
+
+---
+
+## 6. Documentación Gráfica y Planos de Conexión
+
+* 📊 **Plano de Conexionado Detallado**: Consulta [EsquematicoConexiones.md](file:///c:/APPS-DEV/zzz/KTM-Bus/EsquematicoConexiones.md) para el pinout paso a paso.
+* 🖼️ **Esquema Visual de Componentes y Cableado (Alta Resolución)**: [hardware/ktm_wiring_diagram_v2.jpg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.jpg) y [hardware/ktm_wiring_diagram_v2.png](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_diagram_v2.png).
+* 📐 **Diagrama Técnico Vectorial SVG**: [hardware/ktm_wiring_schematic.svg](file:///c:/APPS-DEV/zzz/KTM-Bus/hardware/ktm_wiring_schematic.svg).
+
 

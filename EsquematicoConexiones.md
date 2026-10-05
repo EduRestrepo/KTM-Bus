@@ -153,10 +153,13 @@ graph TD
     GPIO14 --> IN4
     ESP_SIG_GND --> IN_GND
 
-    OUT1 --> CON1
-    OUT2 --> CON2
-    OUT3 --> CON3
-    OUT4 --> CON4
+    OUT1 -->|Pin 1 +12V PWM| CON1
+    OUT2 -->|Pin 1 +12V PWM| CON2
+    OUT3 -->|Pin 1 +12V PWM| CON3
+    OUT4 -->|Pin 1 +12V PWM| CON4
+    FUSE -->|12V Protegido| DRL_BUS["Línea DRL / Posición (+12V AWG 18)"]
+    DRL_BUS -->|Pin 3 DRL / Posición| CON3
+    DRL_BUS -->|Pin 3 DRL / Posición| CON4
 ```
 
 ---
@@ -213,10 +216,10 @@ Conexión desde el header de pines de la LILYGO hacia el lado de entrada de la p
 | **DC-** (Masa Batería) | **Conector 2** - Pin 2 | AWG 16 Negro | Masa Foco Derecho |
 | **OUT 3** (+12V PWM) | **Conector 3** - Pin 1 | AWG 16 Rojo | Positivo Focos de Niebla (Set 2) |
 | **DC-** (Masa Batería) | **Conector 3** - Pin 2 | AWG 16 Negro | Masa Focos de Niebla |
-| *(Opcional / DRL)* | **Conector 3** - Pin 3 | AWG 18 Amarillo | Tercer cable DRL (si el foco tiene aro diurno) |
-| **OUT 4** (+12V PWM) | **Conector 4** - Pin 1 | AWG 16 Rojo | Positivo Bocina / Accesorio / Luz Freno |
+| **Línea DRL / Posición** | **Conector 3** - Pin 3 | AWG 18 Amarillo | Tercer hilo: Luz Diurna / Aro DRL (+12V protegido) |
+| **OUT 4** (+12V PWM) | **Conector 4** - Pin 1 | AWG 16 Rojo | Positivo Bocina / Accesorio / Freno Estrobo |
 | **DC-** (Masa Batería) | **Conector 4** - Pin 2 | AWG 16 Negro | Masa Bocina / Accesorio |
-| *(Opcional / Freno)* | **Conector 4** - Pin 3 | AWG 18 Verde | Tercer cable Señal de Freno estrobo / DWA (opcional) |
+| **Línea DRL / Posición** | **Conector 4** - Pin 3 | AWG 18 Amarillo | Tercer hilo: Luz de Posición Trasera / Running Light |
 
 ---
 

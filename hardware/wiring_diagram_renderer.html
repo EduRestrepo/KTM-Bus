@@ -376,11 +376,11 @@
     </g>
 
     <g transform="translate(25, 203)">
-      <rect width="390" height="46" rx="4" fill="#0b1120" stroke="#eab308"/>
-      <circle cx="25" cy="23" r="11" fill="#ca8a04"/>
+      <rect width="390" height="46" rx="4" fill="#0b1120" stroke="#f59e0b"/>
+      <circle cx="25" cy="23" r="11" fill="#d97706"/>
       <text x="25" y="27" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">3</text>
-      <text x="50" y="21" fill="#fde047" font-size="11" font-weight="bold">PIN 3: LUZ DIURNA / DRL (OPCIONAL)</text>
-      <text x="50" y="36" fill="#facc15" font-size="9">Tercer hilo para foco con aro ámbar o blanco</text>
+      <text x="50" y="21" fill="#fde047" font-size="11" font-weight="bold">PIN 3: LUZ DIURNA / ARO DRL</text>
+      <text x="50" y="36" fill="#facc15" font-size="9">Cable Amarillo AWG 18 ◄── Conectado a Línea DRL / Posición (+12V)</text>
     </g>
   </g>
 
@@ -397,8 +397,8 @@
       <rect width="390" height="46" rx="4" fill="#0b1120" stroke="#ef4444"/>
       <circle cx="25" cy="23" r="11" fill="#dc2626"/>
       <text x="25" y="27" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">1</text>
-      <text x="50" y="21" fill="#fca5a5" font-size="11" font-weight="bold">PIN 1: +12V PWM BOCINA / ACCESORIO</text>
-      <text x="50" y="36" fill="#f87171" font-size="9">Conectado a OUT 4 de la placa MOSFET</text>
+      <text x="50" y="21" fill="#fca5a5" font-size="11" font-weight="bold">PIN 1: +12V PWM FRENO ESTROBO / BOCINA</text>
+      <text x="50" y="36" fill="#f87171" font-size="9">Conectado a OUT 4 de la placa MOSFET (Cable Rojo AWG 16)</text>
     </g>
 
     <g transform="translate(25, 149)">
@@ -406,15 +406,15 @@
       <circle cx="25" cy="23" r="11" fill="#1d4ed8"/>
       <text x="25" y="27" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">2</text>
       <text x="50" y="21" fill="#93c5fd" font-size="11" font-weight="bold">PIN 2: MASA / GND COMÚN</text>
-      <text x="50" y="36" fill="#60a5fa" font-size="9">Conectado a la Masa Común de la Batería</text>
+      <text x="50" y="36" fill="#60a5fa" font-size="9">Conectado a la Masa Común de Batería (Cable Negro AWG 16)</text>
     </g>
 
     <g transform="translate(25, 203)">
-      <rect width="390" height="46" rx="4" fill="#0b1120" stroke="#10b981"/>
-      <circle cx="25" cy="23" r="11" fill="#059669"/>
+      <rect width="390" height="46" rx="4" fill="#0b1120" stroke="#f59e0b"/>
+      <circle cx="25" cy="23" r="11" fill="#d97706"/>
       <text x="25" y="27" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">3</text>
-      <text x="50" y="21" fill="#6ee7b7" font-size="11" font-weight="bold">PIN 3: SEÑAL DE FRENO / DWA (OPCIONAL)</text>
-      <text x="50" y="36" fill="#34d399" font-size="9">Para luz de freno estroboscópica trasera</text>
+      <text x="50" y="21" fill="#fde047" font-size="11" font-weight="bold">PIN 3: LUZ DE POSICIÓN / RUNNING LIGHT</text>
+      <text x="50" y="36" fill="#facc15" font-size="9">Cable Amarillo AWG 18 ◄── Conectado a Línea DRL / Posición (+12V)</text>
     </g>
   </g>
 
@@ -487,6 +487,21 @@
   <path d="M 1660 583 L 1660 660 L 1025 660 L 1025 845" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
   <!-- OUT 4 -> Conector 4 Pin 1 -->
   <path d="M 1690 621 L 1690 660 L 1485 660 L 1485 845" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- 8. LÍNEA DRL / LUZ DE POSICIÓN (+12V PROTEGIDO) -> PIN 3 DE CONECTORES 3 Y 4 -->
+  <!-- Alimenta los aros DRL y luz de posición trasera (Cable Amarillo AWG 18) -->
+  <path d="M 550 175 L 550 340 L 760 340 L 760 722 L 1800 722 L 1800 953" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+  <!-- Derivación hacia Pin 3 de Conector 3 -->
+  <path d="M 1340 722 L 1340 953" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+  
+  <circle cx="550" cy="175" r="4.5" fill="#f59e0b"/>
+  <circle cx="1340" cy="722" r="4.5" fill="#f59e0b"/>
+  <circle cx="1340" cy="953" r="4.5" fill="#f59e0b"/>
+  <circle cx="1800" cy="953" r="4.5" fill="#f59e0b"/>
+
+  <!-- Etiqueta de la Línea DRL / Posición -->
+  <rect x="1390" y="709" width="250" height="24" rx="4" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1515" y="725" text-anchor="middle" fill="#fde047" font-size="10" font-weight="bold">LÍNEA DRL / POSICIÓN (+12V AWG 18)</text>
 
 </svg>
 </body>
