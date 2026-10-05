@@ -65,7 +65,7 @@ Guía completa y estado actualizado de compras para la construcción del clon DI
 * **Enlace directo de búsqueda:** [Buscar Módulo MOSFET 4CH 3.3V PLC](https://es.aliexpress.com/w/wholesale-4-channel-mosfet-module-3.3v-plc.html)
 * **Opciones validadas:**
   * **Color / Formato:** `4CH Only Board` (más compacta para alojar en caja bajo el asiento).
-  * **Voltaje de Entrada:** `PNP Input 3.3-5V` (se activa con nivel alto a 3.3V desde los pines PWM del ESP32).
+  * **Voltaje de Entrada:** `PNP Input 3.3-5V` (placa eletechsup OPMSA04_PNP; bornes X1-X4 + COM; puentes: Input Level = PNP, Trigger Voltage = 5V; se activa con nivel alto a 3.3V desde los pines PWM del ESP32 con COM a GND).
   * **Voltaje de Salida:** `PNP Output` (**High-Side**: conmuta el cable positivo +12V hacia las luces con masa común al chasis).
 * **Potencia:** Hasta 5A continuos por canal a 12V (60W por canal).
 

@@ -14,24 +14,24 @@
 <text x="1114" y="163.0" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">PLACA MOSFET 4 CANALES · entradas de señal</text>
 <text x="684" y="255" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 25</text>
 <text x="684" y="275" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 1 · foco izquierdo</text>
-<text x="1118" y="255" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 01</text>
-<text x="1118" y="275" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 1</text>
+<text x="1118" y="255" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X1</text>
+<text x="1118" y="275" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y1</text>
 <text x="684" y="335" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 32</text>
 <text x="684" y="355" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 2 · foco derecho</text>
-<text x="1118" y="335" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 02</text>
-<text x="1118" y="355" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 2</text>
+<text x="1118" y="335" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X2</text>
+<text x="1118" y="355" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y2</text>
 <text x="684" y="415" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 33</text>
 <text x="684" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 3 · faros de niebla</text>
-<text x="1118" y="415" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 03</text>
-<text x="1118" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 3</text>
+<text x="1118" y="415" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X3</text>
+<text x="1118" y="435" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y3</text>
 <text x="684" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GPIO 18</text>
 <text x="684" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">Canal 4 · bocina / freno / aux</text>
-<text x="1118" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">IN 04</text>
-<text x="1118" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ OUT 4</text>
+<text x="1118" y="495" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">X4</text>
+<text x="1118" y="515" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">→ Y4</text>
 <text x="684" y="575" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="end">GND</text>
 <text x="684" y="595" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="end">masa lógica</text>
-<text x="1118" y="575" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">GND</text>
-<text x="1118" y="595" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">masa de entrada</text>
+<text x="1118" y="575" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="start">COM</text>
+<text x="1118" y="595" font-size="12" fill="#9ca3af" font-weight="normal" text-anchor="start">común de entradas (a GND)</text>
 <text x="80" y="215" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">PWM 3,3 V · 1 kHz · activo a nivel ALTO</text>
 <text x="80" y="600" font-size="13" fill="#9ca3af" font-weight="normal" text-anchor="start">Sin cables de potencia aquí: solo señal.</text>
 <text x="60" y="666" font-size="17" fill="#facc15" font-weight="bold" text-anchor="start">LISTA DE CABLES · HOJA 3</text>
@@ -42,34 +42,35 @@
 <rect x="60" y="716" width="1010" height="36" fill="#121722"/>
 <rect x="60" y="716" width="6" height="36" fill="#e5e7eb"/>
 <text x="78" y="739.0" font-size="15" fill="#e5e7eb" font-weight="bold" text-anchor="start">W11</text>
-<text x="146" y="739.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 25  →  Placa MOSFET IN 01</text>
+<text x="146" y="739.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 25  →  Placa MOSFET X1</text>
 <text x="786" y="739.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · blanco</text>
 <rect x="60" y="752" width="1010" height="36" fill="#171d2b"/>
 <rect x="60" y="752" width="6" height="36" fill="#facc15"/>
 <text x="78" y="775.0" font-size="15" fill="#facc15" font-weight="bold" text-anchor="start">W12</text>
-<text x="146" y="775.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 32  →  Placa MOSFET IN 02</text>
+<text x="146" y="775.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 32  →  Placa MOSFET X2</text>
 <text x="786" y="775.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · amarillo</text>
 <rect x="60" y="788" width="1010" height="36" fill="#121722"/>
 <rect x="60" y="788" width="6" height="36" fill="#60a5fa"/>
 <text x="78" y="811.0" font-size="15" fill="#60a5fa" font-weight="bold" text-anchor="start">W13</text>
-<text x="146" y="811.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 33  →  Placa MOSFET IN 03</text>
+<text x="146" y="811.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 33  →  Placa MOSFET X3</text>
 <text x="786" y="811.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · azul</text>
 <rect x="60" y="824" width="1010" height="36" fill="#171d2b"/>
 <rect x="60" y="824" width="6" height="36" fill="#f87171"/>
 <text x="78" y="847.0" font-size="15" fill="#f87171" font-weight="bold" text-anchor="start">W14</text>
-<text x="146" y="847.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 18  →  Placa MOSFET IN 04</text>
+<text x="146" y="847.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GPIO 18  →  Placa MOSFET X4</text>
 <text x="786" y="847.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · rojo</text>
 <rect x="60" y="860" width="1010" height="36" fill="#121722"/>
 <rect x="60" y="860" width="6" height="36" fill="#6b7280"/>
 <text x="78" y="883.0" font-size="15" fill="#6b7280" font-weight="bold" text-anchor="start">W15</text>
-<text x="146" y="883.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GND (header)  →  Placa MOSFET GND de entrada</text>
+<text x="146" y="883.0" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">LILYGO GND (header)  →  Placa MOSFET COM</text>
 <text x="786" y="883.0" font-size="14" fill="#9ca3af" font-weight="normal" text-anchor="start">AWG 24 · negro</text>
-<rect x="1130" y="680" width="610" height="144" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
+<rect x="1130" y="680" width="610" height="168" rx="8" fill="#1a1710" stroke="#f59e0b" stroke-width="1.8"/>
 <text x="1146" y="708" font-size="15" fill="#f59e0b" font-weight="bold" text-anchor="start">NOTAS</text>
-<text x="1146" y="732" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• La placa MOSFET lleva entrada PNP (3,3–5 V):</text>
-<text x="1146" y="756" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  se activa con nivel ALTO desde el ESP32.</text>
-<text x="1146" y="780" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• W15 es obligatorio: sin masa común de señal</text>
-<text x="1146" y="804" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  el optoacoplador no conmuta.</text>
+<text x="1146" y="732" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Placa eletechsup OPMSA04_PNP: bornes X1–X4 + COM.</text>
+<text x="1146" y="756" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Puentes de la placa: Input Level = PNP</text>
+<text x="1146" y="780" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  y Trigger Voltage = 5V (señal 3,3 V del ESP32).</text>
+<text x="1146" y="804" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">• Con nivel PNP: COM a GND (W15, obligatorio) y</text>
+<text x="1146" y="828" font-size="14" fill="#e5e7eb" font-weight="normal" text-anchor="start">  señal ALTA en X1–X4 activa el canal.</text>
 <path d="M 700 250 L 1100 250" fill="none" stroke="#e5e7eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 700 330 L 1100 330" fill="none" stroke="#facc15" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 700 410 L 1100 410" fill="none" stroke="#60a5fa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>

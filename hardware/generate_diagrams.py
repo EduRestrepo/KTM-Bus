@@ -181,9 +181,9 @@ def sheet1():
 
     # Placa MOSFET
     s.box(60, 560, 700, 250, "PLACA MOSFET 4 CANALES (entrada PNP 3,3–5 V · salida High-Side)", "#1d4ed8")
-    s.text(610, 625, "DC+ (+12 V)", 14, "#fca5a5", "bold", "middle")
-    s.text(78, 645, "DC− (GND)", 14, "#93c5fd", "bold")
-    s.text(410, 720, "Entradas 01–04: Hoja 3   ·   Salidas OUT 1–4: Hoja 4", 14, MUTED, "normal", "middle")
+    s.text(610, 625, "VCC (+12 V)", 14, "#fca5a5", "bold", "middle")
+    s.text(78, 645, "GND (−)", 14, "#93c5fd", "bold")
+    s.text(410, 720, "Entradas X1–X4: Hoja 3   ·   Salidas Y1–Y4: Hoja 4", 14, MUTED, "normal", "middle")
     s.text(410, 750, "Máx. 5 A por canal", 14, MUTED, "normal", "middle")
 
     # Cables
@@ -205,9 +205,9 @@ def sheet1():
     rows = [
         ("W1", "Batería (+)  →  Portafusible ENTRADA", "AWG 14 rojo · anilla M6", RED),
         ("W2", "Portafusible SALIDA  →  Convertidor IN (+)", "AWG 18 rojo", RED),
-        ("W3", "Portafusible SALIDA  →  Placa MOSFET DC+", "AWG 14 rojo", RED),
+        ("W3", "Portafusible SALIDA  →  Placa MOSFET VCC", "AWG 14 rojo", RED),
         ("W4", "Batería (−)  →  Convertidor IN (−)", "AWG 18 negro · anilla M6", BLUE),
-        ("W5", "Batería (−)  →  Placa MOSFET DC−", "AWG 14 negro · anilla M6", BLUE),
+        ("W5", "Batería (−)  →  Placa MOSFET GND", "AWG 14 negro · anilla M6", BLUE),
         ("W6", "Convertidor OUT (+) 5 V  →  LILYGO VIN", "AWG 20 rojo", CYAN),
         ("W7", "Convertidor OUT (−)  →  LILYGO GND", "AWG 20 negro", GREY),
     ]
@@ -301,7 +301,7 @@ def sheet3():
     left = [("GPIO 25", "Canal 1 · foco izquierdo"), ("GPIO 32", "Canal 2 · foco derecho"),
             ("GPIO 33", "Canal 3 · faros de niebla"), ("GPIO 18", "Canal 4 · bocina / freno / aux"),
             ("GND", "masa lógica")]
-    right = [("IN 01", "→ OUT 1"), ("IN 02", "→ OUT 2"), ("IN 03", "→ OUT 3"), ("IN 04", "→ OUT 4"), ("GND", "masa de entrada")]
+    right = [("X1", "→ Y1"), ("X2", "→ Y2"), ("X3", "→ Y3"), ("X4", "→ Y4"), ("COM", "común de entradas (a GND)")]
     cols = [TXT, YELLOW, "#60a5fa", "#f87171", GREY]
     ids = ["W11", "W12", "W13", "W14", "W15"]
     for y, (a, b), (c, d), col, wid in zip(ys, left, right, cols, ids):
@@ -317,18 +317,19 @@ def sheet3():
     s.text(80, 600, "Sin cables de potencia aquí: solo señal.", 13, MUTED)
 
     rows = [
-        ("W11", "LILYGO GPIO 25  →  Placa MOSFET IN 01", "AWG 24 · blanco", TXT),
-        ("W12", "LILYGO GPIO 32  →  Placa MOSFET IN 02", "AWG 24 · amarillo", YELLOW),
-        ("W13", "LILYGO GPIO 33  →  Placa MOSFET IN 03", "AWG 24 · azul", "#60a5fa"),
-        ("W14", "LILYGO GPIO 18  →  Placa MOSFET IN 04", "AWG 24 · rojo", "#f87171"),
-        ("W15", "LILYGO GND (header)  →  Placa MOSFET GND de entrada", "AWG 24 · negro", GREY),
+        ("W11", "LILYGO GPIO 25  →  Placa MOSFET X1", "AWG 24 · blanco", TXT),
+        ("W12", "LILYGO GPIO 32  →  Placa MOSFET X2", "AWG 24 · amarillo", YELLOW),
+        ("W13", "LILYGO GPIO 33  →  Placa MOSFET X3", "AWG 24 · azul", "#60a5fa"),
+        ("W14", "LILYGO GPIO 18  →  Placa MOSFET X4", "AWG 24 · rojo", "#f87171"),
+        ("W15", "LILYGO GND (header)  →  Placa MOSFET COM", "AWG 24 · negro", GREY),
     ]
     s.table(60, 680, [("ID", 70), ("DE  →  A", 640), ("CABLE", 300)], rows, "LISTA DE CABLES · HOJA 3")
     s.note(1130, 680, 610, [
-        "• La placa MOSFET lleva entrada PNP (3,3–5 V):",
-        "  se activa con nivel ALTO desde el ESP32.",
-        "• W15 es obligatorio: sin masa común de señal",
-        "  el optoacoplador no conmuta.",
+        "• Placa eletechsup OPMSA04_PNP: bornes X1–X4 + COM.",
+        "• Puentes de la placa: Input Level = PNP",
+        "  y Trigger Voltage = 5V (señal 3,3 V del ESP32).",
+        "• Con nivel PNP: COM a GND (W15, obligatorio) y",
+        "  señal ALTA en X1–X4 activa el canal.",
     ], AMBER, "NOTAS")
     return s
 
@@ -342,24 +343,24 @@ def sheet4():
 
     # Placa MOSFET (izquierda)
     s.box(60, 110, 420, 814, "PLACA MOSFET 4 CANALES · salidas", "#1d4ed8")
-    outs = [(175, "OUT 1", "Canal 1"), (355, "OUT 2", "Canal 2"), (535, "OUT 3", "Canal 3"), (777, "OUT 4", "Canal 4")]
+    outs = [(175, "Y1", "Canal 1"), (355, "Y2", "Canal 2"), (535, "Y3", "Canal 3"), (777, "Y4", "Canal 4")]
     for y, a, b in outs:
         s.text(462, y + 5, a + " · +12 V PWM", 16, "#ffffff", "bold", "end")
         s.text(462, y + 25, b + " · máx. 5 A", 12, MUTED, "normal", "end")
-    s.text(270, 640, "Alimentación DC+ / DC−: Hoja 1", 13, MUTED, "normal", "middle")
-    s.text(270, 665, "Entradas 01–04: Hoja 3", 13, MUTED, "normal", "middle")
+    s.text(270, 640, "Alimentación VCC / GND: Hoja 1", 13, MUTED, "normal", "middle")
+    s.text(270, 665, "Entradas X1–X4: Hoja 3", 13, MUTED, "normal", "middle")
 
     # Conectores
     conns = [
         (110, 150, "CONECTOR 1 · 2 PINES · FOCO IZQUIERDO (SET 1)", YELLOW, [175, 231],
-         [("1", "+12 V PWM · OUT 1", "Foco izquierdo · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE)]),
+         [("1", "+12 V PWM · Y1", "Foco izquierdo · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE)]),
         (290, 150, "CONECTOR 2 · 2 PINES · FOCO DERECHO (SET 1)", YELLOW, [355, 411],
-         [("1", "+12 V PWM · OUT 2", "Foco derecho · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE)]),
+         [("1", "+12 V PWM · Y2", "Foco derecho · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE)]),
         (470, 212, "CONECTOR 3 · 3 PINES · FAROS DE NIEBLA (SET 2)", CYAN, [535, 591, 647],
-         [("1", "+12 V PWM · OUT 3", "Faro de niebla · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
+         [("1", "+12 V PWM · Y3", "Faro de niebla · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Aro DRL del foco · amarillo AWG 18", AMBER)]),
         (712, 212, "CONECTOR 4 · 3 PINES · BOCINA / FRENO / AUX", "#ec4899", [777, 833, 889],
-         [("1", "+12 V PWM · OUT 4", "Bocina / luz freno estrobo · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
+         [("1", "+12 V PWM · Y4", "Bocina / luz freno estrobo · rojo AWG 16", RED), ("2", "GND (masa común)", "desde regleta GND · negro AWG 16", BLUE),
           ("3", "+12 V PWM · puente con Pin 1", "Luz de posición / aux · amarillo AWG 18", AMBER)]),
     ]
     pin_y = {}
@@ -407,10 +408,10 @@ def sheet4():
     s.junction(1450, 540, "#93c5fd")
 
     rows = [
-        ("W16", "Placa MOSFET OUT 1  →  Conector 1 · Pin 1", "AWG 16 rojo", RED),
-        ("W17", "Placa MOSFET OUT 2  →  Conector 2 · Pin 1", "AWG 16 rojo", RED),
-        ("W18", "Placa MOSFET OUT 3  →  Conector 3 · Pin 1", "AWG 16 rojo", RED),
-        ("W19", "Placa MOSFET OUT 4  →  Conector 4 · Pin 1", "AWG 16 rojo", RED),
+        ("W16", "Placa MOSFET Y1  →  Conector 1 · Pin 1", "AWG 16 rojo", RED),
+        ("W17", "Placa MOSFET Y2  →  Conector 2 · Pin 1", "AWG 16 rojo", RED),
+        ("W18", "Placa MOSFET Y3  →  Conector 3 · Pin 1", "AWG 16 rojo", RED),
+        ("W19", "Placa MOSFET Y4  →  Conector 4 · Pin 1", "AWG 16 rojo", RED),
         ("W20", "Conector 3 · Pin 1  →  Conector 3 · Pin 3 (puente, mismo canal)", "AWG 18 amarillo", AMBER),
         ("W21", "Conector 4 · Pin 1  →  Conector 4 · Pin 3 (puente, mismo canal)", "AWG 18 amarillo", AMBER),
         ("W22", "Batería (−)  →  Regleta GND", "AWG 14 negro · anilla M6", BLUE),

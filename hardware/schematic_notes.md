@@ -87,7 +87,7 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
    * **Modelo**: Placa amplificadora PLC de 4 Canales con aislamiento optoacoplado.
    * **Configuración Seleccionada**:
      * Formato: `4CH Only Board` (compacto para caja bajo asiento).
-     * Control de entrada: `PNP Input 3.3-5V` (compatible con 3.3V nativo de los GPIOs del ESP32).
+     * Control de entrada: `PNP Input 3.3-5V` (compatible con 3.3V nativo de los GPIOs del ESP32). Placa eletechsup OPMSA04_PNP: bornes de potencia VCC, GND, Y1-Y4; bornes de entrada X1-X4 y COM. Puentes de soldadura: Input Level = PNP y Trigger Voltage = 5V. Con nivel PNP, COM va a GND.
      * Salida conmutada: `PNP Output` (**High-Side**: conmuta +12V con masa común al chasis).
      * Capacidad: Hasta 5A continuos por canal (60W por foco).
 
@@ -130,21 +130,21 @@ Distribución en los 4 conectores **Superseal 1.5** comprados. Los IDs (W16…W2
 
 ### A. Conectores de 2 Pines (Set 1 de focos auxiliares)
 * **Conector 1 (Foco izquierdo)**:
-  * **Pin 1 (rojo AWG 16, W16)**: `OUT 1` (+12 V conmutado por PWM, LEDC canal 0). Dimmer día/noche, ráfagas y apagado con intermitente izquierdo.
+  * **Pin 1 (rojo AWG 16, W16)**: `Y1` (+12 V conmutado por PWM, LEDC canal 0). Dimmer día/noche, ráfagas y apagado con intermitente izquierdo.
   * **Pin 2 (negro AWG 16, W23)**: GND desde la regleta de masa.
 * **Conector 2 (Foco derecho)**:
-  * **Pin 1 (rojo AWG 16, W17)**: `OUT 2` (+12 V conmutado por PWM, LEDC canal 1). Dimmer día/noche, ráfagas y apagado con intermitente derecho.
+  * **Pin 1 (rojo AWG 16, W17)**: `Y2` (+12 V conmutado por PWM, LEDC canal 1). Dimmer día/noche, ráfagas y apagado con intermitente derecho.
   * **Pin 2 (negro AWG 16, W24)**: GND desde la regleta de masa.
 
 ### B. Conectores de 3 Pines (Nieblas y Bocina/Freno)
 * **Conector 3 (Faros de niebla Set 2 + aro DRL)**:
-  * **Pin 1 (rojo AWG 16, W18)**: `OUT 3` (+12 V conmutado por PWM, LEDC canal 2).
+  * **Pin 1 (rojo AWG 16, W18)**: `Y3` (+12 V conmutado por PWM, LEDC canal 2).
   * **Pin 2 (negro AWG 16, W25)**: GND desde la regleta de masa.
-  * **Pin 3 (amarillo AWG 18, W20)**: aro DRL del foco, **en paralelo con el Pin 1** (mismo canal `OUT 3`).
+  * **Pin 3 (amarillo AWG 18, W20)**: aro DRL del foco, **en paralelo con el Pin 1** (mismo canal `Y3`).
 * **Conector 4 (Bocina / luz de freno estroboscópica / accesorio)**:
-  * **Pin 1 (rojo AWG 16, W19)**: `OUT 4` (+12 V conmutado por PWM, LEDC canal 3).
+  * **Pin 1 (rojo AWG 16, W19)**: `Y4` (+12 V conmutado por PWM, LEDC canal 3).
   * **Pin 2 (negro AWG 16, W26)**: GND desde la regleta de masa.
-  * **Pin 3 (amarillo AWG 18, W21)**: luz de posición/aux, **en paralelo con el Pin 1** (mismo canal `OUT 4`).
+  * **Pin 3 (amarillo AWG 18, W21)**: luz de posición/aux, **en paralelo con el Pin 1** (mismo canal `Y4`).
 
 > ⚠️ **El Pin 3 no se alimenta de +12 V permanente.** Se puentea al Pin 1 del mismo conector para que se apague con la moto y respete el dimmer. Conectarlo a +12 V directo de batería lo dejaría siempre encendido y descargaría la batería. Pin 1 + Pin 3 comparten el límite de 5 A del canal. Para un DRL independiente haría falta un quinto canal.
 

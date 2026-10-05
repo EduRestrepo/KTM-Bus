@@ -25,9 +25,9 @@ El esquema está dividido en **4 hojas**. Cada hoja es una etapa del montaje, **
 | :---: | :--- | :--- |
 | **W1** | Batería (+) → Portafusible ENTRADA | AWG 14 rojo · anilla M6 |
 | **W2** | Portafusible SALIDA → Convertidor IN (+) | AWG 18 rojo |
-| **W3** | Portafusible SALIDA → Placa MOSFET DC+ | AWG 14 rojo |
+| **W3** | Portafusible SALIDA → Placa MOSFET VCC | AWG 14 rojo |
 | **W4** | Batería (−) → Convertidor IN (−) | AWG 18 negro · anilla M6 |
-| **W5** | Batería (−) → Placa MOSFET DC− | AWG 14 negro · anilla M6 |
+| **W5** | Batería (−) → Placa MOSFET GND | AWG 14 negro · anilla M6 |
 | **W6** | Convertidor OUT (+) 5 V → LILYGO VIN | AWG 20 rojo |
 | **W7** | Convertidor OUT (−) → LILYGO GND | AWG 20 negro |
 
@@ -53,10 +53,10 @@ Pin 3 (+12 V contacto) y pines 5/6 (K-Line/aux) del conector Euro 5: **no se con
 
 | ID | De → A | Canal / función |
 | :---: | :--- | :--- |
-| **W11** | LILYGO `GPIO 25` → MOSFET `IN 01` | Canal 1 · foco izquierdo |
-| **W12** | LILYGO `GPIO 32` → MOSFET `IN 02` | Canal 2 · foco derecho |
-| **W13** | LILYGO `GPIO 33` → MOSFET `IN 03` | Canal 3 · faros de niebla |
-| **W14** | LILYGO `GPIO 18` → MOSFET `IN 04` | Canal 4 · bocina / freno / aux |
+| **W11** | LILYGO `GPIO 25` → MOSFET `X1` | Canal 1 · foco izquierdo |
+| **W12** | LILYGO `GPIO 32` → MOSFET `X2` | Canal 2 · foco derecho |
+| **W13** | LILYGO `GPIO 33` → MOSFET `X3` | Canal 3 · faros de niebla |
+| **W14** | LILYGO `GPIO 18` → MOSFET `X4` | Canal 4 · bocina / freno / aux |
 | **W15** | LILYGO `GND` → MOSFET `GND` de entrada | Masa lógica (obligatoria) |
 
 ---
@@ -67,10 +67,10 @@ Pin 3 (+12 V contacto) y pines 5/6 (K-Line/aux) del conector Euro 5: **no se con
 
 | ID | De → A | Cable |
 | :---: | :--- | :--- |
-| **W16** | MOSFET `OUT 1` → Conector 1 (2 pines) · Pin 1 | AWG 16 rojo |
-| **W17** | MOSFET `OUT 2` → Conector 2 (2 pines) · Pin 1 | AWG 16 rojo |
-| **W18** | MOSFET `OUT 3` → Conector 3 (3 pines) · Pin 1 | AWG 16 rojo |
-| **W19** | MOSFET `OUT 4` → Conector 4 (3 pines) · Pin 1 | AWG 16 rojo |
+| **W16** | MOSFET `Y1` → Conector 1 (2 pines) · Pin 1 | AWG 16 rojo |
+| **W17** | MOSFET `Y2` → Conector 2 (2 pines) · Pin 1 | AWG 16 rojo |
+| **W18** | MOSFET `Y3` → Conector 3 (3 pines) · Pin 1 | AWG 16 rojo |
+| **W19** | MOSFET `Y4` → Conector 4 (3 pines) · Pin 1 | AWG 16 rojo |
 | **W20** | Conector 3 · Pin 1 → Conector 3 · Pin 3 (puente, mismo canal) | AWG 18 amarillo |
 | **W21** | Conector 4 · Pin 1 → Conector 4 · Pin 3 (puente, mismo canal) | AWG 18 amarillo |
 | **W22** | Batería (−) → Regleta GND | AWG 14 negro · anilla M6 |
@@ -83,10 +83,10 @@ Pin 3 (+12 V contacto) y pines 5/6 (K-Line/aux) del conector Euro 5: **no se con
 
 | Conector | Pines | Pin 1 | Pin 2 | Pin 3 |
 | :--- | :---: | :--- | :--- | :--- |
-| **1** · Foco izquierdo (Set 1) | 2 | +12 V PWM (`OUT 1`) | GND | — |
-| **2** · Foco derecho (Set 1) | 2 | +12 V PWM (`OUT 2`) | GND | — |
-| **3** · Faros de niebla (Set 2) | 3 | +12 V PWM (`OUT 3`) | GND | +12 V PWM (puente con Pin 1) · aro DRL |
-| **4** · Bocina / freno / aux | 3 | +12 V PWM (`OUT 4`) | GND | +12 V PWM (puente con Pin 1) · luz de posición |
+| **1** · Foco izquierdo (Set 1) | 2 | +12 V PWM (`Y1`) | GND | — |
+| **2** · Foco derecho (Set 1) | 2 | +12 V PWM (`Y2`) | GND | — |
+| **3** · Faros de niebla (Set 2) | 3 | +12 V PWM (`Y3`) | GND | +12 V PWM (puente con Pin 1) · aro DRL |
+| **4** · Bocina / freno / aux | 3 | +12 V PWM (`Y4`) | GND | +12 V PWM (puente con Pin 1) · luz de posición |
 
 > 💡 **Sobre el Pin 3:** va en **paralelo con el Pin 1** (mismo canal conmutado). Así se apaga con la moto y respeta el dimmer. **Nunca** lo conectes a +12 V permanente de la batería: el aro quedaría siempre encendido y descargaría la batería. Pin 1 + Pin 3 comparten el límite de 5 A del canal. Si algún día quieres un DRL independiente, hará falta un quinto canal.
 
