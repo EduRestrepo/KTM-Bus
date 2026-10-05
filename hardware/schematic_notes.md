@@ -52,47 +52,52 @@ En los modelos 2021-2024, KTM sustituyó los antiguos conectores propietarios y 
 
 ---
 
-## 3. Lista de Componentes Recomendados (BOM)
+## 3. Lista de Componentes del Proyecto (BOM Real de ListaCompras.md)
 
-### A. Unidad de Control (Cerebro)
-* **Placa Principal Recomendada**: **ESP32 DevKit V1 (ESP-WROOM-32 / 30 o 38 pines)** o **ESP32-WROOM-32U**:
-  * **Arquitectura Dual-Core (240 MHz)**: Imprescindible en automoción. El **Core 1** atiende las interrupciones del periférico TWAI en tiempo real para procesar el bus CAN y modular el PWM de las luces sin retrasos. El **Core 0** se encarga de la pila de red (SoftAP WiFi y servidor web de configuración).
-  * **Periférico TWAI nativo**: 100% compatible con CAN 2.0B a 500 kbps.
-  * **Lógica nativa de 3.3V**: Conexión directa a los pines del transceptor SN65HVD230 sin conversores de nivel.
-  * **Opción con Antena Externa (ESP32-WROOM-32U)**: Si se aloja el módulo en una caja metálica o muy envuelta en el subchasis de la KTM 1290, se recomienda el modelo con conector IPEX para colocar una antena adhesiva externa bajo los plásticos del colín.
-* **Alternativas Todo-en-Uno (All-in-One)**:
-  * **LILYGO T-CAN485** o **Waveshare ESP32-S3-CAN**: Ya integran el transceptor CAN y el regulador en la misma placa, simplificando el cableado interno.
-* **Alternativa Miniatura**:
-  * **Seeed Studio XIAO ESP32-S3** (21 x 17.5 mm): Para instalaciones con espacio extremadamente crítico bajo el asiento.
-* **Rango Térmico de Operación**: Grado industrial (-40°C a +85°C) para soportar el calor radiado por el cilindro trasero del motor LC8 en verano.
+### A. Componentes Comprados y Verificados ✅
+1. **Conector KTM Euro 5 (ISO 19689 - 6 Pines Rojo)**:
+   * **Modelo**: Sumitomo OEM `6189-7963 / MWTPB-06-1A-R` Set Macho + Hembra con cables flexibles.
+   * **Enlace AliExpress**: [Item 1005012171131942](https://es.aliexpress.com/item/1005012171131942.html)
+   * **Conexión Pasante (*Pass-Through*)**: Permite enchufar la máquina de diagnosis del concesionario sin desconectar la centralita.
+   * **Uso de Pines**:
+     * Pin 1 (Naranja/Negro): `CAN_H` ➔ Borna CAN_H de la LILYGO.
+     * Pin 2 (Naranja/Marrón): `CAN_L` ➔ Borna CAN_L de la LILYGO.
+     * Pin 4 (Marrón/Negro): `GND` ➔ Borna GND de la LILYGO.
+     * Pin 3 (+12V de moto): **Aislado / Desconectado** (la potencia se toma de la batería).
 
-### B. Transceptor CAN Bus
-* **Módulo SN65HVD230 (3.3V)**:
-  * Compatible nativo con la lógica de 3.3V del ESP32 (no requiere level shifter como el viejo TJA1050 de 5V).
-  * Conexión a pines ESP32:
-    * `CTX` (CAN TX) -> `GPIO 5`
-    * `CRX` (CAN RX) -> `GPIO 4`
-    * `VCC` -> `3.3V`
-    * `GND` -> `GND`
-    * `CAN-H` -> Pin 1 del conector Euro 5
-    * `CAN-L` -> Pin 2 del conector Euro 5
-  * *Nota de terminación*: Si el módulo trae una resistencia de 120Ω entre CAN-H y CAN-L (R2), se recomienda desoldarla o dejar el jumper abierto si te estás intercalando en un bus que ya tiene terminación activa en la moto.
+2. **Convertidor Reductor DC-DC Automotriz (12V a 5V 3A)**:
+   * **Modelo**: Carcasa sellada en resina epoxi impermeable (IP67).
+   * **Enlace AliExpress**: [Item 1005007820939213](https://es.aliexpress.com/item/1005007820939213.html)
+   * **Entrada**: Cable Rojo a +12V protegido (post-fusible), Cable Negro a Borne (-) batería.
+   * **Salida**: 5V estables (hasta 3A) hacia bornas `VIN` y `GND` de la LILYGO T-CAN485.
 
-### C. Etapa de Potencia (Salidas de 12V conmutable)
-Para automoción en moto se debe usar conmutación **High-Side** (cortar el positivo de 12V y dejar la masa común al chasis):
-* **Opción Profesional (Recomendada)**: **Infineon BTS7008-1EPP** o **BTS724G / PROFET**:
-  * Integra MOSFET High-Side, driver de puerta, sensor de corriente y protección térmica / cortocircuito automática.
-  * Soporta control directo con señales PWM de 3.3V desde el ESP32.
-* **Opción DIY Accesible**: **MOSFETs de Canal P (ej. IRF4905)** o módulo comercial de 4 MOSFETs optoacoplados:
-  * Transistor NPN (ej. 2N2222 o BC547) como excitador de puerta desde los 3.3V del ESP32 hacia los 12V.
-  * Resistencia pull-up de 10kΩ a +12V en la puerta (Gate).
+3. **Portafusible Aéreo Estanco con Fusible de 30A**:
+   * **Modelo**: Portafusible aéreo de goma impermeable para automoción con fusible Maxi/Mini de 30A.
+   * **Enlace AliExpress**: [Item 32813530925](https://es.aliexpress.com/item/32813530925.html)
+   * **Ubicación**: Intercalado en el cable positivo AWG 14 directo del borne (+) de la batería antes de alimentar la placa MOSFET y el convertidor.
 
-### D. Fuente de Alimentación de Automoción Robusta
-La red eléctrica de una moto tiene picos inductivos (*load dump*) del alternador que pueden alcanzar los 35V-40V.
-* Regulador Step-Down: **LM2596HV** (High Voltage, soporta hasta 60V de entrada) o **MP1584** con filtro previo.
-* Diodo de protección contra inversión de polaridad: **Schottky SS34** (3A / 40V) o **1N5822**.
-* Diodo TVS supresor de picos transitorios: **SMAJ24A** o **SMBJ28A** en paralelo con la entrada de 12V.
-* Condensador electrolítico de filtro: **470µF 35V** de bajo ESR.
+4. **Conectores Estancos para Luces y Accesorios**:
+   * **Modelo**: Conectores automotrices impermeables Superseal 1.5 (IP67).
+   * **Enlace AliExpress**: [Item 1005008334229391](https://es.aliexpress.com/item/1005008334229391.html)
+   * **Cantidad y Configuración**:
+     * **2 Conectores de 2 Pines (2 holes)**: Set 1 de Focos Auxiliares (Foco Izquierdo y Foco Derecho).
+     * **2 Conectores de 3 Pines (3 holes)**: Set 2 de Focos de Niebla (con hilo DRL) y Conector 4 para Bocina / Luz de Freno estroboscópica.
+
+5. **Etapa de Potencia MOSFETs (4 Canales High-Side)**:
+   * **Modelo**: Placa amplificadora PLC de 4 Canales con aislamiento optoacoplado.
+   * **Configuración Seleccionada**:
+     * Formato: `4CH Only Board` (compacto para caja bajo asiento).
+     * Control de entrada: `PNP Input 3.3-5V` (compatible con 3.3V nativo de los GPIOs del ESP32).
+     * Salida conmutada: `PNP Output` (**High-Side**: conmuta +12V con masa común al chasis).
+     * Capacidad: Hasta 5A continuos por canal (60W por foco).
+
+### B. Componentes Restantes de la Instalación ⏳
+1. **Controlador ESP32**: **LILYGO T-CAN485** ([Item 1005003624034092](https://www.aliexpress.com/item/1005003624034092.html)) con transceptor CAN SN65HVD231 y borneras a tornillo.
+2. **Caja Estanca IP65 ABS**: Aprox. 100 x 68 x 50 mm para alojar bajo el asiento del acompañante.
+3. **Cable Siliconado de Alta Temperatura (200°C)**:
+   * **AWG 14** (Rojo y Negro): Batería a portafusible y masa principal.
+   * **AWG 16**: Salidas de potencia hacia los conectores de los faros.
+4. **Terminales de Anilla M6**: Para asegurar la conexión a los bornes de la batería.
 
 ---
 

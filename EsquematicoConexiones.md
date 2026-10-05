@@ -214,8 +214,9 @@ Conexión desde el header de pines de la LILYGO hacia el lado de entrada de la p
 | **OUT 3** (+12V PWM) | **Conector 3** - Pin 1 | AWG 16 Rojo | Positivo Focos de Niebla (Set 2) |
 | **DC-** (Masa Batería) | **Conector 3** - Pin 2 | AWG 16 Negro | Masa Focos de Niebla |
 | *(Opcional / DRL)* | **Conector 3** - Pin 3 | AWG 18 Amarillo | Tercer cable DRL (si el foco tiene aro diurno) |
-| **OUT 4** (+12V PWM) | **Conector 4** - Pin 1 | AWG 16 Rojo | Positivo Bocina / Accesorio |
+| **OUT 4** (+12V PWM) | **Conector 4** - Pin 1 | AWG 16 Rojo | Positivo Bocina / Accesorio / Luz Freno |
 | **DC-** (Masa Batería) | **Conector 4** - Pin 2 | AWG 16 Negro | Masa Bocina / Accesorio |
+| *(Opcional / Freno)* | **Conector 4** - Pin 3 | AWG 18 Verde | Tercer cable Señal de Freno estrobo / DWA (opcional) |
 
 ---
 
