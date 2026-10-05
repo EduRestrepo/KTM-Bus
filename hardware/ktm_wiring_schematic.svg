@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="100%" height="100%" style="background:#16171d; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <!-- Filtros y sombras -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="gradKtm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6600"/>
+      <stop offset="100%" stop-color="#ff3300"/>
+    </linearGradient>
+    <linearGradient id="gradLilygo" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b4d3e"/>
+      <stop offset="100%" stop-color="#0e2a22"/>
+    </linearGradient>
+    <linearGradient id="gradMosfet" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2a38"/>
+      <stop offset="100%" stop-color="#111822"/>
+    </linearGradient>
+  </defs>
+
+  <!-- TÍTULO -->
+  <text x="600" y="38" text-anchor="middle" fill="#ff6600" font-size="22" font-weight="bold" letter-spacing="1">ESQUEMA DE MONTAJE Y CONEXIÓN: KTM 1290 CANSMART (EURO 5)</text>
+  <text x="600" y="60" text-anchor="middle" fill="#8892b0" font-size="13">Diagrama Técnico de Conexionado Físico con 2 Conectores de 2 Pines y 2 Conectores de 3 Pines</text>
+
+  <!-- 1. BATERÍA 12V (Arriba Izquierda) -->
+  <g transform="translate(50, 90)" filter="url(#shadow)">
+    <rect width="180" height="120" rx="8" fill="#22252e" stroke="#ff3300" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="28" rx="8" fill="#ff3300"/>
+    <text x="90" y="19" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">BATERÍA MOTO 12V</text>
+    
+    <!-- Bornes -->
+    <!-- Borne Positivo -->
+    <circle cx="35" cy="55" r="14" fill="#cc0000" stroke="#ff4444" stroke-width="2"/>
+    <text x="35" y="60" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">+</text>
+    <text x="35" y="85" text-anchor="middle" fill="#ff6666" font-size="10" font-weight="bold">+12V KL30</text>
+    <text x="35" y="100" text-anchor="middle" fill="#aaa" font-size="9">(Anilla M6)</text>
+
+    <!-- Borne Negativo -->
+    <circle cx="145" cy="55" r="14" fill="#111" stroke="#555" stroke-width="2"/>
+    <text x="145" y="60" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">-</text>
+    <text x="145" y="85" text-anchor="middle" fill="#88bbff" font-size="10" font-weight="bold">GND MASA</text>
+    <text x="145" y="100" text-anchor="middle" fill="#aaa" font-size="9">(Anilla M6)</text>
+  </g>
+
+  <!-- 2. PORTAFUSIBLE AÉREO 30A -->
+  <g transform="translate(290, 110)" filter="url(#shadow)">
+    <rect width="130" height="80" rx="6" fill="#1c202a" stroke="#00cc66" stroke-width="2"/>
+    <text x="65" y="22" text-anchor="middle" fill="#00ff88" font-size="11" font-weight="bold">PORTAFUSIBLE 30A</text>
+    <rect x="40" y="32" width="50" height="26" rx="4" fill="#009944" stroke="#00ff88" stroke-width="1.5"/>
+    <text x="65" y="49" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">30A</text>
+    <text x="65" y="70" text-anchor="middle" fill="#8892b0" font-size="9">Verde / Estanco</text>
+  </g>
+
+  <!-- 3. CONVERTIDOR DC-DC 12V -> 5V -->
+  <g transform="translate(480, 100)" filter="url(#shadow)">
+    <rect width="180" height="100" rx="6" fill="#181c24" stroke="#4a5568" stroke-width="1.5"/>
+    <rect x="0" y="0" width="180" height="24" rx="6" fill="#2d3748"/>
+    <text x="90" y="16" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="bold">CONVERTIDOR DC-DC</text>
+    <text x="90" y="42" text-anchor="middle" fill="#a0aec0" font-size="10">12V ➔ 5V 3A (Sellado IP67)</text>
+    
+    <!-- Etiquetas entrada/salida -->
+    <text x="15" y="65" fill="#ff4444" font-size="9" font-weight="bold">IN+: 12V</text>
+    <text x="15" y="80" fill="#718096" font-size="9" font-weight="bold">IN-: GND</text>
+
+    <text x="120" y="65" fill="#00e5ff" font-size="9" font-weight="bold">OUT+: 5V</text>
+    <text x="120" y="80" fill="#718096" font-size="9" font-weight="bold">OUT-: GND</text>
+  </g>
+
+  <!-- 4. CONECTOR ROJO EURO 5 KTM (ISO 19689) -->
+  <g transform="translate(850, 95)" filter="url(#shadow)">
+    <rect width="280" height="110" rx="8" fill="#241416" stroke="#e53e3e" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="26" rx="8" fill="#e53e3e"/>
+    <text x="140" y="18" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CLAVIJA ROJA EURO 5 (KTM 1290)</text>
+    <text x="140" y="42" text-anchor="middle" fill="#fc8181" font-size="10">Conector OEM Sumitomo 6 Pines (Bajo Asiento)</text>
+    
+    <!-- Pines -->
+    <circle cx="40" cy="65" r="8" fill="#ff7700"/>
+    <text x="40" y="69" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">1</text>
+    <text x="55" y="69" fill="#ff9933" font-size="10" font-weight="bold">Pin 1: CAN-H (Naranja/Negro)</text>
+
+    <circle cx="40" cy="85" r="8" fill="#994d00"/>
+    <text x="40" y="89" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">2</text>
+    <text x="55" y="89" fill="#cca37a" font-size="10" font-weight="bold">Pin 2: CAN-L (Naranja/Marrón)</text>
+
+    <circle cx="210" cy="75" r="8" fill="#333" stroke="#666"/>
+    <text x="210" y="79" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+    <text x="225" y="79" fill="#a0aec0" font-size="10" font-weight="bold">Pin 4: GND</text>
+  </g>
+
+  <!-- 5. LILYGO T-CAN485 ESP32 (Centro Izquierda) -->
+  <g transform="translate(70, 270)" filter="url(#shadow)">
+    <rect width="360" height="230" rx="8" fill="url(#gradLilygo)" stroke="#00cc88" stroke-width="2"/>
+    <rect x="0" y="0" width="360" height="30" rx="8" fill="#009966"/>
+    <text x="180" y="20" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">LILYGO T-CAN485 (ESP32 DUAL-CORE)</text>
+    
+    <!-- Bornera Superior: Alimentación y CAN -->
+    <g transform="translate(20, 42)">
+      <rect width="320" height="42" rx="4" fill="#0a1f18" stroke="#00cc88" stroke-width="1"/>
+      <text x="160" y="14" text-anchor="middle" fill="#00ffaa" font-size="9" font-weight="bold">BORNERA DE TORNILLO SUPERIOR</text>
+      
+      <!-- Bornas individuales -->
+      <text x="25" y="32" fill="#00e5ff" font-size="10" font-weight="bold">[VIN 5V]</text>
+      <text x="85" y="32" fill="#a0aec0" font-size="10" font-weight="bold">[GND]</text>
+      <text x="155" y="32" fill="#ff9933" font-size="10" font-weight="bold">[CAN_H]</text>
+      <text x="225" y="32" fill="#cca37a" font-size="10" font-weight="bold">[CAN_L]</text>
+      <text x="285" y="32" fill="#a0aec0" font-size="10" font-weight="bold">[GND]</text>
+    </g>
+
+    <!-- Chip ESP32 & LED -->
+    <rect x="130" y="100" width="100" height="50" rx="4" fill="#11221c" stroke="#447766"/>
+    <text x="180" y="122" text-anchor="middle" fill="#00ffaa" font-size="10" font-weight="bold">ESP-WROOM-32</text>
+    <text x="180" y="138" text-anchor="middle" fill="#88bbaa" font-size="8">TWAI 500 kbps Pasivo</text>
+
+    <!-- Header Inferior: Salidas PWM hacia MOSFETs -->
+    <g transform="translate(20, 165)">
+      <rect width="320" height="52" rx="4" fill="#0a1f18" stroke="#00cc88" stroke-width="1"/>
+      <text x="160" y="14" text-anchor="middle" fill="#00ffaa" font-size="9" font-weight="bold">HEADER DE PINES (CONTROL PWM 3.3V)</text>
+      
+      <text x="20" y="34" fill="#ffffff" font-size="10" font-weight="bold">GPIO 25</text>
+      <text x="20" y="45" fill="#88bbaa" font-size="8">Ch 1 Blanco</text>
+
+      <text x="85" y="34" fill="#ffdd00" font-size="10" font-weight="bold">GPIO 32</text>
+      <text x="85" y="45" fill="#88bbaa" font-size="8">Ch 2 Amarillo</text>
+
+      <text x="155" y="34" fill="#3399ff" font-size="10" font-weight="bold">GPIO 33</text>
+      <text x="155" y="45" fill="#88bbaa" font-size="8">Ch 3 Azul</text>
+
+      <text x="225" y="34" fill="#ff4444" font-size="10" font-weight="bold">GPIO 14</text>
+      <text x="225" y="45" fill="#88bbaa" font-size="8">Ch 4 Rojo</text>
+
+      <text x="285" y="34" fill="#a0aec0" font-size="10" font-weight="bold">GND</text>
+      <text x="285" y="45" fill="#88bbaa" font-size="8">Masa Lógica</text>
+    </g>
+  </g>
+
+  <!-- 6. PLACA MOSFET POTENCIA 4CH (Centro Derecha) -->
+  <g transform="translate(540, 270)" filter="url(#shadow)">
+    <rect width="350" height="230" rx="8" fill="url(#gradMosfet)" stroke="#3182ce" stroke-width="2"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#2b6cb0"/>
+    <text x="175" y="20" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">PLACA POTENCIA MOSFET 4 CANALES</text>
+
+    <!-- Entrada Lógica (Izquierda) -->
+    <g transform="translate(15, 45)">
+      <rect width="130" height="170" rx="4" fill="#131c26" stroke="#4299e1" stroke-width="1"/>
+      <text x="65" y="16" text-anchor="middle" fill="#63b3ed" font-size="9" font-weight="bold">ENTRADA (3.3V-5V)</text>
+      
+      <circle cx="25" cy="40" r="7" fill="#fff"/>
+      <text x="40" y="44" fill="#fff" font-size="10" font-weight="bold">01 (In 1)</text>
+
+      <circle cx="25" cy="70" r="7" fill="#ffdd00"/>
+      <text x="40" y="74" fill="#ffdd00" font-size="10" font-weight="bold">02 (In 2)</text>
+
+      <circle cx="25" cy="100" r="7" fill="#3399ff"/>
+      <text x="40" y="104" fill="#3399ff" font-size="10" font-weight="bold">03 (In 3)</text>
+
+      <circle cx="25" cy="130" r="7" fill="#ff4444"/>
+      <text x="40" y="134" fill="#ff4444" font-size="10" font-weight="bold">04 (In 4)</text>
+
+      <circle cx="25" cy="155" r="7" fill="#555"/>
+      <text x="40" y="159" fill="#a0aec0" font-size="9" font-weight="bold">GND Común</text>
+    </g>
+
+    <!-- Potencia y Salidas (Derecha) -->
+    <g transform="translate(160, 45)">
+      <rect width="175" height="170" rx="4" fill="#131c26" stroke="#e53e3e" stroke-width="1"/>
+      <text x="87" y="16" text-anchor="middle" fill="#fc8181" font-size="9" font-weight="bold">ALIMENTACIÓN Y SALIDAS</text>
+
+      <!-- Alimentación 12V -->
+      <text x="15" y="38" fill="#ff4444" font-size="10" font-weight="bold">DC+ (+12V Batería)</text>
+      <text x="15" y="55" fill="#88bbff" font-size="10" font-weight="bold">DC- (Masa / GND)</text>
+
+      <line x1="10" y1="65" x2="165" y2="65" stroke="#4a5568" stroke-width="1"/>
+
+      <!-- Salidas High-Side -->
+      <circle cx="25" cy="85" r="6" fill="#ff3333"/>
+      <text x="40" y="89" fill="#fff" font-size="9" font-weight="bold">OUT 1 (+12V PWM)</text>
+
+      <circle cx="25" cy="110" r="6" fill="#ff3333"/>
+      <text x="40" y="114" fill="#fff" font-size="9" font-weight="bold">OUT 2 (+12V PWM)</text>
+
+      <circle cx="25" cy="135" r="6" fill="#ff3333"/>
+      <text x="40" y="139" fill="#fff" font-size="9" font-weight="bold">OUT 3 (+12V PWM)</text>
+
+      <circle cx="25" cy="160" r="6" fill="#ff3333"/>
+      <text x="40" y="164" fill="#fff" font-size="9" font-weight="bold">OUT 4 (+12V PWM)</text>
+    </g>
+  </g>
+
+  <!-- 7. CONECTORES SUPERSEAL (Abajo) -->
+  <!-- Conector 1: 2 PINES (Foco Izquierdo) -->
+  <g transform="translate(60, 570)" filter="url(#shadow)">
+    <rect width="240" height="160" rx="8" fill="#1c202a" stroke="#ffd700" stroke-width="2"/>
+    <rect x="0" y="0" width="240" height="26" rx="8" fill="#b7791f"/>
+    <text x="120" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">CONECTOR 1 (2 PINES)</text>
+    <text x="120" y="44" text-anchor="middle" fill="#ecc94b" font-size="12" font-weight="bold">FOCO IZQUIERDO (SET 1)</text>
+
+    <!-- Pines -->
+    <rect x="25" y="60" width="190" height="35" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="45" cy="77" r="6" fill="#ff3333"/>
+    <text x="60" y="81" fill="#ff9999" font-size="10" font-weight="bold">Pin 1: +12V (OUT 1 PWM)</text>
+
+    <rect x="25" y="105" width="190" height="35" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="45" cy="122" r="6" fill="#1a73e8"/>
+    <text x="60" y="126" fill="#90cdf4" font-size="10" font-weight="bold">Pin 2: Masa / GND Común</text>
+  </g>
+
+  <!-- Conector 2: 2 PINES (Foco Derecho) -->
+  <g transform="translate(340, 570)" filter="url(#shadow)">
+    <rect width="240" height="160" rx="8" fill="#1c202a" stroke="#ffd700" stroke-width="2"/>
+    <rect x="0" y="0" width="240" height="26" rx="8" fill="#b7791f"/>
+    <text x="120" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">CONECTOR 2 (2 PINES)</text>
+    <text x="120" y="44" text-anchor="middle" fill="#ecc94b" font-size="12" font-weight="bold">FOCO DERECHO (SET 1)</text>
+
+    <!-- Pines -->
+    <rect x="25" y="60" width="190" height="35" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="45" cy="77" r="6" fill="#ff3333"/>
+    <text x="60" y="81" fill="#ff9999" font-size="10" font-weight="bold">Pin 1: +12V (OUT 2 PWM)</text>
+
+    <rect x="25" y="105" width="190" height="35" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="45" cy="122" r="6" fill="#1a73e8"/>
+    <text x="60" y="126" fill="#90cdf4" font-size="10" font-weight="bold">Pin 2: Masa / GND Común</text>
+  </g>
+
+  <!-- Conector 3: 3 PINES (Faros de Niebla Set 2 + DRL) -->
+  <g transform="translate(620, 570)" filter="url(#shadow)">
+    <rect width="250" height="160" rx="8" fill="#1c202a" stroke="#00b4d8" stroke-width="2"/>
+    <rect x="0" y="0" width="250" height="26" rx="8" fill="#0077b6"/>
+    <text x="125" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">CONECTOR 3 (3 PINES)</text>
+    <text x="125" y="44" text-anchor="middle" fill="#90e0ef" font-size="12" font-weight="bold">FAROS DE NIEBLA (SET 2)</text>
+
+    <!-- Pines -->
+    <rect x="20" y="55" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="68" r="5" fill="#ff3333"/>
+    <text x="50" y="72" fill="#ff9999" font-size="9" font-weight="bold">Pin 1: +12V (OUT 3 PWM Niebla)</text>
+
+    <rect x="20" y="88" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="101" r="5" fill="#1a73e8"/>
+    <text x="50" y="105" fill="#90cdf4" font-size="9" font-weight="bold">Pin 2: Masa / GND Común</text>
+
+    <rect x="20" y="121" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="134" r="5" fill="#ffcc00"/>
+    <text x="50" y="138" fill="#fff3bf" font-size="9" font-weight="bold">Pin 3: DRL / Luz Diurna (Opcional)</text>
+  </g>
+
+  <!-- Conector 4: 3 PINES (Bocina / Accesorio) -->
+  <g transform="translate(900, 570)" filter="url(#shadow)">
+    <rect width="250" height="160" rx="8" fill="#1c202a" stroke="#e63946" stroke-width="2"/>
+    <rect x="0" y="0" width="250" height="26" rx="8" fill="#c1121f"/>
+    <text x="125" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">CONECTOR 4 (3 PINES)</text>
+    <text x="125" y="44" text-anchor="middle" fill="#ffb4a2" font-size="12" font-weight="bold">BOCINA / ACCESORIO / FRENO</text>
+
+    <!-- Pines -->
+    <rect x="20" y="55" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="68" r="5" fill="#ff3333"/>
+    <text x="50" y="72" fill="#ff9999" font-size="9" font-weight="bold">Pin 1: +12V (OUT 4 PWM Bocina)</text>
+
+    <rect x="20" y="88" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="101" r="5" fill="#1a73e8"/>
+    <text x="50" y="105" fill="#90cdf4" font-size="9" font-weight="bold">Pin 2: Masa / GND Común</text>
+
+    <rect x="20" y="121" width="210" height="26" rx="4" fill="#111" stroke="#444"/>
+    <circle cx="35" cy="134" r="5" fill="#00ffcc"/>
+    <text x="50" y="138" fill="#cbf3f0" font-size="9" font-weight="bold">Pin 3: Luz Freno / Aux (Opcional)</text>
+  </g>
+
+  <!-- LINEAS DE CABLEADO (RUTAS EXACTAS) -->
+
+  <!-- Batería (+) a Portafusible -->
+  <path d="M 85 145 L 290 145" fill="none" stroke="#ff3300" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Portafusible a Convertidor IN+ y a MOSFET DC+ -->
+  <path d="M 420 145 L 450 145 L 450 165 L 480 165" fill="none" stroke="#ff3300" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 450 145 L 720 145 L 720 305" fill="none" stroke="#ff3300" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Batería (-) a Convertidor IN- y a MOSFET DC- -->
+  <path d="M 195 160 L 250 160 L 250 80 L 740 80 L 740 325" fill="none" stroke="#2d3748" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 195 160 L 250 160 L 250 80 L 740 80 L 740 325" fill="none" stroke="#63b3ed" stroke-width="2" stroke-dasharray="4,4"/>
+  <path d="M 465 80 L 465 180 L 480 180" fill="none" stroke="#63b3ed" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Convertidor OUT (+5V) a LILYGO VIN -->
+  <path d="M 660 165 L 680 165 L 680 240 L 115 240 L 115 312" fill="none" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+  <!-- Convertidor OUT (GND) a LILYGO GND -->
+  <path d="M 660 180 L 670 180 L 670 250 L 175 250 L 175 312" fill="none" stroke="#718096" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Conector Euro 5 a LILYGO CAN_H y CAN_L -->
+  <path d="M 890 160 L 820 160 L 820 220 L 245 220 L 245 312" fill="none" stroke="#ff9933" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 890 180 L 830 180 L 830 230 L 315 230 L 315 312" fill="none" stroke="#cca37a" stroke-width="3" stroke-linecap="round"/>
+  <!-- Euro 5 GND a LILYGO GND -->
+  <path d="M 1060 180 L 1060 210 L 840 210 L 840 260 L 375 260 L 375 312" fill="none" stroke="#718096" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Señales PWM LILYGO -> MOSFET -->
+  <!-- GPIO 25 -> 01 -->
+  <path d="M 110 480 L 110 515 L 530 515 L 530 355 L 565 355" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- GPIO 32 -> 02 -->
+  <path d="M 175 480 L 175 525 L 520 525 L 520 385 L 565 385" fill="none" stroke="#ffdd00" stroke-width="2.5"/>
+  <!-- GPIO 33 -> 03 -->
+  <path d="M 245 480 L 245 535 L 510 535 L 510 415 L 565 415" fill="none" stroke="#3399ff" stroke-width="2.5"/>
+  <!-- GPIO 14 -> 04 -->
+  <path d="M 315 480 L 315 545 L 500 545 L 500 445 L 565 445" fill="none" stroke="#ff4444" stroke-width="2.5"/>
+  <!-- GND común señal -->
+  <path d="M 375 480 L 375 555 L 490 555 L 490 470 L 565 470" fill="none" stroke="#718096" stroke-width="2"/>
+
+  <!-- Salidas MOSFET a Conectores -->
+  <!-- OUT 1 a Conector 1 Pin 1 -->
+  <path d="M 770 395 L 770 540 L 180 540 L 180 630" fill="none" stroke="#ff3333" stroke-width="3"/>
+  <!-- OUT 2 a Conector 2 Pin 1 -->
+  <path d="M 780 420 L 780 530 L 460 530 L 460 630" fill="none" stroke="#ff3333" stroke-width="3"/>
+  <!-- OUT 3 a Conector 3 Pin 1 -->
+  <path d="M 790 445 L 790 520 L 740 520 L 740 625" fill="none" stroke="#ff3333" stroke-width="3"/>
+  <!-- OUT 4 a Conector 4 Pin 1 -->
+  <path d="M 800 470 L 800 520 L 1020 520 L 1020 625" fill="none" stroke="#ff3333" stroke-width="3"/>
+
+  <!-- Masa (GND) común hacia Conectores 1, 2, 3, 4 -->
+  <path d="M 870 325 L 870 555 L 100 555 L 100 690" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
+  <circle cx="380" cy="555" r="3" fill="#1a73e8"/>
+  <path d="M 380 555 L 380 690" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
+  <circle cx="660" cy="555" r="3" fill="#1a73e8"/>
+  <path d="M 660 555 L 660 670" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
+  <circle cx="940" cy="555" r="3" fill="#1a73e8"/>
+  <path d="M 940 555 L 940 670" fill="none" stroke="#1a73e8" stroke-width="2.5"/>
+
+</svg>
