@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTM 1290 CANsmart — Gestor de Accesorios y Bus CAN</title>
+  <meta name="description" content="Panel de control y configuración de accesorios para KTM 1290 Super Adventure Euro 5 con ESP32 y Bus CAN a 500kbps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- BARRA SUPERIOR / HEADER -->
+    <header class="top-nav" id="topNav">
+      <div class="brand-group">
+        <div class="ktm-badge">READY TO RACE</div>
+        <div class="brand-titles">
+          <h1 class="main-title">KTM 1290 <span class="highlight-orange">CANsmart</span></h1>
+          <span class="sub-title">ACCESSORY &amp; LIGHTING MANAGER // EURO 5</span>
+        </div>
+      </div>
+
+      <!-- Telemetría rápida en cabecera -->
+      <div class="header-telemetry" id="headerTelemetry">
+        <div class="status-chip" id="chipCanStatus">
+          <span class="pulse-dot green" id="canPulse"></span>
+          <span class="chip-label">CAN: <strong id="canSpeedText">500 kbps (Escucha)</strong></span>
+        </div>
+        <div class="status-chip" id="chipVoltage">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span class="chip-label"><strong id="batteryVoltageText">13.8 V</strong></span>
+        </div>
+        <div class="status-chip" id="chipIgnition">
+          <span class="key-indicator active" id="keyIndicator"></span>
+          <span class="chip-label" id="ignitionStatusText">CONTACTO ACTIVO</span>
+        </div>
+        <div class="connection-select-group">
+          <select id="connectionMode" class="mode-dropdown" title="Modo de conexión">
+            <option value="sim">Simulador Interactivo</option>
+            <option value="live">ESP32 Live (WiFi AP)</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- PESTAÑAS DE NAVEGACIÓN -->
+    <nav class="main-tabs" id="tabBar" role="tablist">
+      <button class="tab-btn active" id="tabBtnChannels" data-tab="tabChannels" role="tab" aria-selected="true">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Asignación de Circuitos
+      </button>
+      <button class="tab-btn" id="tabBtnSettings" data-tab="tabSettings" role="tab" aria-selected="false">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Comportamiento y Brillo
+      </button>
+      <button class="tab-btn" id="tabBtnHandlebar" data-tab="tabHandlebar" role="tab" aria-selected="false">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><circle cx="12" cy="12" r="6"/><path d="M12 12l4.5-4.5"/></svg>
+        Simulador Piña KTM 1290
+      </button>
+      <button class="tab-btn" id="tabBtnMonitor" data-tab="tabMonitor" role="tab" aria-selected="false">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Telemetría y Monitor CAN
+      </button>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="content-wrapper">
+      
+      <!-- PESTAÑA 1: ASIGNACIÓN DE CIRCUITOS -->
+      <section class="tab-panel active" id="tabChannels" role="tabpanel">
+        <div class="panel-header-desc">
+          <h2>Asignación de Funciones por Canal</h2>
+          <p>Selecciona un circuito de potencia y asigna la función deseada. Cada canal cuenta con fusible electrónico inteligente y lectura de amperaje en tiempo real.</p>
+        </div>
+
+        <!-- Fila de los 4 canales de hardware -->
+        <div class="circuits-grid" id="circuitsGrid">
+          
+          <!-- Canal Rojo -->
+          <div class="circuit-card active-card" id="cardChannel3" data-channel="3">
+            <div class="circuit-header">
+              <span class="color-dot red-dot"></span>
+              <span class="circuit-title">Circuito Rojo</span>
+              <span class="circuit-fuse" id="fuseBadge3">10A Max</span>
+            </div>
+            <div class="circuit-icon-box" id="activeIconBox3">
+              <div class="function-preview" id="previewIcon3">
+                <!-- Icono SVG inyectado por JS -->
+              </div>
+              <span class="function-name" id="previewName3">LIGHT PAIR 2</span>
+            </div>
+            <div class="circuit-meter">
+              <div class="meter-bar"><div class="meter-fill" id="meterFill3" style="width: 50%;"></div></div>
+              <div class="meter-labels">
+                <span id="meterDuty3">PWM: 50%</span>
+                <span id="meterAmps3">0.0 A</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canal Azul -->
+          <div class="circuit-card" id="cardChannel2" data-channel="2">
+            <div class="circuit-header">
+              <span class="color-dot blue-dot"></span>
+              <span class="circuit-title">Circuito Azul</span>
+              <span class="circuit-fuse" id="fuseBadge2">10A Max</span>
+            </div>
+            <div class="circuit-icon-box" id="activeIconBox2">
+              <div class="function-preview" id="previewIcon2"></div>
+              <span class="function-name" id="previewName2">HORN</span>
+            </div>
+            <div class="circuit-meter">
+              <div class="meter-bar"><div class="meter-fill" id="meterFill2" style="width: 0%;"></div></div>
+              <div class="meter-labels">
+                <span id="meterDuty2">PWM: 0%</span>
+                <span id="meterAmps2">0.0 A</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canal Amarillo -->
+          <div class="circuit-card" id="cardChannel1" data-channel="1">
+            <div class="circuit-header">
+              <span class="color-dot yellow-dot"></span>
+              <span class="circuit-title">Circuito Amarillo</span>
+              <span class="circuit-fuse" id="fuseBadge1">10A Max</span>
+            </div>
+            <div class="circuit-icon-box" id="activeIconBox1">
+              <div class="function-preview" id="previewIcon1"></div>
+              <span class="function-name" id="previewName1">RIGHT LIGHT 1</span>
+            </div>
+            <div class="circuit-meter">
+              <div class="meter-bar"><div class="meter-fill" id="meterFill1" style="width: 40%;"></div></div>
+              <div class="meter-labels">
+                <span id="meterDuty1">PWM: 40%</span>
+                <span id="meterAmps1">0.0 A</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canal Blanco -->
+          <div class="circuit-card" id="cardChannel0" data-channel="0">
+            <div class="circuit-header">
+              <span class="color-dot white-dot"></span>
+              <span class="circuit-title">Circuito Blanco</span>
+              <span class="circuit-fuse" id="fuseBadge0">10A Max</span>
+            </div>
+            <div class="circuit-icon-box" id="activeIconBox0">
+              <div class="function-preview" id="previewIcon0"></div>
+              <span class="function-name" id="previewName0">LEFT LIGHT 1</span>
+            </div>
+            <div class="circuit-meter">
+              <div class="meter-bar"><div class="meter-fill" id="meterFill0" style="width: 40%;"></div></div>
+              <div class="meter-labels">
+                <span id="meterDuty0">PWM: 40%</span>
+                <span id="meterAmps0">0.0 A</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Matriz de funciones seleccionables (idéntica al software DENALI) -->
+        <div class="function-matrix-panel">
+          <div class="matrix-instruction">
+            <span>Haz clic en una función abajo para asignarla al <strong id="selectedChannelLabel">Circuito Rojo</strong>:</span>
+          </div>
+
+          <div class="functions-grid" id="functionsGrid">
+            <!-- Inyectado dinámicamente con las 13 funciones oficiales -->
+          </div>
+
+          <div class="matrix-specs-note">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span><strong>10A continuo</strong> por circuito, 25A máximo transitorio (25s). <strong>25A continuo total</strong> para todo el módulo con fusible aéreo general de 30A.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 2: CONFIGURACIÓN DE COMPORTAMIENTO Y BRILLO -->
+      <section class="tab-panel" id="tabSettings" role="tabpanel">
+        <div class="panel-header-desc">
+          <h2>Regulación de Brillo y Automatismos</h2>
+          <p>Personaliza cómo responden las luces según la luz ambiental (sensor TFT de KTM), largas y situaciones de tráfico.</p>
+        </div>
+
+        <div class="settings-layout">
+          <!-- Columna Izquierda: Reguladores de Brillo Día / Noche -->
+          <div class="settings-card light-control-box">
+            <div class="box-title-row">
+              <div class="box-tag">SET 1</div>
+              <h3>Luces Principales (Light Set One)</h3>
+              <div class="toggle-switch-wrapper">
+                <input type="checkbox" id="set1EnabledToggle" checked>
+                <label for="set1EnabledToggle" class="switch-slider"></label>
+              </div>
+            </div>
+
+            <!-- Deslizador Día -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <div class="slider-meta">
+                  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                  <span>Intensidad de Día (Cruce)</span>
+                </div>
+                <span class="pct-val" id="valSet1Day">40%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderSet1Day" min="0" max="100" step="5" value="40">
+            </div>
+
+            <!-- Deslizador Noche -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <div class="slider-meta">
+                  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  <span>Intensidad de Noche (Cruce)</span>
+                </div>
+                <span class="pct-val" id="valSet1Night">20%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderSet1Night" min="0" max="100" step="5" value="20">
+            </div>
+
+            <!-- Deslizador Largas -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <div class="slider-meta">
+                  <svg class="high-beam-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span>Intensidad con Luz Larga</span>
+                </div>
+                <span class="pct-val" id="valSet1High">100%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderSet1High" min="0" max="100" step="5" value="100">
+            </div>
+
+            <hr class="divider">
+
+            <!-- SET 2: LUCES DE NIEBLA -->
+            <div class="box-title-row">
+              <div class="box-tag green-tag">SET 2</div>
+              <h3>Luces de Niebla (Light Set Two)</h3>
+              <div class="toggle-switch-wrapper">
+                <input type="checkbox" id="set2EnabledToggle">
+                <label for="set2EnabledToggle" class="switch-slider"></label>
+              </div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <div class="slider-meta">
+                  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                  <span>Intensidad Niebla Día</span>
+                </div>
+                <span class="pct-val" id="valSet2Day">50%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderSet2Day" min="0" max="100" step="5" value="50">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <div class="slider-meta">
+                  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  <span>Intensidad Niebla Noche</span>
+                </div>
+                <span class="pct-val" id="valSet2Night">30%</span>
+              </div>
+              <input type="range" class="range-slider" id="sliderSet2Night" min="0" max="100" step="5" value="30">
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Automatismos Reactivos -->
+          <div class="settings-card automatisms-box">
+            <h3>Automatismos y Seguridad Activa</h3>
+            <p class="section-hint">Comportamientos inteligentes activados mediante lectura pasiva del bus CAN de KTM:</p>
+
+            <div class="toggle-list">
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <span class="toggle-name">Apagar foco al activar intermitente</span>
+                  <span class="toggle-desc">Apaga temporalmente la luz auxiliar del lado del giro para que la luz ámbar sea 100% visible a otros vehículos.</span>
+                </div>
+                <div class="toggle-switch-wrapper">
+                  <input type="checkbox" id="toggleTurnCutoff" checked>
+                  <label for="toggleTurnCutoff" class="switch-slider"></label>
+                </div>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <span class="toggle-name">Estroboscópico con Bocina (*Strobe on Horn*)</span>
+                  <span class="toggle-desc">Parpadeo a 12 Hz y 100% de potencia en las luces auxiliares al presionar el claxon para emergencias.</span>
+                </div>
+                <div class="toggle-switch-wrapper">
+                  <input type="checkbox" id="toggleStrobeHorn" checked>
+                  <label for="toggleStrobeHorn" class="switch-slider"></label>
+                </div>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <span class="toggle-name">Ráfaga estroboscópica con Flash</span>
+                  <span class="toggle-desc">Al mantener el gatillo de ráfagas las luces hacen ráfaga ultra rápida en lugar de luz fija.</span>
+                </div>
+                <div class="toggle-switch-wrapper">
+                  <input type="checkbox" id="toggleStrobePass" checked>
+                  <label for="toggleStrobePass" class="switch-slider"></label>
+                </div>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <span class="toggle-name">Destello alterno con Luces de Emergencia</span>
+                  <span class="toggle-desc">Destello alterno con los 4 intermitentes (hazards) para máxima visibilidad en arcenes.</span>
+                </div>
+                <div class="toggle-switch-wrapper">
+                  <input type="checkbox" id="toggleInverseHazard" checked>
+                  <label for="toggleInverseHazard" class="switch-slider"></label>
+                </div>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <span class="toggle-name">Retardo de apagado de accesorios</span>
+                  <span class="toggle-desc">Mantiene alimentado el canal de accesorios (GPS / Dashcam / Luces) tras apagar el contacto.</span>
+                </div>
+                <div class="select-wrapper">
+                  <select id="selectOffDelay" class="custom-select">
+                    <option value="0">Inmediato (0 s)</option>
+                    <option value="15" selected>15 segundos</option>
+                    <option value="30">30 segundos</option>
+                    <option value="60">60 segundos</option>
+                    <option value="120">2 minutos</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="settings-actions">
+              <button class="btn btn-primary" id="btnSaveConfig">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Guardar en ESP32 / Aplicar
+              </button>
+              <button class="btn btn-secondary" id="btnResetDefaults">Restaurar Valores de Fábrica</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 3: SIMULADOR DE PIÑA KTM 1290 -->
+      <section class="tab-panel" id="tabHandlebar" role="tabpanel">
+        <div class="panel-header-desc">
+          <h2>Simulador Interactivo de Piña KTM 1290 S</h2>
+          <p>Prueba directamente en tu pantalla cómo reacciona el firmware a las combinaciones de botones reales de tu moto.</p>
+        </div>
+
+        <div class="handlebar-sim-container">
+          <!-- Visualizador virtual de la moto y sus luces -->
+          <div class="bike-viewport">
+            <div class="viewport-title">Visualizador de Luces en Tiempo Real</div>
+            <div class="lights-stage" id="lightsStage">
+              <!-- Faro Principal de la Moto -->
+              <div class="headlight-box" id="bikeMainHeadlight">
+                <div class="beam-glow" id="glowMainHeadlight"></div>
+                <span class="light-tag">Faro KTM 1290</span>
+                <span class="light-state" id="textMainHeadlight">Cruce (Día)</span>
+              </div>
+
+              <!-- Foco Izquierdo Set 1 -->
+              <div class="aux-light-box left-light" id="boxLightLeft">
+                <div class="beam-glow" id="glowLightLeft"></div>
+                <span class="light-tag">Set 1 Izq (Blanco)</span>
+                <span class="light-pct" id="pctLightLeft">40%</span>
+              </div>
+
+              <!-- Foco Derecho Set 1 -->
+              <div class="aux-light-box right-light" id="boxLightRight">
+                <div class="beam-glow" id="glowLightRight"></div>
+                <span class="light-tag">Set 1 Der (Amarillo)</span>
+                <span class="light-pct" id="pctLightRight">40%</span>
+              </div>
+
+              <!-- Focos de Niebla Set 2 -->
+              <div class="aux-light-box fog-light-left" id="boxFogLeft">
+                <div class="beam-glow amber" id="glowFogLeft"></div>
+                <span class="light-tag">Niebla Izq (Azul)</span>
+                <span class="light-pct" id="pctFogLeft">OFF</span>
+              </div>
+
+              <div class="aux-light-box fog-light-right" id="boxFogRight">
+                <div class="beam-glow amber" id="glowFogRight"></div>
+                <span class="light-tag">Niebla Der (Rojo)</span>
+                <span class="light-pct" id="pctFogRight">OFF</span>
+              </div>
+            </div>
+
+            <!-- Notificador flotante de modo DIMMER -->
+            <div class="dimmer-alert-banner" id="dimmerAlertBanner">
+              <span class="badge-dim">MODO DIMMER ACTIVO</span>
+              <span id="dimmerBannerText">Ajustando Brillo con Teclas +/- de la Cruceta...</span>
+              <div class="countdown-bar"><div class="countdown-fill" id="dimmerCountdown"></div></div>
+            </div>
+          </div>
+
+          <!-- Mando virtual interactivo de KTM -->
+          <div class="switchgear-interactive">
+            <div class="switchgear-shell">
+              <div class="switchgear-label">PIÑA IZQUIERDA KTM 1290</div>
+
+              <!-- Gatillo Trasero Ráfagas / Pass -->
+              <div class="trigger-row">
+                <div class="switch-desc-bubble">
+                  <strong>Gatillo Ráfagas (Pass)</strong>:
+                  <span>Mantén pulsado 3s para entrar al Modo Dimmer</span>
+                </div>
+                <div class="trigger-buttons">
+                  <button class="btn-ktm trigger-btn" id="btnPassHoldUp">▲ Mantener 3s (Set 1)</button>
+                  <button class="btn-ktm trigger-btn" id="btnPassHoldDown">▼ Mantener 3s (Set 2 Nieblas)</button>
+                  <button class="btn-ktm trigger-btn" id="btnPassFlash">Ráfaga Rápida</button>
+                </div>
+              </div>
+
+              <!-- Cruceta de Navegación 4 direcciones -->
+              <div class="dpad-container">
+                <button class="dpad-btn dpad-up" id="btnDpadUp" title="Subir Brillo (+10%)">
+                  <span>+</span>
+                </button>
+                <div class="dpad-mid-row">
+                  <button class="dpad-btn dpad-left" id="btnDpadLeft"><span>◄</span></button>
+                  <button class="dpad-btn dpad-center" id="btnDpadCenter"><span>SET</span></button>
+                  <button class="dpad-btn dpad-right" id="btnDpadRight"><span>►</span></button>
+                </div>
+                <button class="dpad-btn dpad-down" id="btnDpadDown" title="Bajar Brillo (-10%)">
+                  <span>-</span>
+                </button>
+              </div>
+
+              <!-- Fila de Intermitentes y Cancelación -->
+              <div class="turn-signal-row">
+                <button class="btn-ktm turn-btn" id="btnTurnLeft">◄ Interm. Izq</button>
+                <button class="btn-ktm cancel-btn" id="btnTurnCancel" title="Presionar botón centro cancelar">
+                  <span class="power-glyph">⏻</span> CANCELAR / ON-OFF
+                  <small>Triple Clic: Nieblas | Hold 3s: Set 1</small>
+                </button>
+                <button class="btn-ktm turn-btn" id="btnTurnRight">Interm. Der ►</button>
+              </div>
+
+              <!-- Bocina / Claxon -->
+              <div class="horn-row">
+                <button class="btn-ktm horn-btn" id="btnHorn">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  BOCINA / CLAXON (Estrobo)
+                </button>
+                <button class="btn-ktm night-toggle-btn" id="btnToggleDayNight">
+                  🌙 Sensor TFT: <strong id="lblTftMode">DÍA</strong>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 4: TELEMETRÍA Y MONITOR CAN -->
+      <section class="tab-panel" id="tabMonitor" role="tabpanel">
+        <div class="panel-header-desc">
+          <h2>Monitor CAN-Bus y Diagnóstico en Vivo</h2>
+          <p>Inspección de tramas recibidas a 500 kbps por el periférico TWAI del ESP32 en modo escucha pasiva.</p>
+        </div>
+
+        <div class="monitor-grid">
+          <!-- Estadísticas del Sistema -->
+          <div class="stats-panel">
+            <div class="stat-card">
+              <span class="stat-label">Estado de la Moto</span>
+              <span class="stat-val active-green" id="monIgnition">Contacto ON</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">RPM Motor</span>
+              <span class="stat-val" id="monRpm">1,450 RPM</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Velocidad</span>
+              <span class="stat-val" id="monSpeed">0.0 km/h</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Luz Larga</span>
+              <span class="stat-val" id="monHighBeam">Inactiva</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Consumo Estimado Total</span>
+              <span class="stat-val" id="monTotalAmps">3.2 A / 25A</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Temperatura MCU</span>
+              <span class="stat-val" id="monTemp">41.5 °C</span>
+            </div>
+          </div>
+
+          <!-- Consola de Tramas CAN en directo -->
+          <div class="can-log-box">
+            <div class="can-log-header">
+              <span class="console-title">Registro de Tramas CAN (ISO 19689 Euro 5 @ 500kbps)</span>
+              <button class="btn-console-clear" id="btnClearLog">Limpiar Registro</button>
+            </div>
+            <div class="can-log-body" id="canLogBody">
+              <!-- Logs inyectados por JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>KTM 1290 Super Adventure S (2024) CAN-Bus Accessory Manager</span>
+      </div>
+      <div class="footer-right">
+        <span>Hardware: ESP32 + SN65HVD230 (Listen-Only)</span>
+        <span class="bullet">•</span>
+        <span>Firmware v1.0.0</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
